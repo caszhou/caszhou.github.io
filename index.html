@@ -304,7 +304,7 @@
           <h1 class="post-title" itemprop="name headline">
                 
                 <a class="post-title-link" href="/2018/08/04/20180804/" itemprop="url">
-                  Go语言-01
+                  从Vue.nextTick的用法，看vue源码
                 </a>
               
             
@@ -330,12 +330,24 @@
                 
               
 
-              <time title="Created: 2018-08-04 21:39:00 / Modified: 22:14:10" itemprop="dateCreated datePublished" datetime="2018-08-04T21:39:00+08:00">2018-08-04</time>
+              <time title="Created: 2018-08-04 21:39:00" itemprop="dateCreated datePublished" datetime="2018-08-04T21:39:00+08:00">2018-08-04</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-08-08 23:03:15" itemprop="dateModified" datetime="2018-08-08T23:03:15+08:00">2018-08-08</time>
               
             
           </span>
@@ -352,7 +364,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端/" itemprop="url" rel="index"><span itemprop="name">后端</span></a></span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
 
                 
                 
@@ -388,17 +400,20 @@
       
         
           
-            <h3 id="近况"><a href="#近况" class="headerlink" title="近况"></a>近况</h3><p>终于。。。有时间写博客了。。之前写两篇，不是很好，全部删掉了。好了，下面进入正题。</p>
-<h3 id="Go语言"><a href="#Go语言" class="headerlink" title="Go语言"></a>Go语言</h3><h4 id="特性"><a href="#特性" class="headerlink" title="特性"></a>特性</h4><ul>
-<li>并发</li>
-<li>快速编译</li>
-<li>轻量级（没有类型层级）</li>
-</ul>
-<h4 id="mac安装"><a href="#mac安装" class="headerlink" title="mac安装"></a>mac安装</h4><ol>
-<li>/usr/bin/ruby -e “$(curl -fsSL <a href="https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;" target="_blank" rel="noopener">https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;</a></li>
-<li>brew update &amp;&amp; brew upgrade &amp;&amp; brew install go</li>
-</ol>
-
+            <h3 id="nextTick的使用场景"><a href="#nextTick的使用场景" class="headerlink" title="nextTick的使用场景"></a>nextTick的使用场景</h3><p>上代码…</p>
+<blockquote>
+<p>Page A</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;cw-picker ref=&quot;regionPicker&quot; :change=&quot;change&quot;&gt;&lt;/cw-picker&gt;</span><br><span class="line"></span><br><span class="line">data () &#123;</span><br><span class="line">    return &#123;</span><br><span class="line">        change: false</span><br><span class="line">    &#125;</span><br><span class="line">&#125;,</span><br><span class="line">methods: &#123;</span><br><span class="line">    do () &#123;</span><br><span class="line">        this.change = true</span><br><span class="line">        this.$refs.regionPicker.do()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>CwPicker组件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    do () &#123;</span><br><span class="line">        if (this.aryChange) &#123;</span><br><span class="line">            doSomething()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">watch: &#123;</span><br><span class="line">    change (newVal) &#123;</span><br><span class="line">        this.aryChange = newVal</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面的代码，在调用do方法的时候，this.aryChange是false。先不讲为什么，先把程序跑起来，把上面Page A do方法改下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">    do () &#123;</span><br><span class="line">        this.change = true</span><br><span class="line">        this.$nextTick(() =&gt; &#123;</span><br><span class="line">            this.$refs.regionPicker.do()</span><br><span class="line">        &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样在调用CwPicker组件的时候，this.aryChange就等于true了。</p>
+<h3 id="这是为什么"><a href="#这是为什么" class="headerlink" title="这是为什么"></a>这是为什么</h3><p>从下面两个知识点解释，具体看👇</p>
+<h3 id="Event-loop"><a href="#Event-loop" class="headerlink" title="Event loop"></a>Event loop</h3><h3 id="Vue源码解析"><a href="#Vue源码解析" class="headerlink" title="Vue源码解析"></a>Vue源码解析</h3>
           
         
       
@@ -509,9 +524,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-count">1</span>
                     <span class="site-state-item-name">tags</span>
                   </a>
                 </div>
