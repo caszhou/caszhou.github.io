@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=6.6.0" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.6.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.6.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.6.0" color="#222">
+
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '6.6.0',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="回顾第一章我们讲了单机版服务注册发现，然后引出了高可用Eureka集群，然后引出了k8s，这一节我们来讲下k8s。 为什么我们要用k8s 平滑升级 弹性伸缩 自动修复 自动重启  这么多优点你还不用。。下面我们来搭建集群 离线安装 - 所有节点123456789101112131415161718192021222324252627282930313233343536373839# 关闭防火墙sy">
+<meta name="keywords" content="k8s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring cloud 架构 - k8s篇（二）">
+<meta property="og:url" content="http://zhouxj.me/2018/08/09/20180809/index.html">
+<meta property="og:site_name" content="周夏洁的博客">
+<meta property="og:description" content="回顾第一章我们讲了单机版服务注册发现，然后引出了高可用Eureka集群，然后引出了k8s，这一节我们来讲下k8s。 为什么我们要用k8s 平滑升级 弹性伸缩 自动修复 自动重启  这么多优点你还不用。。下面我们来搭建集群 离线安装 - 所有节点123456789101112131415161718192021222324252627282930313233343536373839# 关闭防火墙sy">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-21T13:21:13.089Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="spring cloud 架构 - k8s篇（二）">
+<meta name="twitter:description" content="回顾第一章我们讲了单机版服务注册发现，然后引出了高可用Eureka集群，然后引出了k8s，这一节我们来讲下k8s。 为什么我们要用k8s 平滑升级 弹性伸缩 自动修复 自动重启  这么多优点你还不用。。下面我们来搭建集群 离线安装 - 所有节点123456789101112131415161718192021222324252627282930313233343536373839# 关闭防火墙sy">
+
+
+
+
+
+
+  <link rel="canonical" href="http://zhouxj.me/2018/08/09/20180809/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>spring cloud 架构 - k8s篇（二） | 周夏洁的博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+    .use-motion .motion-element,
+    .use-motion .brand,
+    .use-motion .menu-item,
+    .sidebar-inner,
+    .use-motion .post-block,
+    .use-motion .pagination,
+    .use-motion .comments,
+    .use-motion .post-header,
+    .use-motion .post-body,
+    .use-motion .collection-title { opacity: initial; }
+
+    .use-motion .logo,
+    .use-motion .site-title,
+    .use-motion .site-subtitle {
+      opacity: initial;
+      top: initial;
+    }
+
+    .use-motion .logo-line-before i { left: initial; }
+    .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">周夏洁的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">周夏洁的博客</p>
+      
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="Toggle navigation bar">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/09/20180809/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiajiezhou">
+      <meta itemprop="description" content="周夏洁的博客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周夏洁的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">spring cloud 架构 - k8s篇（二）
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2018-08-09 19:39:00" itemprop="dateCreated datePublished" datetime="2018-08-09T19:39:00+08:00">2018-08-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-21 21:21:13" itemprop="dateModified" datetime="2018-12-21T21:21:13+08:00">2018-12-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>第一章我们讲了单机版服务注册发现，然后引出了高可用Eureka集群，然后引出了k8s，这一节我们来讲下k8s。</p>
+<h3 id="为什么我们要用k8s"><a href="#为什么我们要用k8s" class="headerlink" title="为什么我们要用k8s"></a>为什么我们要用k8s</h3><ol>
+<li>平滑升级</li>
+<li>弹性伸缩</li>
+<li>自动修复</li>
+<li>自动重启</li>
+</ol>
+<p>这么多优点你还不用。。下面我们来搭建集群</p>
+<h3 id="离线安装-所有节点"><a href="#离线安装-所有节点" class="headerlink" title="离线安装 - 所有节点"></a>离线安装 - 所有节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 关闭防火墙</span><br><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line"></span><br><span class="line"># 关闭安全增强型Linux</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line"></span><br><span class="line"># 安装EPEL源</span><br><span class="line">yum install -y epel-release</span><br><span class="line"></span><br><span class="line"># 阿里云k8s源</span><br><span class="line">vim /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">repo_gpgcheck=0</span><br><span class="line">gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg  http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line"></span><br><span class="line"># 主机名解析</span><br><span class="line">vim /etc/hosts</span><br><span class="line">192.168.158.128 master01</span><br><span class="line">192.168.158.129 node01</span><br><span class="line">192.168.158.130 master02</span><br><span class="line">192.168.158.131 node02</span><br><span class="line"></span><br><span class="line"># 彻底关闭swap</span><br><span class="line">sed -i &apos;s/.*swap.*/#&amp;amp;/&apos; /etc/fstab</span><br><span class="line"></span><br><span class="line"># 运行docker</span><br><span class="line">curl -sSL https://get.docker.com/ | sh</span><br><span class="line">systemctl enable docker.service</span><br><span class="line">systemctl start docker.service</span><br><span class="line"></span><br><span class="line"># 重启</span><br><span class="line">mkdir -p /mnt/software/</span><br><span class="line">restart</span><br></pre></td></tr></table></figure>
+<h3 id="离线安装-Master节点"><a href="#离线安装-Master节点" class="headerlink" title="离线安装 - Master节点"></a>离线安装 - Master节点</h3><h4 id="运行etcd"><a href="#运行etcd" class="headerlink" title="运行etcd"></a>运行etcd</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"># etcd二进制文件</span><br><span class="line">cd /mnt/software/</span><br><span class="line">wget -c https://github.com/etcd-io/etcd/releases/download/v3.3.10/etcd-v3.3.10-linux-amd64.tar.gz</span><br><span class="line">tar xzvf etcd-v3.3.10-linux-amd64.tar.gz</span><br><span class="line">cd etcd-v3.3.10-linux-amd64/</span><br><span class="line">cp etcd etcdctl /usr/bin/</span><br><span class="line"></span><br><span class="line"># 开机启动开始</span><br><span class="line">mkdir -p /etc/kubernetes/</span><br><span class="line">vim /usr/lib/systemd/system/etcd.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Etcd Server</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/etcd</span><br><span class="line">ExecStart=/usr/bin/etcd $ETCD_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/etcd</span><br><span class="line">ETCD_ARGS=&quot;--config-file /etc/kubernetes/etcd.conf.yml&quot;</span><br><span class="line"></span><br><span class="line">wget -c https://github.com/etcd-io/etcd/blob/master/etcd.conf.yml.sample -O /etc/kubernetes/ectetcd.conf.yml</span><br><span class="line">vim /etc/kubernetes/ectetcd.conf.yml</span><br><span class="line">修改name: &apos;etcd&apos;</span><br><span class="line">修改data-dir: /var/lib/etcd</span><br><span class="line">修改listen-client-urls: http://0.0.0.0:2379, http://0.0.0.0:4001</span><br><span class="line">修改advertise-client-urls: http://0.0.0.0:2379, http://0.0.0.0:4001</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable etcd.service</span><br><span class="line">systemctl start etcd.service</span><br></pre></td></tr></table></figure>
+<h4 id="获取Kubernetes发布包"><a href="#获取Kubernetes发布包" class="headerlink" title="获取Kubernetes发布包"></a>获取Kubernetes发布包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/kubernetes/kubernetes/releases/download/v1.10.12/kubernetes.tar.gz</span><br><span class="line">tar xzvf kubernetes.tar.gz</span><br><span class="line">wget https://dl.k8s.io/v1.10.12/kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">tar xzvf kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">cd kubernetes/server/bin/</span><br><span class="line">find ./ -perm 755 | xargs -i cp &#123;&#125; /usr/bin/</span><br></pre></td></tr></table></figure>
+<h4 id="运行Kubernetes-Master组件"><a href="#运行Kubernetes-Master组件" class="headerlink" title="运行Kubernetes Master组件"></a>运行Kubernetes Master组件</h4><h5 id="运行Kubernetes-API-Server"><a href="#运行Kubernetes-API-Server" class="headerlink" title="运行Kubernetes API Server"></a>运行Kubernetes API Server</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kube-apiserver.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes API Server</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-apiserver</span><br><span class="line">ExecStart=/usr/bin/kube-apiserver $KUBE_APISERVER_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-apiserver</span><br><span class="line">KUBE_APISERVER_ARGS=&quot;--logtostderr=true \</span><br><span class="line">	--v=0 \</span><br><span class="line">	--etcd-servers=http://192.168.158.128:4001 \</span><br><span class="line">	--insecure-bind-address=0.0.0.0 \</span><br><span class="line">	--insecure-port=8080 \</span><br><span class="line">	--service-cluster-ip-range=192.168.0.0/16 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kube-apiserver.service</span><br><span class="line">systemctl start kube-apiserver.service</span><br></pre></td></tr></table></figure>
+<h4 id="运行Kubernetes-Controller-Manager"><a href="#运行Kubernetes-Controller-Manager" class="headerlink" title="运行Kubernetes Controller Manager"></a>运行Kubernetes Controller Manager</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kube-controller-manager.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Controller Manager Server</span><br><span class="line">After=kube-apiserver.service</span><br><span class="line">Requires=kube-apiserver.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-controller-manager</span><br><span class="line">ExecStart=/usr/bin/kube-controller-manager $KUBE_CONTROLLER_MANAGER_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-controller-manager</span><br><span class="line">KUBE_CONTROLLER_MANAGER_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --master=http://192.168.158.128:8080 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kube-controller-manager.service</span><br><span class="line">systemctl start kube-controller-manager.service</span><br></pre></td></tr></table></figure>
+<h4 id="运行Kubernetes-Scheduler"><a href="#运行Kubernetes-Scheduler" class="headerlink" title="运行Kubernetes Scheduler"></a>运行Kubernetes Scheduler</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kube-scheduler.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Scheduler Server</span><br><span class="line">After=kube-controller-manager.service</span><br><span class="line">Requires=kube-controller-manager.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-scheduler</span><br><span class="line">ExecStart=/usr/bin/kube-scheduler $KUBE_SCHEDULER_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-scheduler</span><br><span class="line">KUBE_SCHEDULER_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --master=http://192.168.158.128:8080 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kube-scheduler.service</span><br><span class="line">systemctl start kube-scheduler.service</span><br></pre></td></tr></table></figure>
+<h3 id="离线安装-Node节点"><a href="#离线安装-Node节点" class="headerlink" title="离线安装 - Node节点"></a>离线安装 - Node节点</h3><h4 id="运行Kubelet"><a href="#运行Kubelet" class="headerlink" title="运行Kubelet"></a>运行Kubelet</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/software/</span><br><span class="line">wget -c https://dl.k8s.io/v1.10.12/kubernetes-node-linux-amd64.tar.gz</span><br><span class="line">tar xzvf kubernetes-node-linux-amd64.tar.gz</span><br><span class="line">cd kubernetes/node/bin/</span><br><span class="line">find ./ -perm 755 | xargs -i cp &#123;&#125; /usr/bin/</span><br><span class="line"></span><br><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kubelet.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kubelet Server</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kubelet</span><br><span class="line">ExecStart=/usr/bin/kubelet $KUBELET_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kubelet</span><br><span class="line">KUBELET_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --kubeconfig=/etc/kubernetes/kubelet.kubeconfig \</span><br><span class="line">    --hostname-override=192.168.158.129 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kubelet.kubeconfig</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Config</span><br><span class="line">clusters:</span><br><span class="line">  - cluster:</span><br><span class="line">      server: http://192.168.158.128:8080</span><br><span class="line">    name: local</span><br><span class="line">contexts:</span><br><span class="line">  - context:</span><br><span class="line">      cluster: local</span><br><span class="line">    name: local</span><br><span class="line">current-context: local</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kubelet.service</span><br><span class="line">systemctl start kubelet.service</span><br></pre></td></tr></table></figure>
+<h4 id="运行kube-proxy"><a href="#运行kube-proxy" class="headerlink" title="运行kube-proxy"></a>运行kube-proxy</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># 内核模块加载</span><br><span class="line">cat &gt; /etc/sysconfig/modules/ipvs.modules &lt;&lt;EOF</span><br><span class="line">#!/bin/bash</span><br><span class="line">ipvs_modules=&quot;ip_vs ip_vs_lc ip_vs_wlc ip_vs_rr ip_vs_wrr ip_vs_lblc ip_vs_lblcr ip_vs_dh ip_vs_sh ip_vs_fo ip_vs_nq ip_vs_sed ip_vs_ftp nf_conntrack_ipv4&quot;</span><br><span class="line">for kernel_module in \$&#123;ipvs_modules&#125;; do</span><br><span class="line">    /sbin/modinfo -F filename \$&#123;kernel_module&#125; &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    if [ $? -eq 0 ]; then</span><br><span class="line">        /sbin/modprobe \$&#123;kernel_module&#125;</span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line">EOF</span><br><span class="line">chmod 755 /etc/sysconfig/modules/ipvs.modules &amp;&amp; bash /etc/sysconfig/modules/ipvs.modules &amp;&amp; lsmod | grep ip_vs</span><br><span class="line"></span><br><span class="line">vim /usr/lib/systemd/system/kube-proxy.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kube-Proxy Server</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=network.service</span><br><span class="line">Requires=network.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-proxy</span><br><span class="line">ExecStart=/usr/bin/kube-proxy $KUBE_PROXY_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line">LimitNOFILE=65536</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-proxy</span><br><span class="line">KUBE_PROXY_ARGS=&quot;--master=http://192.168.158.128:8080 \</span><br><span class="line">    --masquerade-all \</span><br><span class="line">    --feature-gates=SupportIPVSProxyMode=true \</span><br><span class="line">    --proxy-mode=ipvs \</span><br><span class="line">    --ipvs-min-sync-period=5s \</span><br><span class="line">    --ipvs-sync-period=5s \</span><br><span class="line">    --ipvs-scheduler=rr \</span><br><span class="line">    --cluster-cidr=192.168.0.0/16&quot;</span><br><span class="line"></span><br><span class="line">systemctl enable kube-proxy.service</span><br><span class="line">systemctl start kube-proxy.service</span><br></pre></td></tr></table></figure>
+<h3 id="查看Kubernetes的健康状态"><a href="#查看Kubernetes的健康状态" class="headerlink" title="查看Kubernetes的健康状态"></a>查看Kubernetes的健康状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 kubernetes]# kubectl -s http://192.168.158.128:8080 get componentstatus</span><br><span class="line">NAME                 STATUS    MESSAGE             ERROR</span><br><span class="line">controller-manager   Healthy   ok                  </span><br><span class="line">etcd-0               Healthy   &#123;&quot;health&quot;:&quot;true&quot;&#125;   </span><br><span class="line">scheduler            Healthy   ok </span><br><span class="line"></span><br><span class="line">[root@node01 kubernetes]# kubectl -s http://192.168.158.128:8080 get node</span><br><span class="line">NAME              STATUS    ROLES     AGE       VERSION</span><br><span class="line">192.168.158.129   Ready     &lt;none&gt;    10m       v1.10.12</span><br></pre></td></tr></table></figure>
+<p>k8s的内容比较多，后面我会写Flannel，Ectd和Master集群，k8s4个插件（DNS Monitor Logging UI）,所以Euruka的集群应该会在第6章里</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/k8s/" rel="tag"># k8s</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/07/20180807/" rel="next" title="短链">
+                <i class="fa fa-chevron-left"></i> 短链
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">xiajiezhou</p>
+              <p class="site-description motion-element" itemprop="description">周夏洁的博客</p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">posts</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">categories</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">tags</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#回顾"><span class="nav-number">1.</span> <span class="nav-text">回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么我们要用k8s"><span class="nav-number">2.</span> <span class="nav-text">为什么我们要用k8s</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线安装-所有节点"><span class="nav-number">3.</span> <span class="nav-text">离线安装 - 所有节点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线安装-Master节点"><span class="nav-number">4.</span> <span class="nav-text">离线安装 - Master节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行etcd"><span class="nav-number">4.1.</span> <span class="nav-text">运行etcd</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取Kubernetes发布包"><span class="nav-number">4.2.</span> <span class="nav-text">获取Kubernetes发布包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行Kubernetes-Master组件"><span class="nav-number">4.3.</span> <span class="nav-text">运行Kubernetes Master组件</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#运行Kubernetes-API-Server"><span class="nav-number">4.3.1.</span> <span class="nav-text">运行Kubernetes API Server</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行Kubernetes-Controller-Manager"><span class="nav-number">4.4.</span> <span class="nav-text">运行Kubernetes Controller Manager</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行Kubernetes-Scheduler"><span class="nav-number">4.5.</span> <span class="nav-text">运行Kubernetes Scheduler</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#离线安装-Node节点"><span class="nav-number">5.</span> <span class="nav-text">离线安装 - Node节点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#运行Kubelet"><span class="nav-number">5.1.</span> <span class="nav-text">运行Kubelet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#运行kube-proxy"><span class="nav-number">5.2.</span> <span class="nav-text">运行kube-proxy</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看Kubernetes的健康状态"><span class="nav-number">6.</span> <span class="nav-text">查看Kubernetes的健康状态</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">xiajiezhou</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v6.6.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.6.0"></script>
+
+  <script src="/js/src/motion.js?v=6.6.0"></script>
+
+
+
+  
+  
+
+  
+  <script src="/js/src/scrollspy.js?v=6.6.0"></script>
+<script src="/js/src/post-details.js?v=6.6.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.6.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
