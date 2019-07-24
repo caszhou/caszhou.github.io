@@ -286,6 +286,210 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2019/07/24/20190724/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="xiajiezhou">
+      <meta itemprop="description" content="周夏洁的博客">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周夏洁的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                
+                <a href="/2019/07/24/20190724/" class="post-title-link" itemprop="url">flink on k8s</a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-07-24 17:23:00 / Modified: 18:06:47" itemprop="dateCreated datePublished" datetime="2019-07-24T17:23:00+08:00">2019-07-24</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据/" itemprop="url" rel="index"><span itemprop="name">数据</span></a></span>
+
+                
+                
+                  , 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>流式处理（主ETL 副计算）</p>
+<h3 id="0-1版本"><a href="#0-1版本" class="headerlink" title="0.1版本"></a>0.1版本</h3><p>直接在一台机器上启动standalone cluster，通过web提交任务。</p>
+<blockquote>
+<p>缺点：所有计算资源依赖于一台机器，此方面只能做为初期的demo部署方案。</p>
+</blockquote>
+<h3 id="0-2版本（没有实施过，只是初期的时候想过）"><a href="#0-2版本（没有实施过，只是初期的时候想过）" class="headerlink" title="0.2版本（没有实施过，只是初期的时候想过）"></a>0.2版本（没有实施过，只是初期的时候想过）</h3><p>部署standalone cluster集群版本，通过web提交任务。</p>
+<blockquote>
+<p>缺点：不是HA</p>
+</blockquote>
+<h3 id="0-3版本（没有实施过，只是初期的时候想过）"><a href="#0-3版本（没有实施过，只是初期的时候想过）" class="headerlink" title="0.3版本（没有实施过，只是初期的时候想过）"></a>0.3版本（没有实施过，只是初期的时候想过）</h3><p>HA standalone cluster，通过web提交任务。</p>
+<blockquote>
+<p>缺点：这个其实就满足生产的要求，需要额外的部署zk集群。但是没有上k8s，不满足当前潮流。</p>
+</blockquote>
+<h3 id="1-0版本"><a href="#1-0版本" class="headerlink" title="1.0版本"></a>1.0版本</h3><p>k8s standalone cluster，配置用的是官网的。</p>
+<blockquote>
+<p>缺点：官网的配置根本不是HA版本，而且checkpoint只能用内存版本，很容易OOM。</p>
+</blockquote>
+<h3 id="1-1版本"><a href="#1-1版本" class="headerlink" title="1.1版本"></a>1.1版本</h3><p>k8s job cluster版本，在编译镜像的时候将jar包打在镜像里面</p>
+<blockquote>
+<p>缺点：现在确实是HA了，但是checkpoint的问题没有解决，非常容易oom。</p>
+</blockquote>
+<h3 id="1-2版本"><a href="#1-2版本" class="headerlink" title="1.2版本"></a>1.2版本</h3><p>k8s job cluster版本加阿里云nas存储（线上没hadoop环境，没有hdfs，也不想用oss）。</p>
+<blockquote>
+<p>缺点：现在是HA，也解决了OOM的问题，tm挂了，也不会影响job。但是jm挂了，就会影响job，因为job id飘了。</p>
+</blockquote>
+<h3 id="2-0版本"><a href="#2-0版本" class="headerlink" title="2.0版本"></a>2.0版本</h3><p>k8s job cluster版本加阿里云nas存储（线上没hadoop环境，没有hdfs，也不想用oss）加固定job</p>
+<blockquote>
+<p>缺点：目前线上还是跑的很欢乐的。暂时在部署上应该没什么问题了。</p>
+</blockquote>
+<h3 id="最后附上k8s代码"><a href="#最后附上k8s代码" class="headerlink" title="最后附上k8s代码"></a>最后附上k8s代码</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-job-cluster</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">        component:</span> <span class="string">job-cluster</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      imagePullSecrets:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">nse-docker-vpc</span></span><br><span class="line"><span class="attr">      restartPolicy:</span> <span class="string">Always</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-job-cluster</span></span><br><span class="line"><span class="attr">          image:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">          envFrom:</span></span><br><span class="line"><span class="attr">            - configMapRef:</span></span><br><span class="line"><span class="attr">                name:</span> <span class="string">flink-env</span></span><br><span class="line"><span class="attr">          resources:</span></span><br><span class="line"><span class="attr">            requests:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"4Gi"</span></span><br><span class="line"><span class="attr">            limits:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"5Gi"</span></span><br><span class="line"><span class="attr">          args:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"job-cluster"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Djobmanager.rpc.address=flink-job-cluster"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Dparallelism.default=6"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Dblob.server.port=6124"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Dqueryable-state.server.ports=6125"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"--job-id"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"00000000000000000000000000000000"</span></span><br><span class="line"><span class="attr">          ports:</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">rpc</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">6124</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">blob</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">6125</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">query</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">ui</span></span><br><span class="line"><span class="attr">          env:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">FLINK_JM_HEAP</span></span><br><span class="line"><span class="attr">              value:</span> <span class="string">"4096m"</span></span><br><span class="line"><span class="attr">          readinessProbe:</span></span><br><span class="line"><span class="attr">            tcpSocket:</span></span><br><span class="line"><span class="attr">              port:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">            initialDelaySeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            timeoutSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            periodSeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">          livenessProbe:</span></span><br><span class="line"><span class="attr">            tcpSocket:</span></span><br><span class="line"><span class="attr">              port:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">            initialDelaySeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            timeoutSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            periodSeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">          volumeMounts:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/opt/flink/log/</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/data/flink/checkpoints</span></span><br><span class="line"><span class="attr">      volumes:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">          hostPath:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/var/log/flink/</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">          hostPath:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/data/flink/checkpoints</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-job-cluster</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">    component:</span> <span class="string">job-cluster</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">rpc</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">blob</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6124</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">query</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6125</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">ui</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30881</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">    component:</span> <span class="string">job-cluster</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-task-manager</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">6</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">        component:</span> <span class="string">task-manager</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      imagePullSecrets:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">      restartPolicy:</span> <span class="string">Always</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-task-manager</span></span><br><span class="line"><span class="attr">          image:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">          envFrom:</span></span><br><span class="line"><span class="attr">            - configMapRef:</span></span><br><span class="line"><span class="attr">                name:</span> <span class="string">flink-env</span></span><br><span class="line"><span class="attr">          resources:</span></span><br><span class="line"><span class="attr">            requests:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"3Gi"</span></span><br><span class="line"><span class="attr">            limits:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"4Gi"</span></span><br><span class="line"><span class="attr">          args:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"task-manager"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Djobmanager.rpc.address=flink-job-cluster"</span></span><br><span class="line"><span class="attr">          env:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">FLINK_TM_HEAP</span></span><br><span class="line"><span class="attr">              value:</span> <span class="string">"3072m"</span></span><br><span class="line"><span class="attr">          volumeMounts:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/opt/flink/log/</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/data/flink/checkpoints</span></span><br><span class="line"><span class="attr">      volumes:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">          hostPath:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/var/log/flink</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">          hostPath:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/data/flink/checkpoints</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>具体的dockerfile，请谷歌flink job cluster github，拷贝对应的文件。</p>
+</blockquote>
+
+          
+        
+      
+    </div>
+
+    
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/13/20180813/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1642,7 +1846,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -1667,7 +1871,11 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -1694,7 +1902,9 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
