@@ -1,98 +1,24 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next muse use-motion" lang>
-<head><meta name="generator" content="Hexo 3.9.0">
+<html lang="">
+<head>
   <meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
 
-
-
-
-
-
-
-
-
-
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.2.0">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.2.0">
-
-
-  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
-
-
-
-
-
-
-<link rel="stylesheet" href="/css/main.css?v=7.2.0">
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0">
-
-
-
-
-
-
-
-
-<script id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Muse',
-    version: '7.2.0',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    fancybox: false,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
-    }
-  };
-</script>
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"zhouxj.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
 
   <meta name="description" content="周夏洁的博客">
 <meta property="og:type" content="website">
@@ -100,28 +26,21 @@
 <meta property="og:url" content="http://zhouxj.me/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
 <meta property="og:description" content="周夏洁的博客">
-<meta property="og:locale" content="default">
+<meta property="article:author" content="xiajiezhou">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="周夏洁的博客">
-<meta name="twitter:description" content="周夏洁的博客">
+
+<link rel="canonical" href="http://zhouxj.me/">
 
 
-
-
-
-  
-  
-  <link rel="canonical" href="http://zhouxj.me/">
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
-  
   <title>周夏洁的博客</title>
   
 
@@ -130,15 +49,8 @@
 
 
 
-
-
-
-
-
-
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -147,9 +59,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -163,240 +74,128 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="default">
-
-  
-  
-    
-  
-
-  <div class="container sidebar-position-left 
-  page-home">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">周夏洁的博客</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-      
         <p class="site-subtitle">周夏洁的博客</p>
-      
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
-
 
 
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home menu-item-active">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
 
   </li>
+  </ul>
 
-      
-      
-    </ul>
-  
-
-  
-    
-
-  
-
-  
 </nav>
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
-          <div id="content" class="content">
+
+          <div class="content">
             
-  <section id="posts" class="posts-expand">
-    
-      
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  <div class="posts-expand">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2019/07/24/20190724/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/24/20190724/" class="post-title-link" itemprop="url">flink on k8s</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/07/24/20190724/" class="post-title-link" itemprop="url">flink on k8s</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2019-07-24 17:23:00" itemprop="dateCreated datePublished" datetime="2019-07-24T17:23:00+08:00">2019-07-24</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-08-02 11:58:58" itemprop="dateModified" datetime="2019-08-02T11:58:58+08:00">2019-08-02</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:53:41" itemprop="dateModified" datetime="2020-02-09T10:53:41+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据/" itemprop="url" rel="index"><span itemprop="name">数据</span></a></span>
-
-                
-                
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">数据</span>
+                  </a>
+                </span>
                   , 
-                
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
-
-                
-                
-              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -404,207 +203,86 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>流式处理（主ETL 副计算）</p>
+          <h3 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h3><p>流式处理（主ETL 副计算）</p>
 <h3 id="0-1版本"><a href="#0-1版本" class="headerlink" title="0.1版本"></a>0.1版本</h3><p>直接在一台机器上启动standalone cluster，通过web提交任务。</p>
 <blockquote>
 <p>缺点：所有计算资源依赖于一台机器，此方面只能做为初期的demo部署方案。</p>
 </blockquote>
-<h3 id="0-2版本（没有实施过，只是初期的时候想过）"><a href="#0-2版本（没有实施过，只是初期的时候想过）" class="headerlink" title="0.2版本（没有实施过，只是初期的时候想过）"></a>0.2版本（没有实施过，只是初期的时候想过）</h3><p>部署standalone cluster集群版本，通过web提交任务。</p>
-<blockquote>
-<p>缺点：不是HA</p>
-</blockquote>
-<h3 id="0-3版本（没有实施过，只是初期的时候想过）"><a href="#0-3版本（没有实施过，只是初期的时候想过）" class="headerlink" title="0.3版本（没有实施过，只是初期的时候想过）"></a>0.3版本（没有实施过，只是初期的时候想过）</h3><p>HA standalone cluster，通过web提交任务。</p>
-<blockquote>
-<p>缺点：这个其实就满足生产的要求，需要额外的部署zk集群。但是没有上k8s，不满足当前潮流。</p>
-</blockquote>
-<h3 id="1-0版本"><a href="#1-0版本" class="headerlink" title="1.0版本"></a>1.0版本</h3><p>k8s standalone cluster，配置用的是官网的。</p>
-<blockquote>
-<p>缺点：官网的配置根本不是HA版本，而且checkpoint只能用内存版本，很容易OOM。</p>
-</blockquote>
-<h3 id="1-1版本"><a href="#1-1版本" class="headerlink" title="1.1版本"></a>1.1版本</h3><p>k8s job cluster版本，在编译镜像的时候将jar包打在镜像里面</p>
-<blockquote>
-<p>缺点：现在确实是HA了，但是checkpoint的问题没有解决，非常容易oom。</p>
-</blockquote>
-<h3 id="1-2版本"><a href="#1-2版本" class="headerlink" title="1.2版本"></a>1.2版本</h3><p>k8s job cluster版本加阿里云nas存储（线上没hadoop环境，没有hdfs，也不想用oss）。</p>
-<blockquote>
-<p>缺点：现在是HA，也解决了OOM的问题，tm挂了，也不会影响job。但是jm挂了，就会影响job，因为job id飘了。</p>
-</blockquote>
-<h3 id="2-0版本"><a href="#2-0版本" class="headerlink" title="2.0版本"></a>2.0版本</h3><p>k8s job cluster版本加阿里云nas存储（线上没hadoop环境，没有hdfs，也不想用oss）加固定job</p>
-<blockquote>
-<p>缺点：目前线上还是跑的很欢乐的。暂时在部署上应该没什么问题了。</p>
-</blockquote>
-<h3 id="2-1版本"><a href="#2-1版本" class="headerlink" title="2.1版本"></a>2.1版本</h3><p>2.0版本加上静态pv pvc</p>
-<h3 id="最后附上k8s代码"><a href="#最后附上k8s代码" class="headerlink" title="最后附上k8s代码"></a>最后附上k8s代码</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolume</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-nas-pv</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  capacity:</span></span><br><span class="line"><span class="attr">    storage:</span> <span class="number">100</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">  volumeMode:</span> <span class="string">Filesystem</span></span><br><span class="line"><span class="attr">  accessModes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">ReadWriteMany</span></span><br><span class="line"><span class="attr">  persistentVolumeReclaimPolicy:</span> <span class="string">Retain</span></span><br><span class="line"><span class="attr">  storageClassName:</span> <span class="string">nas-flink-rel</span></span><br><span class="line"><span class="attr">  mountOptions:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">nolock,tcp,noresvport</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">nfsvers=4</span></span><br><span class="line"><span class="attr">  nfs:</span></span><br><span class="line"><span class="attr">    path:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">    server:</span> <span class="string">xxx</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">PersistentVolumeClaim</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-rel-pvc</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">nse</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  accessModes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">ReadWriteMany</span></span><br><span class="line"><span class="attr">  volumeMode:</span> <span class="string">Filesystem</span></span><br><span class="line"><span class="attr">  resources:</span></span><br><span class="line"><span class="attr">    requests:</span></span><br><span class="line"><span class="attr">      storage:</span> <span class="number">100</span><span class="string">Gi</span></span><br><span class="line"><span class="attr">  storageClassName:</span> <span class="string">nas-flink-rel</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-job-cluster</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">        component:</span> <span class="string">job-cluster</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      imagePullSecrets:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">nse-docker-vpc</span></span><br><span class="line"><span class="attr">      restartPolicy:</span> <span class="string">Always</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-job-cluster</span></span><br><span class="line"><span class="attr">          image:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">          envFrom:</span></span><br><span class="line"><span class="attr">            - configMapRef:</span></span><br><span class="line"><span class="attr">                name:</span> <span class="string">flink-env</span></span><br><span class="line"><span class="attr">          resources:</span></span><br><span class="line"><span class="attr">            requests:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"4Gi"</span></span><br><span class="line"><span class="attr">            limits:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"5Gi"</span></span><br><span class="line"><span class="attr">          args:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"job-cluster"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Djobmanager.rpc.address=flink-job-cluster"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Dparallelism.default=6"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Dblob.server.port=6124"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Dqueryable-state.server.ports=6125"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"--job-id"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"00000000000000000000000000000000"</span></span><br><span class="line"><span class="attr">          ports:</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">rpc</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">6124</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">blob</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">6125</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">query</span></span><br><span class="line"><span class="attr">            - containerPort:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">              name:</span> <span class="string">ui</span></span><br><span class="line"><span class="attr">          env:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">FLINK_JM_HEAP</span></span><br><span class="line"><span class="attr">              value:</span> <span class="string">"4096m"</span></span><br><span class="line"><span class="attr">          readinessProbe:</span></span><br><span class="line"><span class="attr">            tcpSocket:</span></span><br><span class="line"><span class="attr">              port:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">            initialDelaySeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            timeoutSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            periodSeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">          livenessProbe:</span></span><br><span class="line"><span class="attr">            tcpSocket:</span></span><br><span class="line"><span class="attr">              port:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">            initialDelaySeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            timeoutSeconds:</span> <span class="number">5</span></span><br><span class="line"><span class="attr">            periodSeconds:</span> <span class="number">30</span></span><br><span class="line"><span class="attr">          volumeMounts:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/opt/flink/log/</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/data/flink/checkpoints</span></span><br><span class="line"><span class="attr">      volumes:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">          hostPath:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/var/log/flink/</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">          persistentVolumeClaim:</span></span><br><span class="line"><span class="attr">            claimName:</span> <span class="string">flink-rel-pvc</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-job-cluster</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">    component:</span> <span class="string">job-cluster</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  ports:</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">rpc</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6123</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">blob</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6124</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">query</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">6125</span></span><br><span class="line"><span class="attr">    - name:</span> <span class="string">ui</span></span><br><span class="line"><span class="attr">      port:</span> <span class="number">8081</span></span><br><span class="line"><span class="attr">      nodePort:</span> <span class="number">30881</span></span><br><span class="line"><span class="attr">  type:</span> <span class="string">NodePort</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">    component:</span> <span class="string">job-cluster</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">flink-task-manager</span></span><br><span class="line"><span class="attr">  namespace:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">  labels:</span></span><br><span class="line"><span class="attr">    app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line"><span class="attr">  replicas:</span> <span class="number">6</span></span><br><span class="line"><span class="attr">  selector:</span></span><br><span class="line"><span class="attr">    matchLabels:</span></span><br><span class="line"><span class="attr">      app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">  template:</span></span><br><span class="line"><span class="attr">    metadata:</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line"><span class="attr">        app:</span> <span class="string">flink</span></span><br><span class="line"><span class="attr">        component:</span> <span class="string">task-manager</span></span><br><span class="line"><span class="attr">    spec:</span></span><br><span class="line"><span class="attr">      imagePullSecrets:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">      restartPolicy:</span> <span class="string">Always</span></span><br><span class="line"><span class="attr">      containers:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-task-manager</span></span><br><span class="line"><span class="attr">          image:</span> <span class="string">xxx</span></span><br><span class="line"><span class="attr">          envFrom:</span></span><br><span class="line"><span class="attr">            - configMapRef:</span></span><br><span class="line"><span class="attr">                name:</span> <span class="string">flink-env</span></span><br><span class="line"><span class="attr">          resources:</span></span><br><span class="line"><span class="attr">            requests:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"3Gi"</span></span><br><span class="line"><span class="attr">            limits:</span></span><br><span class="line"><span class="attr">              memory:</span> <span class="string">"4Gi"</span></span><br><span class="line"><span class="attr">          args:</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"task-manager"</span></span><br><span class="line"><span class="bullet">            -</span> <span class="string">"-Djobmanager.rpc.address=flink-job-cluster"</span></span><br><span class="line"><span class="attr">          env:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">FLINK_TM_HEAP</span></span><br><span class="line"><span class="attr">              value:</span> <span class="string">"3072m"</span></span><br><span class="line"><span class="attr">          volumeMounts:</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/opt/flink/log/</span></span><br><span class="line"><span class="attr">            - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">              mountPath:</span> <span class="string">/data/flink/checkpoints</span></span><br><span class="line"><span class="attr">      volumes:</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-log</span></span><br><span class="line"><span class="attr">          hostPath:</span></span><br><span class="line"><span class="attr">            path:</span> <span class="string">/var/log/flink</span></span><br><span class="line"><span class="attr">        - name:</span> <span class="string">flink-checkpoint</span></span><br><span class="line"><span class="attr">          persistentVolumeClaim:</span></span><br><span class="line"><span class="attr">            claimName:</span> <span class="string">flink-rel-pvc</span></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>具体的dockerfile，请谷歌flink job cluster github，拷贝对应的文件。</p>
-</blockquote>
-
-          
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/07/24/20190724/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/13/20180813/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/13/20180813/" class="post-title-link" itemprop="url">spring cloud 架构（四）</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/13/20180813/" class="post-title-link" itemprop="url">spring cloud 架构（四）</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-13 18:39:00" itemprop="dateCreated datePublished" datetime="2018-08-13T18:39:00+08:00">2018-08-13</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-27 20:05:13" itemprop="dateModified" datetime="2018-12-27T20:05:13+08:00">2018-12-27</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:52:48" itemprop="dateModified" datetime="2020-02-09T10:52:48+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端/" itemprop="url" rel="index"><span itemprop="name">后端</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -612,12 +290,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="Apollo配置中心"><a href="#Apollo配置中心" class="headerlink" title="Apollo配置中心"></a>Apollo配置中心</h3><p>为什么选Apollo做为配置中心？</p>
+          <h3 id="Apollo配置中心"><a href="#Apollo配置中心" class="headerlink" title="Apollo配置中心"></a>Apollo配置中心</h3><p>为什么选Apollo做为配置中心？</p>
 <ol>
 <li>灰度发布</li>
 <li>同一个Portal管理不同环境的配置</li>
@@ -626,171 +299,81 @@
 </ol>
 <p>等等，具体可以看</p>
 <p><a href="https://github.com/ctripcorp/apollo/wiki/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E4%BB%8B%E7%BB%8D" target="_blank" rel="noopener">https://github.com/ctripcorp/apollo/wiki/Apollo%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E4%BB%8B%E7%BB%8D</a></p>
-<h3 id="本地单机版-使用自己的单机版Eureka"><a href="#本地单机版-使用自己的单机版Eureka" class="headerlink" title="本地单机版 + 使用自己的单机版Eureka"></a>本地单机版 + 使用自己的单机版Eureka</h3><p>PS：Eureka具体配置详见<a href="http://www.zhouxj.me/2018/08/01/20180801/" target="_blank" rel="noopener">http://www.zhouxj.me/2018/08/01/20180801/</a></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">1. wget -c https://github.com/ctripcorp/apollo/archive/v1.2.0.tar.gz</span><br><span class="line">tar xzvf v1.2.0.tar.gz</span><br><span class="line">cd apollo-1.2.0</span><br><span class="line">mkdir -p /opt/data/</span><br><span class="line">mkdir -p /opt/logs/</span><br><span class="line">mkdir -p /opt/settings/</span><br><span class="line"></span><br><span class="line">2. 导入scripts/sql/apolloconfigdb.sql和scripts/sql/apolloportaldb.sql到自己的mysql</span><br><span class="line"></span><br><span class="line">3. vim scripts/build.sh</span><br><span class="line">替换</span><br><span class="line">fill-in-the-correct-server为数据库的地址</span><br><span class="line">FillInCorrectUser为数据库账号</span><br><span class="line">FillInCorrectPassword为数据库密码</span><br><span class="line">fill-in-dev-meta-server为localhost</span><br><span class="line"></span><br><span class="line">4. 修改源码，参照 https://www.iteye.com/topic/1148244#2430708</span><br><span class="line"></span><br><span class="line">5. cd scripts &amp;&amp; ./build.sh</span><br><span class="line"></span><br><span class="line">6、运行config_service, admin_service, apollo-portal</span><br><span class="line">PS：对应target目录下有对应的zip包，解压后运行scripts/startup.sh</span><br></pre></td></tr></table></figure>
-<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p>参照<br><a href="https://github.com/ctripcorp/apollo/wiki/Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97" target="_blank" rel="noopener">https://github.com/ctripcorp/apollo/wiki/Java%E5%AE%A2%E6%88%B7%E7%AB%AF%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97</a></p>
-
-          
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/13/20180813/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/09/20180811/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/09/20180811/" class="post-title-link" itemprop="url">spring cloud 架构（三） - k8s篇（二）</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/09/20180811/" class="post-title-link" itemprop="url">spring cloud 架构（三） - k8s篇（二）</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-09 19:39:00" itemprop="dateCreated datePublished" datetime="2018-08-09T19:39:00+08:00">2018-08-09</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-23 17:58:26" itemprop="dateModified" datetime="2018-12-23T17:58:26+08:00">2018-12-23</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:52:36" itemprop="dateModified" datetime="2020-02-09T10:52:36+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -798,182 +381,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h4 id="固定虚拟机ip"><a href="#固定虚拟机ip" class="headerlink" title="固定虚拟机ip"></a>固定虚拟机ip</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim /Library/Preferences/VMware\ Fusion/vmnet8/dhcpd.conf</span><br><span class="line">host centos-1 &#123;</span><br><span class="line">	hardware ethernet 00:0c:29:7e:9b:c2;</span><br><span class="line">	fixed-address 192.168.158.128;</span><br><span class="line">&#125;</span><br><span class="line">host centos-2 &#123;</span><br><span class="line">    hardware ethernet 00:0c:29:57:35:69;</span><br><span class="line">    fixed-address 192.168.158.129;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --configure</span><br><span class="line">/Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --stop</span><br><span class="line">/Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --start</span><br></pre></td></tr></table></figure>
-<h3 id="创建Kubernetes覆盖网络-master01-amp-amp-node01"><a href="#创建Kubernetes覆盖网络-master01-amp-amp-node01" class="headerlink" title="创建Kubernetes覆盖网络(master01 &amp;&amp; node01)"></a>创建Kubernetes覆盖网络(master01 &amp;&amp; node01)</h3><h4 id="运行flannel"><a href="#运行flannel" class="headerlink" title="运行flannel"></a>运行flannel</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">etcdctl -C http://192.168.158.128:4001 set /coreos.com/network/config &apos;&#123;&quot;Network&quot;: &quot;10.0.0.0/16&quot;&#125;&apos;</span><br><span class="line"></span><br><span class="line">cd /mnt/software</span><br><span class="line">wget -c https://github.com/coreos/flannel/releases/download/v0.10.0/flannel-v0.10.0-linux-amd64.tar.gz</span><br><span class="line">mkdir -p flannel</span><br><span class="line">tar xzvf flannel-v0.10.0-linux-amd64.tar.gz -C flannel</span><br><span class="line">cp flannel/flanneld /usr/bin/</span><br><span class="line">mkdir -p /usr/libexec/flannel/</span><br><span class="line">cp flannel/mk-docker-opts.sh /usr/libexec/flannel/</span><br><span class="line"></span><br><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/flanneld.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Flanneld Server</span><br><span class="line">After=network.target</span><br><span class="line">After=network-online.target</span><br><span class="line">Wants=network-online.target</span><br><span class="line">After=etcd.service</span><br><span class="line">Before=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=notify</span><br><span class="line">EnvironmentFile=/etc/kubernetes/flanneld</span><br><span class="line">ExecStart=/usr/bin/flanneld $FLANNELD_ARGS</span><br><span class="line">ExecStartPost=/usr/libexec/flannel/mk-docker-opts.sh -k DOCKER_NETWORK_OPTIONS -d /run/flannel/docker</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line">RequiredBy=docker.service</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/flanneld</span><br><span class="line">FLANNELD_ARGS=&quot;--etcd-endpoints=http://192.168.158.128:4001&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable flanneld.service</span><br></pre></td></tr></table></figure>
-<h4 id="重配docker网桥"><a href="#重配docker网桥" class="headerlink" title="重配docker网桥"></a>重配docker网桥</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">vim /usr/lib/systemd/system/docker.service</span><br><span class="line">EnvironmentFile=-/run/flannel/docker</span><br><span class="line">ExecStart=/usr/bin/dockerd $DOCKER_NETWORK_OPTIONS</span><br><span class="line"></span><br><span class="line">mkdir -p /run/flannel/</span><br><span class="line">systemctl daemon-reload</span><br><span class="line">systemctl start flanneld.service</span><br><span class="line">systemctl restart docker.service</span><br></pre></td></tr></table></figure>
-<p>到这里flannel就配置好了。</p>
-<h3 id="复制镜像"><a href="#复制镜像" class="headerlink" title="复制镜像"></a>复制镜像</h3><h4 id="node02节点"><a href="#node02节点" class="headerlink" title="node02节点"></a>node02节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/kubernetes/kubelet</span><br><span class="line">KUBELET_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --kubeconfig=/etc/kubernetes/kubelet.kubeconfig \</span><br><span class="line">    --hostname-override=192.168.158.130 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="node03节点"><a href="#node03节点" class="headerlink" title="node03节点"></a>node03节点</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/kubernetes/kubelet</span><br><span class="line">KUBELET_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --kubeconfig=/etc/kubernetes/kubelet.kubeconfig \</span><br><span class="line">    --hostname-override=192.168.158.131 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br></pre></td></tr></table></figure>
-<h4 id="mac"><a href="#mac" class="headerlink" title="mac"></a>mac</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim /Library/Preferences/VMware\ Fusion/vmnet8/dhcpd.conf</span><br><span class="line">host centos-3 &#123;</span><br><span class="line">	hardware ethernet 00:0c:29:a8:cc:8a;</span><br><span class="line">	fixed-address 192.168.158.130;</span><br><span class="line">&#125;</span><br><span class="line">host centos-4 &#123;</span><br><span class="line">    hardware ethernet 00:0c:29:7d:86:ad;</span><br><span class="line">    fixed-address 192.168.158.131;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --configure</span><br><span class="line">/Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --stop</span><br><span class="line">/Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli --start</span><br></pre></td></tr></table></figure>
-<h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@master01 k8s]# kubectl -s http://192.168.158.128:8080 get componentstatus</span><br><span class="line">NAME                 STATUS    MESSAGE             ERROR</span><br><span class="line">scheduler            Healthy   ok</span><br><span class="line">controller-manager   Healthy   ok</span><br><span class="line">etcd-0               Healthy   &#123;&quot;health&quot;:&quot;true&quot;&#125;</span><br><span class="line">[root@master01 k8s]# kubectl -s http://192.168.158.128:8080 get node</span><br><span class="line">NAME              STATUS    ROLES     AGE       VERSION</span><br><span class="line">192.168.158.129   Ready     &lt;none&gt;    1d        v1.10.12</span><br><span class="line">192.168.158.130   Ready     &lt;none&gt;    3m        v1.10.12</span><br><span class="line">192.168.158.131   Ready     &lt;none&gt;    3m        v1.10.12</span><br></pre></td></tr></table></figure>
-<p>在这里集群搭建完毕，后面我们将安装k8s的插件（Coredns Dashboard Heapster Metrics-Server EFK Harbor）</p>
-
-          
+          <h4 id="固定虚拟机ip"><a href="#固定虚拟机ip" class="headerlink" title="固定虚拟机ip"></a>固定虚拟机ip</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;Library&#x2F;Preferences&#x2F;VMware\ Fusion&#x2F;vmnet8&#x2F;dhcpd.conf</span><br><span class="line">host centos-1 &#123;</span><br><span class="line">	hardware ethernet 00:0c:29:7e:9b:c2;</span><br><span class="line">	fixed-address 192.168.158.128;</span><br><span class="line">&#125;</span><br><span class="line">host centos-2 &#123;</span><br><span class="line">    hardware ethernet 00:0c:29:57:35:69;</span><br><span class="line">    fixed-address 192.168.158.129;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#x2F;Applications&#x2F;VMware\ Fusion.app&#x2F;Contents&#x2F;Library&#x2F;vmnet-cli --configure</span><br><span class="line">&#x2F;Applications&#x2F;VMware\ Fusion.app&#x2F;Contents&#x2F;Library&#x2F;vmnet-cli --stop</span><br><span class="line">&#x2F;Applications&#x2F;VMware\ Fusion.app&#x2F;Contents&#x2F;Library&#x2F;vmnet-cli --start</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/09/20180811/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/09/20180809/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/09/20180809/" class="post-title-link" itemprop="url">spring cloud 架构（二） - k8s篇（一）</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/09/20180809/" class="post-title-link" itemprop="url">spring cloud 架构（二） - k8s篇（一）</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-09 19:39:00" itemprop="dateCreated datePublished" datetime="2018-08-09T19:39:00+08:00">2018-08-09</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-23 17:56:30" itemprop="dateModified" datetime="2018-12-23T17:56:30+08:00">2018-12-23</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:52:26" itemprop="dateModified" datetime="2020-02-09T10:52:26+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BF%90%E7%BB%B4/" itemprop="url" rel="index">
+                    <span itemprop="name">运维</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -981,198 +464,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>第一章我们讲了单机版服务注册发现，然后引出了高可用Eureka集群，然后引出了k8s，这一节我们来讲下k8s。</p>
-<h3 id="为什么我们要用k8s"><a href="#为什么我们要用k8s" class="headerlink" title="为什么我们要用k8s"></a>为什么我们要用k8s</h3><ol>
-<li>平滑升级</li>
-<li>弹性伸缩</li>
-<li>自动修复</li>
-<li>自动重启</li>
-</ol>
-<p>这么多优点你还不用。。下面我们来搭建集群</p>
-<h3 id="离线安装-所有节点"><a href="#离线安装-所有节点" class="headerlink" title="离线安装 - 所有节点"></a>离线安装 - 所有节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"># 关闭防火墙</span><br><span class="line">systemctl stop firewalld</span><br><span class="line">systemctl disable firewalld</span><br><span class="line"></span><br><span class="line"># 关闭安全增强型Linux</span><br><span class="line">vim /etc/selinux/config</span><br><span class="line">SELINUX=disabled</span><br><span class="line"></span><br><span class="line"># 安装EPEL源</span><br><span class="line">yum install -y epel-release</span><br><span class="line"></span><br><span class="line"># 阿里云k8s源</span><br><span class="line">vim /etc/yum.repos.d/kubernetes.repo</span><br><span class="line">[kubernetes]</span><br><span class="line">name=Kubernetes</span><br><span class="line">baseurl=http://mirrors.aliyun.com/kubernetes/yum/repos/kubernetes-el7-x86_64</span><br><span class="line">enabled=1</span><br><span class="line">gpgcheck=0</span><br><span class="line">repo_gpgcheck=0</span><br><span class="line">gpgkey=http://mirrors.aliyun.com/kubernetes/yum/doc/yum-key.gpg  http://mirrors.aliyun.com/kubernetes/yum/doc/rpm-package-key.gpg</span><br><span class="line"></span><br><span class="line"># 主机名解析</span><br><span class="line">vim /etc/hosts</span><br><span class="line">192.168.158.128 master01</span><br><span class="line">192.168.158.129 node01</span><br><span class="line">192.168.158.130 node02</span><br><span class="line">192.168.158.131 node03</span><br><span class="line"></span><br><span class="line"># 彻底关闭swap</span><br><span class="line">sed -i &apos;s/.*swap.*/#&amp;amp;/&apos; /etc/fstab</span><br><span class="line"></span><br><span class="line"># 运行docker</span><br><span class="line">curl -sSL https://get.docker.com/ | sh</span><br><span class="line">systemctl enable docker.service</span><br><span class="line">systemctl start docker.service</span><br><span class="line"></span><br><span class="line"># 重启</span><br><span class="line">mkdir -p /mnt/software/</span><br><span class="line">restart</span><br></pre></td></tr></table></figure>
-<h3 id="离线安装-Master节点"><a href="#离线安装-Master节点" class="headerlink" title="离线安装 - Master节点"></a>离线安装 - Master节点</h3><h4 id="运行etcd"><a href="#运行etcd" class="headerlink" title="运行etcd"></a>运行etcd</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"># 免密登录node节点</span><br><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-copy-id node-01</span><br><span class="line"></span><br><span class="line"># etcd二进制文件</span><br><span class="line">cd /mnt/software/</span><br><span class="line">wget -c https://github.com/etcd-io/etcd/releases/download/v3.3.10/etcd-v3.3.10-linux-amd64.tar.gz</span><br><span class="line">tar xzvf etcd-v3.3.10-linux-amd64.tar.gz</span><br><span class="line">cd etcd-v3.3.10-linux-amd64/</span><br><span class="line">cp etcd etcdctl /usr/bin/</span><br><span class="line"></span><br><span class="line"># 开机启动开始</span><br><span class="line">mkdir -p /etc/kubernetes/</span><br><span class="line">vim /usr/lib/systemd/system/etcd.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Etcd Server</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/etcd</span><br><span class="line">ExecStart=/usr/bin/etcd $ETCD_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/etcd</span><br><span class="line">ETCD_ARGS=&quot;--config-file /etc/kubernetes/etcd.conf.yml&quot;</span><br><span class="line"></span><br><span class="line">wget -c https://github.com/etcd-io/etcd/blob/master/etcd.conf.yml.sample -O /etc/kubernetes/ectetcd.conf.yml</span><br><span class="line">vim /etc/kubernetes/ectetcd.conf.yml</span><br><span class="line">修改name: &apos;etcd&apos;</span><br><span class="line">修改data-dir: /var/lib/etcd</span><br><span class="line">修改listen-client-urls: http://0.0.0.0:2379, http://0.0.0.0:4001</span><br><span class="line">修改advertise-client-urls: http://0.0.0.0:2379, http://0.0.0.0:4001</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable etcd.service</span><br><span class="line">systemctl start etcd.service</span><br></pre></td></tr></table></figure>
-<h4 id="获取Kubernetes发布包"><a href="#获取Kubernetes发布包" class="headerlink" title="获取Kubernetes发布包"></a>获取Kubernetes发布包</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/kubernetes/kubernetes/releases/download/v1.10.12/kubernetes.tar.gz</span><br><span class="line">tar xzvf kubernetes.tar.gz</span><br><span class="line">wget https://dl.k8s.io/v1.10.12/kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">tar xzvf kubernetes-server-linux-amd64.tar.gz</span><br><span class="line">cd kubernetes/server/bin/</span><br><span class="line">find ./ -perm 755 | xargs -i cp &#123;&#125; /usr/bin/</span><br></pre></td></tr></table></figure>
-<h4 id="运行Kubernetes-Master组件"><a href="#运行Kubernetes-Master组件" class="headerlink" title="运行Kubernetes Master组件"></a>运行Kubernetes Master组件</h4><h5 id="运行Kubernetes-API-Server"><a href="#运行Kubernetes-API-Server" class="headerlink" title="运行Kubernetes API Server"></a>运行Kubernetes API Server</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kube-apiserver.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes API Server</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-apiserver</span><br><span class="line">ExecStart=/usr/bin/kube-apiserver $KUBE_APISERVER_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-apiserver</span><br><span class="line">KUBE_APISERVER_ARGS=&quot;--logtostderr=true \</span><br><span class="line">	--v=0 \</span><br><span class="line">	--etcd-servers=http://192.168.158.128:4001 \</span><br><span class="line">	--insecure-bind-address=0.0.0.0 \</span><br><span class="line">	--insecure-port=8080 \</span><br><span class="line">	--service-cluster-ip-range=192.168.0.0/16 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kube-apiserver.service</span><br><span class="line">systemctl start kube-apiserver.service</span><br></pre></td></tr></table></figure>
-<h4 id="运行Kubernetes-Controller-Manager"><a href="#运行Kubernetes-Controller-Manager" class="headerlink" title="运行Kubernetes Controller Manager"></a>运行Kubernetes Controller Manager</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kube-controller-manager.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Controller Manager Server</span><br><span class="line">After=kube-apiserver.service</span><br><span class="line">Requires=kube-apiserver.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-controller-manager</span><br><span class="line">ExecStart=/usr/bin/kube-controller-manager $KUBE_CONTROLLER_MANAGER_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-controller-manager</span><br><span class="line">KUBE_CONTROLLER_MANAGER_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --master=http://192.168.158.128:8080 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kube-controller-manager.service</span><br><span class="line">systemctl start kube-controller-manager.service</span><br></pre></td></tr></table></figure>
-<h4 id="运行Kubernetes-Scheduler"><a href="#运行Kubernetes-Scheduler" class="headerlink" title="运行Kubernetes Scheduler"></a>运行Kubernetes Scheduler</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kube-scheduler.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Scheduler Server</span><br><span class="line">After=kube-controller-manager.service</span><br><span class="line">Requires=kube-controller-manager.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-scheduler</span><br><span class="line">ExecStart=/usr/bin/kube-scheduler $KUBE_SCHEDULER_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-scheduler</span><br><span class="line">KUBE_SCHEDULER_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --master=http://192.168.158.128:8080 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kube-scheduler.service</span><br><span class="line">systemctl start kube-scheduler.service</span><br></pre></td></tr></table></figure>
-<h3 id="离线安装-Node节点"><a href="#离线安装-Node节点" class="headerlink" title="离线安装 - Node节点"></a>离线安装 - Node节点</h3><h4 id="运行Kubelet"><a href="#运行Kubelet" class="headerlink" title="运行Kubelet"></a>运行Kubelet</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">cd /mnt/software/</span><br><span class="line">wget -c https://dl.k8s.io/v1.10.12/kubernetes-node-linux-amd64.tar.gz</span><br><span class="line">tar xzvf kubernetes-node-linux-amd64.tar.gz</span><br><span class="line">cd kubernetes/node/bin/</span><br><span class="line">find ./ -perm 755 | xargs -i cp &#123;&#125; /usr/bin/</span><br><span class="line"></span><br><span class="line"># 开机启动开始</span><br><span class="line">vim /usr/lib/systemd/system/kubelet.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kubelet Server</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=docker.service</span><br><span class="line">Requires=docker.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kubelet</span><br><span class="line">ExecStart=/usr/bin/kubelet $KUBELET_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kubelet</span><br><span class="line">KUBELET_ARGS=&quot;--logtostderr=true \</span><br><span class="line">    --v=0 \</span><br><span class="line">    --kubeconfig=/etc/kubernetes/kubelet.kubeconfig \</span><br><span class="line">    --hostname-override=192.168.158.129 \</span><br><span class="line">    --log-dir=/var/log&quot;</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kubelet.kubeconfig</span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Config</span><br><span class="line">clusters:</span><br><span class="line">  - cluster:</span><br><span class="line">      server: http://192.168.158.128:8080</span><br><span class="line">    name: local</span><br><span class="line">contexts:</span><br><span class="line">  - context:</span><br><span class="line">      cluster: local</span><br><span class="line">    name: local</span><br><span class="line">current-context: local</span><br><span class="line"># 开机启动结束</span><br><span class="line"></span><br><span class="line">systemctl enable kubelet.service</span><br><span class="line">systemctl start kubelet.service</span><br></pre></td></tr></table></figure>
-<h4 id="运行kube-proxy"><a href="#运行kube-proxy" class="headerlink" title="运行kube-proxy"></a>运行kube-proxy</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># 内核模块加载</span><br><span class="line">cat &gt; /etc/sysconfig/modules/ipvs.modules &lt;&lt;EOF</span><br><span class="line">#!/bin/bash</span><br><span class="line">ipvs_modules=&quot;ip_vs ip_vs_lc ip_vs_wlc ip_vs_rr ip_vs_wrr ip_vs_lblc ip_vs_lblcr ip_vs_dh ip_vs_sh ip_vs_fo ip_vs_nq ip_vs_sed ip_vs_ftp nf_conntrack_ipv4&quot;</span><br><span class="line">for kernel_module in \$&#123;ipvs_modules&#125;; do</span><br><span class="line">    /sbin/modinfo -F filename \$&#123;kernel_module&#125; &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">    if [ $? -eq 0 ]; then</span><br><span class="line">        /sbin/modprobe \$&#123;kernel_module&#125;</span><br><span class="line">    fi</span><br><span class="line">done</span><br><span class="line">EOF</span><br><span class="line">chmod 755 /etc/sysconfig/modules/ipvs.modules &amp;&amp; bash /etc/sysconfig/modules/ipvs.modules &amp;&amp; lsmod | grep ip_vs</span><br><span class="line"></span><br><span class="line">vim /usr/lib/systemd/system/kube-proxy.service</span><br><span class="line">[Unit]</span><br><span class="line">Description=Kubernetes Kube-Proxy Server</span><br><span class="line">Documentation=https://github.com/GoogleCloudPlatform/kubernetes</span><br><span class="line">After=network.service</span><br><span class="line">Requires=network.service</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">EnvironmentFile=/etc/kubernetes/kube-proxy</span><br><span class="line">ExecStart=/usr/bin/kube-proxy $KUBE_PROXY_ARGS</span><br><span class="line">Restart=on-failure</span><br><span class="line">LimitNOFILE=65536</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br><span class="line">vim /etc/kubernetes/kube-proxy</span><br><span class="line">KUBE_PROXY_ARGS=&quot;--master=http://192.168.158.128:8080 \</span><br><span class="line">    --masquerade-all \</span><br><span class="line">    --feature-gates=SupportIPVSProxyMode=true \</span><br><span class="line">    --proxy-mode=ipvs \</span><br><span class="line">    --ipvs-min-sync-period=5s \</span><br><span class="line">    --ipvs-sync-period=5s \</span><br><span class="line">    --ipvs-scheduler=rr \</span><br><span class="line">    --cluster-cidr=192.168.0.0/16&quot;</span><br><span class="line"></span><br><span class="line">systemctl enable kube-proxy.service</span><br><span class="line">systemctl start kube-proxy.service</span><br></pre></td></tr></table></figure>
-<h3 id="查看Kubernetes的健康状态"><a href="#查看Kubernetes的健康状态" class="headerlink" title="查看Kubernetes的健康状态"></a>查看Kubernetes的健康状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 kubernetes]# kubectl -s http://192.168.158.128:8080 get componentstatus</span><br><span class="line">NAME                 STATUS    MESSAGE             ERROR</span><br><span class="line">controller-manager   Healthy   ok                  </span><br><span class="line">etcd-0               Healthy   &#123;&quot;health&quot;:&quot;true&quot;&#125;   </span><br><span class="line">scheduler            Healthy   ok </span><br><span class="line"></span><br><span class="line">[root@node01 kubernetes]# kubectl -s http://192.168.158.128:8080 get node</span><br><span class="line">NAME              STATUS    ROLES     AGE       VERSION</span><br><span class="line">192.168.158.129   Ready     &lt;none&gt;    10m       v1.10.12</span><br></pre></td></tr></table></figure>
-<h3 id="k8s线上使用"><a href="#k8s线上使用" class="headerlink" title="k8s线上使用"></a>k8s线上使用</h3><p>上述的配置在生产使用还是有一定差距</p>
-<ol>
-<li>ectd需要高可用</li>
-<li>master需要高可用</li>
-<li>组件间通讯需要SSL</li>
-<li>认证，授权，签名</li>
-</ol>
-<p>线上创马网使用的是SLB+高可用k8s集群方案，主要参考：<a href="https://www.cnblogs.com/harlanzhang/p/10114484.html" target="_blank" rel="noopener">https://www.cnblogs.com/harlanzhang/p/10114484.html</a>, 因为内容太多，这里我们就不介绍了。接下我们还有一次讲解k8s的flannel和一些插件，然后我们就开始搭建Eureka集群了。</p>
-
-          
+          <h3 id="回顾"><a href="#回顾" class="headerlink" title="回顾"></a>回顾</h3><p>第一章我们讲了单机版服务注册发现，然后引出了高可用Eureka集群，然后引出了k8s，这一节我们来讲下k8s。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/09/20180809/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/07/20180807/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/07/20180807/" class="post-title-link" itemprop="url">短链</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/07/20180807/" class="post-title-link" itemprop="url">短链</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-07 09:51:00" itemprop="dateCreated datePublished" datetime="2018-08-07T09:51:00+08:00">2018-08-07</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-27 19:48:11" itemprop="dateModified" datetime="2018-12-27T19:48:11+08:00">2018-12-27</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:52:22" itemprop="dateModified" datetime="2020-02-09T10:52:22+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端/" itemprop="url" rel="index"><span itemprop="name">后端</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1180,177 +547,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="短链"><a href="#短链" class="headerlink" title="短链"></a>短链</h3><p>公司经常会有短链的需求，比如分享的H5链接。目的是为了让传播更方便。</p>
-<h3 id="最简单的实现方式"><a href="#最简单的实现方式" class="headerlink" title="最简单的实现方式"></a>最简单的实现方式</h3><p>单机版：存库，自增，然后转成64位（以mysql为例，当然redis也是可以的）</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhouxiajie</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/7/15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AutoIncrement</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">char</span>[] chars = &#123;</span><br><span class="line">      <span class="string">'a'</span>, <span class="string">'b'</span>, <span class="string">'c'</span>, <span class="string">'d'</span>, <span class="string">'e'</span>, <span class="string">'f'</span>, <span class="string">'g'</span>, <span class="string">'h'</span>, <span class="string">'i'</span>, <span class="string">'j'</span>, <span class="string">'k'</span>, <span class="string">'l'</span>, <span class="string">'m'</span>, <span class="string">'n'</span>, <span class="string">'o'</span>, <span class="string">'p'</span>, <span class="string">'q'</span>, <span class="string">'r'</span>, <span class="string">'s'</span>, <span class="string">'t'</span>, <span class="string">'u'</span>, <span class="string">'v'</span>, <span class="string">'w'</span>, <span class="string">'x'</span>, <span class="string">'y'</span>, <span class="string">'z'</span>,</span><br><span class="line">      <span class="string">'1'</span>, <span class="string">'2'</span>, <span class="string">'3'</span>, <span class="string">'4'</span>, <span class="string">'5'</span>, <span class="string">'6'</span>, <span class="string">'7'</span>, <span class="string">'8'</span>, <span class="string">'9'</span>, <span class="string">'0'</span>,</span><br><span class="line">      <span class="string">'A'</span>, <span class="string">'B'</span>, <span class="string">'C'</span>, <span class="string">'D'</span>, <span class="string">'E'</span>, <span class="string">'F'</span>, <span class="string">'G'</span>, <span class="string">'H'</span>, <span class="string">'I'</span>, <span class="string">'J'</span>, <span class="string">'K'</span>, <span class="string">'L'</span>, <span class="string">'M'</span>, <span class="string">'N'</span>, <span class="string">'O'</span>, <span class="string">'P'</span>, <span class="string">'Q'</span>, <span class="string">'R'</span>, <span class="string">'S'</span>, <span class="string">'T'</span>, <span class="string">'U'</span>, <span class="string">'V'</span>, <span class="string">'W'</span>, <span class="string">'X'</span>, <span class="string">'Y'</span>, <span class="string">'Z'</span>,</span><br><span class="line">      <span class="string">'+'</span>, <span class="string">'/'</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Integer id = getDbId();</span><br><span class="line"></span><br><span class="line">    System.out.println(encode(id));</span><br><span class="line">    System.out.println(decode(encode(id)));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">decode</span><span class="params">(String encode)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> multi = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (encode.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = encode.length() - <span class="number">1</span>; i &gt; -<span class="number">1</span>; i--) &#123;</span><br><span class="line">        result += getIndex(encode.charAt(i)) * multi;</span><br><span class="line">        multi *= <span class="number">64</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">(<span class="keyword">char</span> c)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; chars.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (chars[i] == c) &#123;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> String <span class="title">encode</span><span class="params">(Integer id)</span> </span>&#123;</span><br><span class="line">    Stack&lt;Character&gt; characters = <span class="keyword">new</span> Stack&lt;Character&gt;();</span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (id != <span class="keyword">null</span>) &#123;</span><br><span class="line">      Integer rest = id;</span><br><span class="line">      <span class="keyword">while</span> (rest &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        characters.push(chars[rest % <span class="number">64</span>]);</span><br><span class="line">        rest /= <span class="number">64</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Character c;</span><br><span class="line">    <span class="keyword">while</span> (!characters.isEmpty()) &#123;</span><br><span class="line">      c = characters.pop();</span><br><span class="line">      sb.append(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> Integer <span class="title">getDbId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 从数据库获取Id</span></span><br><span class="line">    <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>分布式：可以采用雪花算法，再转换成64进制字符串。雪花算法强依赖机器的时间。由于机器工作时NTP同步（Linux时间同步）会造成秒级别的回退。第一种办法，直接关闭NTP，还有一种就是直接让服务不可用，等追上缓存时间后再可用。</p>
-
-          
+          <h3 id="短链"><a href="#短链" class="headerlink" title="短链"></a>短链</h3><p>公司经常会有短链的需求，比如分享的H5链接。目的是为了让传播更方便。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/07/20180807/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/05/20180805/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/05/20180805/" class="post-title-link" itemprop="url">mysql锁</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/05/20180805/" class="post-title-link" itemprop="url">mysql锁</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-05 08:56:00" itemprop="dateCreated datePublished" datetime="2018-08-05T08:56:00+08:00">2018-08-05</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-23 17:56:30" itemprop="dateModified" datetime="2018-12-23T17:56:30+08:00">2018-12-23</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:52:18" itemprop="dateModified" datetime="2020-02-09T10:52:18+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1358,183 +630,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="说下近况吧"><a href="#说下近况吧" class="headerlink" title="说下近况吧"></a>说下近况吧</h3><p>最近事情比较多，而且公司的前端小伙子要走了。系统一个一个做，没有总结，到后面估计全忘了。好了废话不多说，直接进入主题。</p>
-<h3 id="行锁和表锁"><a href="#行锁和表锁" class="headerlink" title="行锁和表锁"></a>行锁和表锁</h3><p>我们都知道mysql有两种最常用的存储引擎：MyISAM和InnoDB，MyISAM只能支持表锁，InnoDB两种都能支持。</p>
-<h3 id="对系统性能的影响（高并发）"><a href="#对系统性能的影响（高并发）" class="headerlink" title="对系统性能的影响（高并发）"></a>对系统性能的影响（高并发）</h3><p><strong>MyISAM</strong>: 执行读写sql时候，都会对表加锁。数据量大，并发高，对性能肯定有影响。</p>
-<p><strong>InnoDB</strong>: 行锁，性能比较优异.</p>
-<h3 id="那么我们只用InnoDB？"><a href="#那么我们只用InnoDB？" class="headerlink" title="那么我们只用InnoDB？"></a>那么我们只用InnoDB？</h3><p>当然不是。举个栗子</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from table</span><br></pre></td></tr></table></figure>
-<p>MyISAM会瞬间返回而InnoDB则是一行一行的扫描，原因是MyISAM会存储总行数。我们再看下面的sql：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select count(*) from table where condition = ?</span><br></pre></td></tr></table></figure>
-<p>这个时候两种引擎的处理情况就一样了，condition命中索引走索引，没有命中全表扫。</p>
-<h3 id="结合两种引擎一起使用？"><a href="#结合两种引擎一起使用？" class="headerlink" title="结合两种引擎一起使用？"></a>结合两种引擎一起使用？</h3><p>网上经常说select+insert（尾部插入）的业务用MyISAM引擎，从部署和操作的情况来说，不是很方便，还是建议统一使用InnoDB。尽量避免全表count，尽量命中索引去count。</p>
-
-          
+          <h3 id="说下近况吧"><a href="#说下近况吧" class="headerlink" title="说下近况吧"></a>说下近况吧</h3><p>最近事情比较多，而且公司的前端小伙子要走了。系统一个一个做，没有总结，到后面估计全忘了。好了废话不多说，直接进入主题。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/05/20180805/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/03/20180803/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/03/20180803/" class="post-title-link" itemprop="url">记一次改bug的经历，层层挖掘，最后挖到了Vue的源码</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/03/20180803/" class="post-title-link" itemprop="url">记一次改bug的经历，层层挖掘，最后挖到了Vue的源码</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-03 21:39:00" itemprop="dateCreated datePublished" datetime="2018-08-03T21:39:00+08:00">2018-08-03</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-20 11:29:56" itemprop="dateModified" datetime="2018-12-20T11:29:56+08:00">2018-12-20</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:54:00" itemprop="dateModified" datetime="2020-02-09T10:54:00+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">前端</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1542,202 +713,82 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="demo重现"><a href="#demo重现" class="headerlink" title="demo重现"></a>demo重现</h3><p>写一个小demo描述下bug。。。</p>
-<blockquote>
-<p>Page A</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">        &lt;components-b ref=&quot;b&quot; :change=&quot;change&quot;&gt;&lt;/components-b&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;button @click=&quot;do&quot;&gt;&lt;/button&gt;</span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    data () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            change: false</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        do () &#123;</span><br><span class="line">            this.change = true</span><br><span class="line">            this.$refs.b.do()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>Component B</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; this.change &#125;&#125;&lt;/h1&gt;</span><br><span class="line">    &lt;h1&gt;&#123;&#123; this.aryChange &#125;&#125;&lt;/h1&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">    props: &apos;change&apos;,</span><br><span class="line">    data () &#123;</span><br><span class="line">        return &#123;</span><br><span class="line">            aryChange: this.change</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        doSomething () &#123;&#125;,</span><br><span class="line">        do () &#123;</span><br><span class="line">            if (this.aryChange) &#123;</span><br><span class="line">                doSomething()</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    watch: &#123;</span><br><span class="line">        change (newVal) &#123;</span><br><span class="line">            this.aryChange = newVal</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<p>首先我们规定，在特殊的业务场景，我们需要这么去做。首先页面A会有一个初始值change，等于false，其次组件B会有一个change的副本aryChange，初始值和页面A的一样。</p>
-<p>需要实现，改变aryChange的值为true，并执行do方法。上面的代码确实改变了aryChange的值，但是并没有执行do方法。</p>
-<p>有很多种改法，我给出四种。</p>
-<ol>
-<li>页面A直接改变组件aryChange，并去掉组件B的watch</li>
-<li>组件B的do方法又watch到，再又watch去调用</li>
-<li>在页面A调用组件B do方法的时候，在外套一个setTimeout</li>
-<li>在页面A调用组件B do方法的时候，在外套一个this.$nextTick</li>
-</ol>
-<h3 id="在这里我们讨论一下-setTimeout-和-nextTick"><a href="#在这里我们讨论一下-setTimeout-和-nextTick" class="headerlink" title="在这里我们讨论一下 setTimeout 和 $nextTick"></a>在这里我们讨论一下 setTimeout 和 $nextTick</h3><h4 id="setTimeout"><a href="#setTimeout" class="headerlink" title="setTimeout"></a>setTimeout</h4><p>setTimeout只是异步执行组件B的do方法，那这个异步需要什么时候执行呢？1S 2S 10M？？？这个程序是无法控制，所以方案3是不靠谱的~</p>
-<h4 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h4><p>刚刚讲到js的异步，大家都知道js是单线程，单线程是如何做到异步？答案是Event Loop！</p>
-<p>啥是EventLoop，上一张非常具体、形象的图。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fu66ee1pshj20gp0en78j.jpg" alt></p>
-<p>具体的就不详细解释了。要了解的童鞋，上<a href="https://juejin.im/post/5b63b4cb6fb9a04fb4017f5a?utm_source=gold_browser_extension" target="_blank" rel="noopener">这儿</a>看</p>
-<h3 id="nextTick"><a href="#nextTick" class="headerlink" title="$nextTick"></a>$nextTick</h3><p>知道了JS的内存模型，我们看下方案4，方案4用到了nextTick，最终要达到的效果就是异步调用组件B的do方法，先剧透下，这个方案是靠谱的，就是说在调用组件B的do方法的时候，aryChange肯定等于true了，具体原理是啥，了解一下?</p>
-<p>我们看下官网API对此方法的说明</p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fu678tmgntj210i0z6q8i.jpg" alt></p>
-<p>首先我们要知道vue是异步更新dom的，并且出于性能的考虑，event（vue的中心思想就是数据驱动视图）</p>
-<p>对于组件B，change发生的变更，需要更新视图，随后aryChange发生变更，也需要更新视图，两者更新视图的event会合并成一次视图更新，所以当视图（dom）更新完后，aryChange的值肯定为true，这个时间再调用组件B的do方法是没有问题的。</p>
-<p>下面附上一些vue的源码（摘自<a href="https://github.com/answershuto/learnVue/blob/4811827229b9388376db3d0e84c3334b85639bf1/docs/Vue.js%E5%BC%82%E6%AD%A5%E6%9B%B4%E6%96%B0DOM%E7%AD%96%E7%95%A5%E5%8F%8AnextTick.MarkDown" target="_blank" rel="noopener">github</a>）</p>
-<h3 id="Vue源码解析"><a href="#Vue源码解析" class="headerlink" title="Vue源码解析"></a>Vue源码解析</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br></pre></td><td class="code"><pre><span class="line">update () &#123;</span><br><span class="line">    /* istanbul ignore else */</span><br><span class="line">    if (this.lazy) &#123;</span><br><span class="line">        this.dirty = true</span><br><span class="line">    &#125; else if (this.sync) &#123;</span><br><span class="line">        /*同步则执行run直接渲染视图*/</span><br><span class="line">        this.run()</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        /*异步推送到观察者队列中，下一个tick时调用。*/</span><br><span class="line">        queueWatcher(this)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> /*将一个观察者对象push进观察者队列，在队列中已经存在相同的id则该观察者对象将被跳过，除非它是在队列被刷新时推送*/</span><br><span class="line">export function queueWatcher (watcher: Watcher) &#123;</span><br><span class="line">  /*获取watcher的id*/</span><br><span class="line">  const id = watcher.id</span><br><span class="line">  /*检验id是否存在，已经存在则直接跳过，不存在则标记哈希表has，用于下次检验*/</span><br><span class="line">  if (has[id] == null) &#123;</span><br><span class="line">    has[id] = true</span><br><span class="line">    if (!flushing) &#123;</span><br><span class="line">      /*如果没有flush掉，直接push到队列中即可*/</span><br><span class="line">      queue.push(watcher)</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      // if already flushing, splice the watcher based on its id</span><br><span class="line">      // if already past its id, it will be run next immediately.</span><br><span class="line">      let i = queue.length - 1</span><br><span class="line">      while (i &gt;= 0 &amp;&amp; queue[i].id &gt; watcher.id) &#123;</span><br><span class="line">        i--</span><br><span class="line">      &#125;</span><br><span class="line">      queue.splice(Math.max(i, index) + 1, 0, watcher)</span><br><span class="line">    &#125;</span><br><span class="line">    // queue the flush</span><br><span class="line">    if (!waiting) &#123;</span><br><span class="line">      waiting = true</span><br><span class="line">      nextTick(flushSchedulerQueue)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * Defer a task to execute it asynchronously.</span><br><span class="line"> */</span><br><span class="line"> /*</span><br><span class="line">    延迟一个任务使其异步执行，在下一个tick时执行，一个立即执行函数，返回一个function</span><br><span class="line">    这个函数的作用是在task或者microtask中推入一个timerFunc，在当前调用栈执行完以后以此执行直到执行到timerFunc</span><br><span class="line">    目的是延迟到当前调用栈执行完以后执行</span><br><span class="line">*/</span><br><span class="line">export const nextTick = (function () &#123;</span><br><span class="line">  /*存放异步执行的回调*/</span><br><span class="line">  const callbacks = []</span><br><span class="line">  /*一个标记位，如果已经有timerFunc被推送到任务队列中去则不需要重复推送*/</span><br><span class="line">  let pending = false</span><br><span class="line">  /*一个函数指针，指向函数将被推送到任务队列中，等到主线程任务执行完时，任务队列中的timerFunc被调用*/</span><br><span class="line">  let timerFunc</span><br><span class="line"></span><br><span class="line">  /*下一个tick时的回调*/</span><br><span class="line">  function nextTickHandler () &#123;</span><br><span class="line">    /*一个标记位，标记等待状态（即函数已经被推入任务队列或者主线程，已经在等待当前栈执行完毕去执行），这样就不需要在push多个回调到callbacks时将timerFunc多次推入任务队列或者主线程*/</span><br><span class="line">    pending = false</span><br><span class="line">    /*执行所有callback*/</span><br><span class="line">    const copies = callbacks.slice(0)</span><br><span class="line">    callbacks.length = 0</span><br><span class="line">    for (let i = 0; i &lt; copies.length; i++) &#123;</span><br><span class="line">      copies[i]()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // the nextTick behavior leverages the microtask queue, which can be accessed</span><br><span class="line">  // via either native Promise.then or MutationObserver.</span><br><span class="line">  // MutationObserver has wider support, however it is seriously bugged in</span><br><span class="line">  // UIWebView in iOS &gt;= 9.3.3 when triggered in touch event handlers. It</span><br><span class="line">  // completely stops working after triggering a few times... so, if native</span><br><span class="line">  // Promise is available, we will use it:</span><br><span class="line">  /* istanbul ignore if */</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">    这里解释一下，一共有Promise、MutationObserver以及setTimeout三种尝试得到timerFunc的方法</span><br><span class="line">    优先使用Promise，在Promise不存在的情况下使用MutationObserver，这两个方法都会在microtask中执行，会比setTimeout更早执行，所以优先使用。</span><br><span class="line">    如果上述两种方法都不支持的环境则会使用setTimeout，在task尾部推入这个函数，等待调用执行。</span><br><span class="line">    参考：https://www.zhihu.com/question/55364497</span><br><span class="line">  */</span><br><span class="line">  if (typeof Promise !== &apos;undefined&apos; &amp;&amp; isNative(Promise)) &#123;</span><br><span class="line">    /*使用Promise*/</span><br><span class="line">    var p = Promise.resolve()</span><br><span class="line">    var logError = err =&gt; &#123; console.error(err) &#125;</span><br><span class="line">    timerFunc = () =&gt; &#123;</span><br><span class="line">      p.then(nextTickHandler).catch(logError)</span><br><span class="line">      // in problematic UIWebViews, Promise.then doesn&apos;t completely break, but</span><br><span class="line">      // it can get stuck in a weird state where callbacks are pushed into the</span><br><span class="line">      // microtask queue but the queue isn&apos;t being flushed, until the browser</span><br><span class="line">      // needs to do some other work, e.g. handle a timer. Therefore we can</span><br><span class="line">      // &quot;force&quot; the microtask queue to be flushed by adding an empty timer.</span><br><span class="line">      if (isIOS) setTimeout(noop)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else if (typeof MutationObserver !== &apos;undefined&apos; &amp;&amp; (</span><br><span class="line">    isNative(MutationObserver) ||</span><br><span class="line">    // PhantomJS and iOS 7.x</span><br><span class="line">    MutationObserver.toString() === &apos;[object MutationObserverConstructor]&apos;</span><br><span class="line">  )) &#123;</span><br><span class="line">    // use MutationObserver where native Promise is not available,</span><br><span class="line">    // e.g. PhantomJS IE11, iOS7, Android 4.4</span><br><span class="line">    /*新建一个textNode的DOM对象，用MutationObserver绑定该DOM并指定回调函数，在DOM变化的时候则会触发回调,该回调会进入主线程（比任务队列优先执行），即textNode.data = String(counter)时便会触发回调*/</span><br><span class="line">    var counter = 1</span><br><span class="line">    var observer = new MutationObserver(nextTickHandler)</span><br><span class="line">    var textNode = document.createTextNode(String(counter))</span><br><span class="line">    observer.observe(textNode, &#123;</span><br><span class="line">      characterData: true</span><br><span class="line">    &#125;)</span><br><span class="line">    timerFunc = () =&gt; &#123;</span><br><span class="line">      counter = (counter + 1) % 2</span><br><span class="line">      textNode.data = String(counter)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    // fallback to setTimeout</span><br><span class="line">    /* istanbul ignore next */</span><br><span class="line">    /*使用setTimeout将回调推入任务队列尾部*/</span><br><span class="line">    timerFunc = () =&gt; &#123;</span><br><span class="line">      setTimeout(nextTickHandler, 0)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  /*</span><br><span class="line">    推送到队列中下一个tick时执行</span><br><span class="line">    cb 回调函数</span><br><span class="line">    ctx 上下文</span><br><span class="line">  */</span><br><span class="line">  return function queueNextTick (cb?: Function, ctx?: Object) &#123;</span><br><span class="line">    let _resolve</span><br><span class="line">    /*cb存到callbacks中*/</span><br><span class="line">    callbacks.push(() =&gt; &#123;</span><br><span class="line">      if (cb) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">          cb.call(ctx)</span><br><span class="line">        &#125; catch (e) &#123;</span><br><span class="line">          handleError(e, ctx, &apos;nextTick&apos;)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; else if (_resolve) &#123;</span><br><span class="line">        _resolve(ctx)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    if (!pending) &#123;</span><br><span class="line">      pending = true</span><br><span class="line">      timerFunc()</span><br><span class="line">    &#125;</span><br><span class="line">    if (!cb &amp;&amp; typeof Promise !== &apos;undefined&apos;) &#123;</span><br><span class="line">      return new Promise((resolve, reject) =&gt; &#123;</span><br><span class="line">        _resolve = resolve</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
-          
+          <h3 id="demo重现"><a href="#demo重现" class="headerlink" title="demo重现"></a>demo重现</h3><p>写一个小demo描述下bug。。。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/03/20180803/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/01/20180801/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
       <meta itemprop="name" content="xiajiezhou">
       <meta itemprop="description" content="周夏洁的博客">
-      <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="周夏洁的博客">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2018/08/01/20180801/" class="post-title-link" itemprop="url">spring cloud 架构（一）</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2018/08/01/20180801/" class="post-title-link" itemprop="url">spring cloud 架构（一）</a>
+        </h1>
 
         <div class="post-meta">
-
-          
-          
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">Posted on</span>
 
               <time title="Created: 2018-08-01 18:39:00" itemprop="dateCreated datePublished" datetime="2018-08-01T18:39:00+08:00">2018-08-01</time>
             </span>
-          
-
-          
-            
-
-            
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-12-21 12:20:14" itemprop="dateModified" datetime="2018-12-21T12:20:14+08:00">2018-12-21</time>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-09 10:51:37" itemprop="dateModified" datetime="2020-02-09T10:51:37+08:00">2020-02-09</time>
               </span>
-            
-          
-
-          
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/后端/" itemprop="url" rel="index"><span itemprop="name">后端</span></a></span>
-
-                
-                
-              
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">后端</span>
+                  </a>
+                </span>
             </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1745,239 +796,143 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
-          
-            <h3 id="创马网架构"><a href="#创马网架构" class="headerlink" title="创马网架构"></a>创马网架构</h3><p>前端采用Vue+Webpack+Babel的架构，后端采用最流行的微服务架构。前端就不讲了，github上资料很多，主要讲下后端。今天我们先来看下服务的注册与发现。PS:（一）小公司也可以玩微服务，不信你等我更新完。（二）我会一步一步输出架构图，我们先从最简单的画起。</p>
-<h3 id="第一步想达到的效果"><a href="#第一步想达到的效果" class="headerlink" title="第一步想达到的效果"></a>第一步想达到的效果</h3><p>将设我们有两个服务，一个是中后台服务，一个是前台服务，加上服务注册与发现那就应该是这样的。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fyc8fcy0p3j20du0a174k.jpg" alt></p>
-<p>从上图我们可以看到，应该有 Eureka Server 和 Eureka Client * 2 三个服务，我们分别来新建这三个服务。</p>
-<h3 id="Eureka-Server实现"><a href="#Eureka-Server实现" class="headerlink" title="Eureka Server实现"></a>Eureka Server实现</h3><p>pom文件<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">------ 省略</span><br><span class="line">  &lt;!--spring cloud是基于spring boot的，所以要加入spring boot的依赖--&gt;</span><br><span class="line">  &lt;parent&gt;</span><br><span class="line">    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;spring-boot-starter-parent&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;1.5.18.RELEASE&lt;/version&gt;</span><br><span class="line">    &lt;relativePath/&gt;</span><br><span class="line">  &lt;/parent&gt;</span><br><span class="line"></span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-boot-starter-test&lt;/artifactId&gt;</span><br><span class="line">      &lt;scope&gt;test&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line"></span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-server&lt;/artifactId&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line"></span><br><span class="line">  &lt;!--这里我们用<span class="number">1</span>.X的最新版本--&gt;</span><br><span class="line">  &lt;dependencyManagement&gt;</span><br><span class="line">    &lt;dependencies&gt;</span><br><span class="line">      &lt;dependency&gt;</span><br><span class="line">        &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">        &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">        &lt;version&gt;Edgware.SR5&lt;/version&gt;</span><br><span class="line">        &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">        &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">      &lt;/dependency&gt;</span><br><span class="line">    &lt;/dependencies&gt;</span><br><span class="line">  &lt;/dependencyManagement&gt;</span><br><span class="line">  </span><br><span class="line">------ 省略</span><br></pre></td></tr></table></figure></p>
-<p>启动类<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.chambuy.eureka;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.builder.SpringApplicationBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;</span><br><span class="line"></span><br><span class="line"><span class="meta">@EnableEurekaServer</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ChambuyEurekaApplication</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">new</span> SpringApplicationBuilder(ChambuyEurekaApplication.class).web(<span class="keyword">true</span>).run(args);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>配置文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">1111</span></span><br><span class="line"></span><br><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    hostname:</span> <span class="string">localhost</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line">    <span class="comment"># 两个false表明我是server</span></span><br><span class="line"><span class="attr">    registerWithEureka:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    fetchRegistry:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">    serviceUrl:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://$&#123;eureka.instance.hostname&#125;:$&#123;server.port&#125;/eureka/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">Chambuy</span> <span class="string">Eureka</span> <span class="string">Server</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="Eureka-Client实现"><a href="#Eureka-Client实现" class="headerlink" title="Eureka Client实现"></a>Eureka Client实现</h3><p>pom parent文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependencyManagement&gt;</span><br><span class="line">  &lt;dependencies&gt;</span><br><span class="line">    &lt;dependency&gt;</span><br><span class="line">      &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">      &lt;artifactId&gt;spring-cloud-dependencies&lt;/artifactId&gt;</span><br><span class="line">      &lt;version&gt;Edgware.SR5&lt;/version&gt;</span><br><span class="line">      &lt;type&gt;pom&lt;/type&gt;</span><br><span class="line">      &lt;scope&gt;import&lt;/scope&gt;</span><br><span class="line">    &lt;/dependency&gt;</span><br><span class="line">  &lt;/dependencies&gt;</span><br><span class="line">&lt;/dependencyManagement&gt;</span><br></pre></td></tr></table></figure></p>
-<p>pom文件<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">  &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;</span><br><span class="line">  &lt;artifactId&gt;spring-cloud-starter-netflix-eureka-client&lt;/artifactId&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure></p>
-<p>在启动类上加上<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@EnableDiscoveryClient</span></span><br><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line">这两个注释</span><br></pre></td></tr></table></figure></p>
-<p>配置文件<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">eureka:</span></span><br><span class="line"><span class="attr">  instance:</span></span><br><span class="line"><span class="attr">    hostname:</span> <span class="string">localhost</span></span><br><span class="line"><span class="attr">  client:</span></span><br><span class="line"><span class="attr">    healthcheck:</span></span><br><span class="line"><span class="attr">      enabled:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    serviceUrl:</span></span><br><span class="line"><span class="attr">      defaultZone:</span> <span class="attr">http://$&#123;eureka.instance.hostname&#125;:1111/eureka/</span></span><br><span class="line"></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line"><span class="attr">  port:</span> <span class="number">9911</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line"><span class="attr">  application:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">Chambuy</span> <span class="string">Front</span> <span class="string">Service</span></span><br></pre></td></tr></table></figure></p>
-<p>另一个Eureka服务也类似这样的配置。</p>
-<h3 id="启动服务"><a href="#启动服务" class="headerlink" title="启动服务"></a>启动服务</h3><p>在我们启动完三个服务，打开chrome，输入<a href="http://localhost:1111" target="_blank" rel="noopener">http://localhost:1111</a></p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fyc9nfjqepj21go0fitb4.jpg" alt></p>
-<p>在这里我们就完成了如上的架构图。现在有个问题，Eureka server会接收每一个Eureka client的心跳，那如果server挂了咋整？所以我们需要高可用的Eureka Server集群，架构图为</p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fyca458q6fj20jm0b275v.jpg" alt></p>
-<p>Eureka的高可用我们从官网可用看到，当一个新的Server出现，他会从临近节点去复制所有实例的注册信息</p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fyc9wq3vcrj20ew0d674v.jpg" alt></p>
-<p>从上图看至少需要3台机器，我们在准备3台虚拟机</p>
-<h3 id="启动虚拟机集群"><a href="#启动虚拟机集群" class="headerlink" title="启动虚拟机集群"></a>启动虚拟机集群</h3><p>我用的是VMWare Fusion 11，启动后就完成了集群的安装，我们会再下一节讲述用K8S部署Eureka集群和两个微服务。</p>
-<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1fye8yursvdj20rs0frjv3.jpg" alt></p>
-
-          
+          <h3 id="创马网架构"><a href="#创马网架构" class="headerlink" title="创马网架构"></a>创马网架构</h3><p>前端采用Vue+Webpack+Babel的架构，后端采用最流行的微服务架构。前端就不讲了，github上资料很多，主要讲下后端。今天我们先来看下服务的注册与发现。PS:（一）小公司也可以玩微服务，不信你等我更新完。（二）我会一步一步输出架构图，我们先从最简单的画起。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2018/08/01/20180801/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
         
       
     </div>
 
     
-
-    
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
-  </section>
+  </div>
 
   
+
 
 
           </div>
           
 
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
         </div>
-        
           
   
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
   </div>
 
-  <aside id="sidebar" class="sidebar">
+  <aside class="sidebar">
     <div class="sidebar-inner">
 
-      
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
 
-      
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">xiajiezhou</p>
-  <div class="site-description motion-element" itemprop="description">周夏洁的博客</div>
+  <div class="site-description" itemprop="description">周夏洁的博客</div>
 </div>
-
-
-  <nav class="site-state motion-element">
-    
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
       <div class="site-state-item site-state-posts">
-        
           <a href="/archives/">
         
           <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
-    
-
-    
-      
-      
       <div class="site-state-item site-state-categories">
-        
-          
             <a href="/categories/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">categories</span>
-        </a>
+        <span class="site-state-item-name">categories</span></a>
       </div>
-    
-
-    
-      
-      
       <div class="site-state-item site-state-tags">
-        
-          
             <a href="/tags/">
-          
-        
-        
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
-          
-        
         <span class="site-state-item-count">6</span>
-        <span class="site-state-item-name">tags</span>
-        </a>
+        <span class="site-state-item-name">tags</span></a>
       </div>
-    
   </nav>
+</div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-          
-          
-        </div>
       </div>
-
-      
-
-      
 
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
 
 
-        
       </div>
     </main>
 
-    <footer id="footer" class="footer">
+    <footer class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">xiajiezhou</span>
-
-  
-
-  
 </div>
-
-
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> v3.9.0</div>
-
-
-
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v4.2.0
+  </div>
   <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.2.0</div>
-
-
-
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
 
         
 
@@ -1988,33 +943,29 @@
 
 
 
-        
       </div>
     </footer>
-
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
-
-    
-
-    
-
-    
-
   </div>
 
   
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
 
-<script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
-  }
-</script>
+<script src="/js/utils.js"></script>
 
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
 
 
 
@@ -2031,103 +982,6 @@
 
 
   
-  
-
-
-
-
-
-
-
-
-
-  
-  <script src="/lib/jquery/index.js?v=3.4.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-
-
-  <script src="/js/utils.js?v=7.2.0"></script>
-
-  <script src="/js/motion.js?v=7.2.0"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/schemes/muse.js?v=7.2.0"></script>
-
-
-
-  
-
-  <script src="/js/next-boot.js?v=7.2.0"></script>
-
-  
-
-  
-
-  
-
-
-  
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<script>
-// GET RESPONSIVE HEIGHT PASSED FROM IFRAME
-
-window.addEventListener("message", function(e) {
-  var data = e.data;
-  if ((typeof data === 'string') && (data.indexOf('ciu_embed') > -1)) {
-    var featureID = data.split(':')[1];
-    var height = data.split(':')[2];
-    $(`iframe[data-feature=${featureID}]`).height(parseInt(height) + 30);
-  }
-}, false);
-</script>
-
-
-
-
-
-
-
 
   
 
