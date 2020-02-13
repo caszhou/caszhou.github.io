@@ -141,6 +141,169 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2020/02/13/20200213/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xiajiezhou">
+      <meta itemprop="description" content="周夏洁的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周夏洁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/13/20200213/" class="post-title-link" itemprop="url">SpringCloud + JWT + 基于cookie的SSO实现</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-13 22:05:00" itemprop="dateCreated datePublished" datetime="2020-02-13T22:05:00+08:00">2020-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-14 00:56:37" itemprop="dateModified" datetime="2020-02-14T00:56:37+08:00">2020-02-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" itemprop="url" rel="index">
+                    <span itemprop="name">解决方案</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Spring-Cloud-and-Oauth2-and-JWT"><a href="#Spring-Cloud-and-Oauth2-and-JWT" class="headerlink" title="Spring Cloud and Oauth2 and JWT"></a>Spring Cloud and Oauth2 and JWT</h3><p>这个认证方案非常成熟，只要稍微配置下就可以跑起来，这里就不贴代码了（github随便一搜都是）。</p>
+<h3 id="xxx-a-com-与-xxx-a-com-SSO实现"><a href="#xxx-a-com-与-xxx-a-com-SSO实现" class="headerlink" title="xxx.a.com 与 xxx.a.com SSO实现"></a>xxx.a.com 与 xxx.a.com SSO实现</h3><p>这个就很简单了，每个业务系统set cookie的时候，domain=.a.com，这样两个业务系统就都可以拿到token了。</p>
+<h3 id="xxx-a1-a-com-与-xxx-a2-a-com-SSO实现"><a href="#xxx-a1-a-com-与-xxx-a2-a-com-SSO实现" class="headerlink" title="xxx.a1.a.com 与 xxx.a2.a.com SSO实现"></a>xxx.a1.a.com 与 xxx.a2.a.com SSO实现</h3><p>因为cookie没法跨域设置，所以只能借助于a3.a.com（SSO登录页），认证成功后重定向到业务系统。详见下图（不含token刷新）。</p>
+<p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbv9gjb727j20tl0ol0ve.jpg" alt="SSO.jpg"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
+    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2020/02/11/20200211/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="xiajiezhou">
+      <meta itemprop="description" content="周夏洁的博客">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="周夏洁的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/11/20200211/" class="post-title-link" itemprop="url">SpringCloud服务拆分与数据拆分思考</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-02-11 21:40:00" itemprop="dateCreated datePublished" datetime="2020-02-11T21:40:00+08:00">2020-02-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-02-13 23:16:36" itemprop="dateModified" datetime="2020-02-13T23:16:36+08:00">2020-02-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" itemprop="url" rel="index">
+                    <span itemprop="name">解决方案</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="不能为了拆服务而拆服务"><a href="#不能为了拆服务而拆服务" class="headerlink" title="不能为了拆服务而拆服务"></a>不能为了拆服务而拆服务</h3><p>比如我们现在有B端的两个Portal，简称PA、PB，两个Potral的后台PC。按照常规的做法，会把PA，PB，PC里重要的模块拆分成单独的服务，数据库也根据对应的模块切分成多个库。这样<br>一来开发的时候，经常会发生没法级联查询，feign客户端可能会出现回环调用，业务发生变化时数据库中的表需要下沉或者上提，运维成本等等问题。  </p>
+<p>个人觉得细化服务比较适合C端一些比较大的功能模块，比如订单，而B端重业务，日活和QPS都没C端那么大，拆分过细，反而不利于整个项目。  </p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/11/20200211/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
     <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2020/02/09/20200209/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -818,92 +981,12 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/01/20180801/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xiajiezhou">
-      <meta itemprop="description" content="周夏洁的博客">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="周夏洁的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/01/20180801/" class="post-title-link" itemprop="url">spring cloud 架构（一）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-01 18:39:00" itemprop="dateCreated datePublished" datetime="2018-08-01T18:39:00+08:00">2018-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-09 10:51:37" itemprop="dateModified" datetime="2020-02-09T10:51:37+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="创马网架构"><a href="#创马网架构" class="headerlink" title="创马网架构"></a>创马网架构</h3><p>前端采用Vue+Webpack+Babel的架构，后端采用最流行的微服务架构。前端就不讲了，github上资料很多，主要讲下后端。今天我们先来看下服务的注册与发现。PS:（一）小公司也可以玩微服务，不信你等我更新完。（二）我会一步一步输出架构图，我们先从最简单的画起。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/08/01/20180801/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 
 
@@ -968,7 +1051,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
