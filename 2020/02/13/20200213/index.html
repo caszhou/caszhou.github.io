@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"zhouxj.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Spring Cloud and Oauth2 and JWT这个认证方案非常成熟，只要稍微配置下就可以跑起来，这里就不贴代码了（github随便一搜都是）。 xxx.a.com 与 xxx.a.com SSO实现这个就很简单了，每个业务系统set cookie的时候，domain&#x3D;.a.com，这样两个业务系统就都可以拿到token了。 xxx.a1.a.com 与 xxx.a2.a.com S">
+  <meta name="description" content="Spring Cloud and Oauth2 and JWT这个认证方案非常成熟，只要稍微配置下就可以跑起来，这里就不贴代码了（github随便一搜都是）。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SpringCloud + JWT + 基于cookie的SSO实现">
 <meta property="og:url" content="http://zhouxj.me/2020/02/13/20200213/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
-<meta property="og:description" content="Spring Cloud and Oauth2 and JWT这个认证方案非常成熟，只要稍微配置下就可以跑起来，这里就不贴代码了（github随便一搜都是）。 xxx.a.com 与 xxx.a.com SSO实现这个就很简单了，每个业务系统set cookie的时候，domain&#x3D;.a.com，这样两个业务系统就都可以拿到token了。 xxx.a1.a.com 与 xxx.a2.a.com S">
+<meta property="og:description" content="Spring Cloud and Oauth2 and JWT这个认证方案非常成熟，只要稍微配置下就可以跑起来，这里就不贴代码了（github随便一搜都是）。">
 <meta property="og:image" content="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbv9gjb727j20tl0ol0ve.jpg">
 <meta property="article:published_time" content="2020-02-13T14:05:00.000Z">
-<meta property="article:modified_time" content="2020-02-13T16:56:37.893Z">
+<meta property="article:modified_time" content="2020-02-13T17:12:26.737Z">
 <meta property="article:author" content="xiajiezhou">
 <meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
@@ -176,7 +176,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-14 00:56:37" itemprop="dateModified" datetime="2020-02-14T00:56:37+08:00">2020-02-14</time>
+                <time title="Modified: 2020-02-14 01:12:26" itemprop="dateModified" datetime="2020-02-14T01:12:26+08:00">2020-02-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -202,6 +202,8 @@
 
       
         <h3 id="Spring-Cloud-and-Oauth2-and-JWT"><a href="#Spring-Cloud-and-Oauth2-and-JWT" class="headerlink" title="Spring Cloud and Oauth2 and JWT"></a>Spring Cloud and Oauth2 and JWT</h3><p>这个认证方案非常成熟，只要稍微配置下就可以跑起来，这里就不贴代码了（github随便一搜都是）。</p>
+<a id="more"></a>
+
 <h3 id="xxx-a-com-与-xxx-a-com-SSO实现"><a href="#xxx-a-com-与-xxx-a-com-SSO实现" class="headerlink" title="xxx.a.com 与 xxx.a.com SSO实现"></a>xxx.a.com 与 xxx.a.com SSO实现</h3><p>这个就很简单了，每个业务系统set cookie的时候，domain=.a.com，这样两个业务系统就都可以拿到token了。</p>
 <h3 id="xxx-a1-a-com-与-xxx-a2-a-com-SSO实现"><a href="#xxx-a1-a-com-与-xxx-a2-a-com-SSO实现" class="headerlink" title="xxx.a1.a.com 与 xxx.a2.a.com SSO实现"></a>xxx.a1.a.com 与 xxx.a2.a.com SSO实现</h3><p>因为cookie没法跨域设置，所以只能借助于a3.a.com（SSO登录页），认证成功后重定向到业务系统。详见下图（不含token刷新）。</p>
 <p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbv9gjb727j20tl0ol0ve.jpg" alt="SSO.jpg"></p>
