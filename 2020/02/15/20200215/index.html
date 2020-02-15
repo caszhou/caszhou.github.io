@@ -20,28 +20,33 @@
     var CONFIG = {"hostname":"zhouxj.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="周夏洁的博客">
-<meta property="og:type" content="website">
-<meta property="og:title" content="周夏洁的博客">
-<meta property="og:url" content="http://zhouxj.me/page/2/index.html">
+  <meta name="description" content="react-router中的exact和strict 总结当有嵌套路由时候，不能在父路由设置exact和strict，需要在子路由中设置exact和strict。其它情况尽可能exact和strict都为true。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ReactRouter4中的exact和strict">
+<meta property="og:url" content="http://zhouxj.me/2020/02/15/20200215/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
-<meta property="og:description" content="周夏洁的博客">
+<meta property="og:description" content="react-router中的exact和strict 总结当有嵌套路由时候，不能在父路由设置exact和strict，需要在子路由中设置exact和strict。其它情况尽可能exact和strict都为true。">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbxghwcy0qj20lw0e8jsk.jpg">
+<meta property="article:published_time" content="2020-02-15T14:29:00.000Z">
+<meta property="article:modified_time" content="2020-02-15T14:32:29.440Z">
 <meta property="article:author" content="xiajiezhou">
+<meta property="article:tag" content="react-router">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbxghwcy0qj20lw0e8jsk.jpg">
 
-<link rel="canonical" href="http://zhouxj.me/page/2/">
+<link rel="canonical" href="http://zhouxj.me/2020/02/15/20200215/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome: false,
+    isPost: true
   };
 </script>
 
-  <title>周夏洁的博客</title>
+  <title>ReactRouter4中的exact和strict | 周夏洁的博客</title>
   
 
 
@@ -137,11 +142,11 @@
             
 
   <div class="posts-expand">
-        
+      
   
   
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/03/20180803/">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="default">
+    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2020/02/15/20200215/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -154,8 +159,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/03/20180803/" class="post-title-link" itemprop="url">记一次改bug的经历，层层挖掘，最后挖到了Vue的源码</a>
+          ReactRouter4中的exact和strict
         </h1>
 
         <div class="post-meta">
@@ -164,16 +168,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
+              
 
-              <time title="Created: 2018-08-03 21:39:00" itemprop="dateCreated datePublished" datetime="2018-08-03T21:39:00+08:00">2018-08-03</time>
+              <time title="Created: 2020-02-15 22:29:00 / Modified: 22:32:29" itemprop="dateCreated datePublished" datetime="2020-02-15T22:29:00+08:00">2020-02-15</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-09 10:54:00" itemprop="dateModified" datetime="2020-02-09T10:54:00+08:00">2020-02-09</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -197,119 +195,39 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h3 id="demo重现"><a href="#demo重现" class="headerlink" title="demo重现"></a>demo重现</h3><p>写一个小demo描述下bug。。。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/08/03/20180803/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
+        <h3 id="react-router中的exact和strict"><a href="#react-router中的exact和strict" class="headerlink" title="react-router中的exact和strict"></a>react-router中的exact和strict</h3><p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbxghwcy0qj20lw0e8jsk.jpg" alt="9902136-f074f8bbfa8e394b.png"></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当有嵌套路由时候，不能在父路由设置exact和strict，需要在子路由中设置exact和strict。其它情况尽可能exact和strict都为true。</p>
+
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/react-router/" rel="tag"># react-router</a>
+          </div>
 
         
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="default">
-    <link itemprop="mainEntityOfPage" href="http://zhouxj.me/2018/08/01/20180801/">
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="xiajiezhou">
-      <meta itemprop="description" content="周夏洁的博客">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="周夏洁的博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2018/08/01/20180801/" class="post-title-link" itemprop="url">spring cloud 架构（一）</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2018-08-01 18:39:00" itemprop="dateCreated datePublished" datetime="2018-08-01T18:39:00+08:00">2018-08-01</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-02-09 10:51:37" itemprop="dateModified" datetime="2020-02-09T10:51:37+08:00">2020-02-09</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">In</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E7%AB%AF/" itemprop="url" rel="index">
-                    <span itemprop="name">后端</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="创马网架构"><a href="#创马网架构" class="headerlink" title="创马网架构"></a>创马网架构</h3><p>前端采用Vue+Webpack+Babel的架构，后端采用最流行的微服务架构。前端就不讲了，github上资料很多，主要讲下后端。今天我们先来看下服务的注册与发现。PS:（一）小公司也可以玩微服务，不信你等我更新完。（二）我会一步一步输出架构图，我们先从最简单的画起。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2018/08/01/20180801/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/13/20200213/" rel="prev" title="SpringCloud + JWT + 基于cookie的SSO实现">
+      <i class="fa fa-chevron-left"></i> SpringCloud + JWT + 基于cookie的SSO实现
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
   
 
   </div>
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="Previous page"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
@@ -360,6 +278,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#react-router中的exact和strict"><span class="nav-number">1.</span> <span class="nav-text">react-router中的exact和strict</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">2.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
