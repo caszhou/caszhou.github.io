@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="周夏洁的博客">
 <meta property="og:description" content="大文件的上传前端 调用 分片上传任务创建 接口。 文件切分为多个分片（Blob.prototype.slice），并行上传。 UI显示多个分片上传进度（根据xhr源生事件UploadProgress）。 单个分片上传失败可以通过重试按键重新上传。 调用 合并分片 接口。">
 <meta property="article:published_time" content="2020-02-09T04:40:00.000Z">
-<meta property="article:modified_time" content="2020-02-09T05:42:58.193Z">
+<meta property="article:modified_time" content="2021-02-04T17:18:51.298Z">
 <meta property="article:author" content="xiajiezhou">
 <meta property="article:tag" content="solution">
 <meta name="twitter:card" content="summary">
@@ -173,10 +173,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">Posted on</span>
-              
 
-              <time title="Created: 2020-02-09 12:40:00 / Modified: 13:42:58" itemprop="dateCreated datePublished" datetime="2020-02-09T12:40:00+08:00">2020-02-09</time>
+              <time title="Created: 2020-02-09 12:40:00" itemprop="dateCreated datePublished" datetime="2020-02-09T12:40:00+08:00">2020-02-09</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2021-02-05 01:18:51" itemprop="dateModified" datetime="2021-02-05T01:18:51+08:00">2021-02-05</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -203,10 +209,13 @@
 <li>文件切分为多个分片（Blob.prototype.slice），并行上传。</li>
 <li>UI显示多个分片上传进度（根据xhr源生事件UploadProgress）。</li>
 <li>单个分片上传失败可以通过重试按键重新上传。</li>
-<li>调用 合并分片 接口。<a id="more"></a>
-<h4 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h4>1、编写 创建分片上传任务（InitiateMultipartUpload） 接口。</li>
-<li>编写 上传分片(UploadPart) 接口。</li>
-<li>编写 合并分片(CompleteMultipartUpload) 接口。<h4 id="断点上传"><a href="#断点上传" class="headerlink" title="断点上传"></a>断点上传</h4>前端计算文件内容hash值，上传前查询该hash值的文件分片是否存在于oss。<br>后端每次接受分片文件，并成功上传oss后，将分片的hash值写到redis，ttl设置为1天（时间根据业务决定）；查询接口则直接查询redis中该hash是否存在即可。<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4></li>
+<li>调用 合并分片 接口。</li>
+</ol>
+<a id="more"></a>
+
+<h4 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h4><p>1、编写 创建分片上传任务（InitiateMultipartUpload） 接口。<br>2. 编写 上传分片(UploadPart) 接口。<br>3. 编写 合并分片(CompleteMultipartUpload) 接口。</p>
+<h4 id="断点上传"><a href="#断点上传" class="headerlink" title="断点上传"></a>断点上传</h4><p>前端计算文件内容hash值，上传前查询该hash值的文件分片是否存在于oss。<br>后端每次接受分片文件，并成功上传oss后，将分片的hash值写到redis，ttl设置为1天（时间根据业务决定）；查询接口则直接查询redis中该hash是否存在即可。</p>
+<h4 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h4><ol>
 <li>hash计算（web-worker）</li>
 <li>取消文件分片上传接口（AbortMultipartUpload）</li>
 </ol>
@@ -308,7 +317,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">10</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
