@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>短链 | 周夏洁的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="短链公司经常会有短链的需求，比如分享的H5链接。目的是为了让传播更方便。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="短链">
+<meta property="og:url" content="https://caszhou.github.io/2018/08/07/20180807/index.html">
+<meta property="og:site_name" content="周夏洁的博客">
+<meta property="og:description" content="短链公司经常会有短链的需求，比如分享的H5链接。目的是为了让传播更方便。">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2018-08-07T01:51:00.000Z">
+<meta property="article:modified_time" content="2021-02-04T17:16:02.568Z">
+<meta property="article:author" content="xiajiezhou">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="周夏洁的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">周夏洁的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">hello world</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://caszhou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-20180807" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2018/08/07/20180807/" class="article-date">
+  <time class="dt-published" datetime="2018-08-07T01:51:00.000Z" itemprop="datePublished">2018-08-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      短链
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="短链"><a href="#短链" class="headerlink" title="短链"></a>短链</h3><p>公司经常会有短链的需求，比如分享的H5链接。目的是为了让传播更方便。</p>
+<span id="more"></span>
+
+<h3 id="最简单的实现方式"><a href="#最简单的实现方式" class="headerlink" title="最简单的实现方式"></a>最简单的实现方式</h3><p>单机版：存库，自增，然后转成64位（以mysql为例，当然redis也是可以的）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Stack;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> zhouxiajie</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2018/7/15</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">AutoIncrement</span> &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">char</span>[] chars = &#123;</span><br><span class="line">      <span class="string">&#x27;a&#x27;</span>, <span class="string">&#x27;b&#x27;</span>, <span class="string">&#x27;c&#x27;</span>, <span class="string">&#x27;d&#x27;</span>, <span class="string">&#x27;e&#x27;</span>, <span class="string">&#x27;f&#x27;</span>, <span class="string">&#x27;g&#x27;</span>, <span class="string">&#x27;h&#x27;</span>, <span class="string">&#x27;i&#x27;</span>, <span class="string">&#x27;j&#x27;</span>, <span class="string">&#x27;k&#x27;</span>, <span class="string">&#x27;l&#x27;</span>, <span class="string">&#x27;m&#x27;</span>, <span class="string">&#x27;n&#x27;</span>, <span class="string">&#x27;o&#x27;</span>, <span class="string">&#x27;p&#x27;</span>, <span class="string">&#x27;q&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, <span class="string">&#x27;s&#x27;</span>, <span class="string">&#x27;t&#x27;</span>, <span class="string">&#x27;u&#x27;</span>, <span class="string">&#x27;v&#x27;</span>, <span class="string">&#x27;w&#x27;</span>, <span class="string">&#x27;x&#x27;</span>, <span class="string">&#x27;y&#x27;</span>, <span class="string">&#x27;z&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;1&#x27;</span>, <span class="string">&#x27;2&#x27;</span>, <span class="string">&#x27;3&#x27;</span>, <span class="string">&#x27;4&#x27;</span>, <span class="string">&#x27;5&#x27;</span>, <span class="string">&#x27;6&#x27;</span>, <span class="string">&#x27;7&#x27;</span>, <span class="string">&#x27;8&#x27;</span>, <span class="string">&#x27;9&#x27;</span>, <span class="string">&#x27;0&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;C&#x27;</span>, <span class="string">&#x27;D&#x27;</span>, <span class="string">&#x27;E&#x27;</span>, <span class="string">&#x27;F&#x27;</span>, <span class="string">&#x27;G&#x27;</span>, <span class="string">&#x27;H&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;J&#x27;</span>, <span class="string">&#x27;K&#x27;</span>, <span class="string">&#x27;L&#x27;</span>, <span class="string">&#x27;M&#x27;</span>, <span class="string">&#x27;N&#x27;</span>, <span class="string">&#x27;O&#x27;</span>, <span class="string">&#x27;P&#x27;</span>, <span class="string">&#x27;Q&#x27;</span>, <span class="string">&#x27;R&#x27;</span>, <span class="string">&#x27;S&#x27;</span>, <span class="string">&#x27;T&#x27;</span>, <span class="string">&#x27;U&#x27;</span>, <span class="string">&#x27;V&#x27;</span>, <span class="string">&#x27;W&#x27;</span>, <span class="string">&#x27;X&#x27;</span>, <span class="string">&#x27;Y&#x27;</span>, <span class="string">&#x27;Z&#x27;</span>,</span><br><span class="line">      <span class="string">&#x27;+&#x27;</span>, <span class="string">&#x27;/&#x27;</span></span><br><span class="line">  &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">Integer</span> <span class="variable">id</span> <span class="operator">=</span> getDbId();</span><br><span class="line"></span><br><span class="line">    System.out.println(encode(id));</span><br><span class="line">    System.out.println(decode(encode(id)));</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">decode</span><span class="params">(String encode)</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">multi</span> <span class="operator">=</span> <span class="number">1</span>;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (encode.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> encode.length() - <span class="number">1</span>; i &gt; -<span class="number">1</span>; i--) &#123;</span><br><span class="line">        result += getIndex(encode.charAt(i)) * multi;</span><br><span class="line">        multi *= <span class="number">64</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="type">int</span> <span class="title function_">getIndex</span><span class="params">(<span class="type">char</span> c)</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; chars.length; i++) &#123;</span><br><span class="line">      <span class="keyword">if</span> (chars[i] == c) &#123;</span><br><span class="line">        <span class="keyword">return</span> i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> String <span class="title function_">encode</span><span class="params">(Integer id)</span> &#123;</span><br><span class="line">    Stack&lt;Character&gt; characters = <span class="keyword">new</span> <span class="title class_">Stack</span>&lt;Character&gt;();</span><br><span class="line">    <span class="type">StringBuilder</span> <span class="variable">sb</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">StringBuilder</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (id != <span class="literal">null</span>) &#123;</span><br><span class="line">      <span class="type">Integer</span> <span class="variable">rest</span> <span class="operator">=</span> id;</span><br><span class="line">      <span class="keyword">while</span> (rest &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        characters.push(chars[rest % <span class="number">64</span>]);</span><br><span class="line">        rest /= <span class="number">64</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Character c;</span><br><span class="line">    <span class="keyword">while</span> (!characters.isEmpty()) &#123;</span><br><span class="line">      c = characters.pop();</span><br><span class="line">      sb.append(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> Integer <span class="title function_">getDbId</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// 从数据库获取Id</span></span><br><span class="line">    <span class="keyword">return</span> Integer.MAX_VALUE;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>分布式：可以采用雪花算法，再转换成64进制字符串。雪花算法强依赖机器的时间。由于机器工作时NTP同步（Linux时间同步）会造成秒级别的回退。第一种办法，直接关闭NTP，还有一种就是直接让服务不可用，等追上缓存时间后再可用。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://caszhou.github.io/2018/08/07/20180807/" data-id="cl8txu2su00013jb607n97rba" data-title="短链" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/07/24/20190724/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          flink on k8s
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/08/05/20180805/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">mysql锁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80/">语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c4/" rel="tag">c4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flink/" rel="tag">flink</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab-cicd/" rel="tag">gitlab cicd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/" rel="tag">sso</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c4/" style="font-size: 10px;">c4</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/flink/" style="font-size: 15px;">flink</a> <a href="/tags/gitlab-cicd/" style="font-size: 10px;">gitlab cicd</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/oss/" style="font-size: 10px;">oss</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/spring-cloud-netflix/" style="font-size: 20px;">spring cloud netflix</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">微服务</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/04/20221004/">Centos 7.9 优化脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/20210730/">Connection和Keep-Alive</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/24/20210324/">Discovery Client OUT_OF_SERVICE 临时修复</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/20210320/">spring cloud从Greenwich升级到Hoxton</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/18/20210318/">flink 1.12.2 standalone application cluster on k8s 集成 gitlab cicd 自动 savepoint 保存和恢复</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 xiajiezhou<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

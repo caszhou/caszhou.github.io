@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Connection和Keep-Alive | 周夏洁的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Http头中的ConnectionConnection决定了请求结束后是否关闭网络连接，keep-alive不会关闭连接，后续请求可以复用该连接，close反之。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Connection和Keep-Alive">
+<meta property="og:url" content="https://caszhou.github.io/2021/07/30/20210730/index.html">
+<meta property="og:site_name" content="周夏洁的博客">
+<meta property="og:description" content="Http头中的ConnectionConnection决定了请求结束后是否关闭网络连接，keep-alive不会关闭连接，后续请求可以复用该连接，close反之。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/002RBcz6gy1gsz8xa8gkxj61kj05eqdd02.jpg">
+<meta property="article:published_time" content="2021-07-30T06:14:08.000Z">
+<meta property="article:modified_time" content="2021-07-30T13:41:03.219Z">
+<meta property="article:author" content="xiajiezhou">
+<meta property="article:tag" content="spring cloud netflix">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/002RBcz6gy1gsz8xa8gkxj61kj05eqdd02.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="周夏洁的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">周夏洁的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">hello world</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://caszhou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-20210730" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/07/30/20210730/" class="article-date">
+  <time class="dt-published" datetime="2021-07-30T06:14:08.000Z" itemprop="datePublished">2021-07-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Connection和Keep-Alive
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <meta name="referrer" content="no-referrer">
+
+<h2 id="Http头中的Connection"><a href="#Http头中的Connection" class="headerlink" title="Http头中的Connection"></a>Http头中的Connection</h2><p>Connection决定了请求结束后是否关闭网络连接，keep-alive不会关闭连接，后续请求可以复用该连接，close反之。</p>
+<span id="more"></span>
+
+<h2 id="Http头中的Keep-Alive"><a href="#Http头中的Keep-Alive" class="headerlink" title="Http头中的Keep-Alive"></a>Http头中的Keep-Alive</h2><p>Connection指令中除了close就是以逗号分隔的HTTP头，但是通常只有Keep-Alive。</p>
+<p>Keep-Alive指令中的参数有timeout和max，用逗号隔开。</p>
+<p>timeout单位为秒，表示空闲连接保持打开状态的最小时长。</p>
+<p>max表示在连接关闭之前，在此连接可以发送的请求的最大值。</p>
+<h2 id="Spring-Cloud-Netflix-Zuul的处理方式"><a href="#Spring-Cloud-Netflix-Zuul的处理方式" class="headerlink" title="Spring Cloud Netflix Zuul的处理方式"></a>Spring Cloud Netflix Zuul的处理方式</h2><p>在spring cloud netflix zuul(H版本)中ribbon发送请求的时候会默认过滤掉connection。</p>
+<p>RibbonRoutingFilter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">protected</span> RibbonCommandContext <span class="title function_">buildCommandContext</span><span class="params">(RequestContext context)</span> &#123;</span><br><span class="line">    <span class="type">HttpServletRequest</span> <span class="variable">request</span> <span class="operator">=</span> context.getRequest();</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 这里，一</span></span><br><span class="line">    MultiValueMap&lt;String, String&gt; headers = <span class="built_in">this</span>.helper</span><br><span class="line">            .buildZuulRequestHeaders(request);</span><br><span class="line">    MultiValueMap&lt;String, String&gt; params = <span class="built_in">this</span>.helper</span><br><span class="line">            .buildZuulRequestQueryParams(request);</span><br><span class="line">    <span class="type">String</span> <span class="variable">verb</span> <span class="operator">=</span> getVerb(request);</span><br><span class="line">    <span class="type">InputStream</span> <span class="variable">requestEntity</span> <span class="operator">=</span> getRequestBody(request);</span><br><span class="line">    <span class="keyword">if</span> (request.getContentLength() &lt; <span class="number">0</span> &amp;&amp; !verb.equalsIgnoreCase(<span class="string">&quot;GET&quot;</span>)) &#123;</span><br><span class="line">        context.setChunkedRequestBody();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">serviceId</span> <span class="operator">=</span> (String) context.get(SERVICE_ID_KEY);</span><br><span class="line">    <span class="type">Boolean</span> <span class="variable">retryable</span> <span class="operator">=</span> (Boolean) context.get(RETRYABLE_KEY);</span><br><span class="line">    <span class="type">Object</span> <span class="variable">loadBalancerKey</span> <span class="operator">=</span> context.get(LOAD_BALANCER_KEY);</span><br><span class="line"></span><br><span class="line">    <span class="type">String</span> <span class="variable">uri</span> <span class="operator">=</span> <span class="built_in">this</span>.helper.buildZuulRequestURI(request);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// remove double slashes</span></span><br><span class="line">    uri = uri.replace(<span class="string">&quot;//&quot;</span>, <span class="string">&quot;/&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="type">long</span> <span class="variable">contentLength</span> <span class="operator">=</span> useServlet31 ? request.getContentLengthLong()</span><br><span class="line">            : request.getContentLength();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">RibbonCommandContext</span>(serviceId, verb, uri, retryable, headers, params,</span><br><span class="line">            requestEntity, <span class="built_in">this</span>.requestCustomizers, contentLength, loadBalancerKey);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ProxyRequestHelper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> MultiValueMap&lt;String, String&gt; <span class="title function_">buildZuulRequestHeaders</span><span class="params">(</span></span><br><span class="line"><span class="params">        HttpServletRequest request)</span> &#123;</span><br><span class="line">    <span class="type">RequestContext</span> <span class="variable">context</span> <span class="operator">=</span> RequestContext.getCurrentContext();</span><br><span class="line">    MultiValueMap&lt;String, String&gt; headers = <span class="keyword">new</span> <span class="title class_">HttpHeaders</span>();</span><br><span class="line">    Enumeration&lt;String&gt; headerNames = request.getHeaderNames();</span><br><span class="line">    <span class="keyword">if</span> (headerNames != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">while</span> (headerNames.hasMoreElements()) &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> headerNames.nextElement();</span><br><span class="line">            <span class="comment">// 这里，二</span></span><br><span class="line">            <span class="keyword">if</span> (isIncludedHeader(name)) &#123;</span><br><span class="line">                Enumeration&lt;String&gt; values = request.getHeaders(name);</span><br><span class="line">                <span class="keyword">while</span> (values.hasMoreElements()) &#123;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> values.nextElement();</span><br><span class="line">                    headers.add(name, value);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    Map&lt;String, String&gt; zuulRequestHeaders = context.getZuulRequestHeaders();</span><br><span class="line">    <span class="keyword">for</span> (String header : zuulRequestHeaders.keySet()) &#123;</span><br><span class="line">        <span class="keyword">if</span> (isIncludedHeader(header)) &#123;</span><br><span class="line">            headers.set(header, zuulRequestHeaders.get(header));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!headers.containsKey(HttpHeaders.ACCEPT_ENCODING)) &#123;</span><br><span class="line">        headers.set(HttpHeaders.ACCEPT_ENCODING, <span class="string">&quot;gzip&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> headers;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ProxyRequestHelper</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isIncludedHeader</span><span class="params">(String headerName)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> headerName.toLowerCase();</span><br><span class="line">    <span class="type">RequestContext</span> <span class="variable">ctx</span> <span class="operator">=</span> RequestContext.getCurrentContext();</span><br><span class="line">    <span class="keyword">if</span> (ctx.containsKey(IGNORED_HEADERS)) &#123;</span><br><span class="line">        <span class="type">Object</span> <span class="variable">object</span> <span class="operator">=</span> ctx.get(IGNORED_HEADERS);</span><br><span class="line">        <span class="keyword">if</span> (object <span class="keyword">instanceof</span> Collection &amp;&amp; ((Collection&lt;?&gt;) object).contains(name)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">switch</span> (name) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;host&quot;</span>:</span><br><span class="line">        <span class="keyword">if</span> (addHostHeader) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="comment">// 这里，三</span></span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;connection&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;content-length&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;server&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;transfer-encoding&quot;</span>:</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&quot;x-application-context&quot;</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你以为tomcat收到的请求的头就没有connection了吗，no no no。</p>
+<p><img src="http://ww1.sinaimg.cn/large/002RBcz6gy1gsz8xa8gkxj61kj05eqdd02.jpg" alt="2.3.9.png"></p>
+<p>我们看到，还是有connection的，值为Keep-Alive指令，请注意大小写，后面通过挖tomcat的代码就知道为什么了。</p>
+<p>接下来我们先来看下客户端对于response中的keepalive是如何处理的。</p>
+<h2 id="ribbon下的httpclient中对于keepalive的处理逻辑"><a href="#ribbon下的httpclient中对于keepalive的处理逻辑" class="headerlink" title="ribbon下的httpclient中对于keepalive的处理逻辑"></a>ribbon下的httpclient中对于keepalive的处理逻辑</h2><p>根据timeout设置连接有效时间，并立马标记可用，如果是keepalive，否则就标记不可用。</p>
+<p>MainClientExec</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (reuseStrategy.keepAlive(response, context)) &#123;</span><br><span class="line">    <span class="comment">// Set the idle duration of this connection</span></span><br><span class="line">    <span class="keyword">final</span> <span class="type">long</span> <span class="variable">duration</span> <span class="operator">=</span> keepAliveStrategy.getKeepAliveDuration(response, context);</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span>.log.isDebugEnabled()) &#123;</span><br><span class="line">        <span class="keyword">final</span> String s;</span><br><span class="line">        <span class="keyword">if</span> (duration &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            s = <span class="string">&quot;for &quot;</span> + duration + <span class="string">&quot; &quot;</span> + TimeUnit.MILLISECONDS;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            s = <span class="string">&quot;indefinitely&quot;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">this</span>.log.debug(<span class="string">&quot;Connection can be kept alive &quot;</span> + s);</span><br><span class="line">    &#125;</span><br><span class="line">    connHolder.setValidFor(duration, TimeUnit.MILLISECONDS);</span><br><span class="line">    connHolder.markReusable();</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    connHolder.markNonReusable();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>继续。。。</p>
+<h2 id="Tomcat的处理方式"><a href="#Tomcat的处理方式" class="headerlink" title="Tomcat的处理方式"></a>Tomcat的处理方式</h2><p>tomcat会判断连接是否是keepalive（具体逻辑见代码），如果不是，会在headers中加上Connection: close，如果是keepalive并且不是http1.1（http 1.1默认开启），<br>就会在headers中加上Connection: Keep-Alive，就是上图中红色框框出来的地方，大小写都一样。</p>
+<p>然后会返回Keep-Alive，超时时间会取keepAliveTimeout，具体配置见 <a target="_blank" rel="noopener" href="https://tomcat.apache.org/tomcat-8.5-doc/config/http.html">https://tomcat.apache.org/tomcat-8.5-doc/config/http.html</a></p>
+<p>Http11Processor</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (keepAlive &amp;&amp; statusDropsConnection(statusCode)) &#123;</span><br><span class="line">    keepAlive = <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span> (!keepAlive) &#123;</span><br><span class="line">    <span class="comment">// Avoid adding the close header twice</span></span><br><span class="line">    <span class="keyword">if</span> (!connectionClosePresent) &#123;</span><br><span class="line">        headers.addValue(Constants.CONNECTION).setString(</span><br><span class="line">                Constants.CLOSE);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> (!getErrorState().isError()) &#123;</span><br><span class="line">    <span class="keyword">if</span> (!http11) &#123;</span><br><span class="line">        headers.addValue(Constants.CONNECTION).setString(Constants.KEEP_ALIVE_HEADER_VALUE_TOKEN);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (protocol.getUseKeepAliveResponseHeader()) &#123;</span><br><span class="line">        <span class="type">boolean</span> <span class="variable">connectionKeepAlivePresent</span> <span class="operator">=</span></span><br><span class="line">            isConnectionToken(request.getMimeHeaders(), Constants.KEEP_ALIVE_HEADER_VALUE_TOKEN);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (connectionKeepAlivePresent) &#123;</span><br><span class="line">            <span class="type">int</span> <span class="variable">keepAliveTimeout</span> <span class="operator">=</span> protocol.getKeepAliveTimeout();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (keepAliveTimeout &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> <span class="string">&quot;timeout=&quot;</span> + keepAliveTimeout / <span class="number">1000L</span>;</span><br><span class="line">                headers.setValue(Constants.KEEP_ALIVE_HEADER_NAME).setString(value);</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> (http11) &#123;</span><br><span class="line">                    <span class="comment">// Append if there is already a Connection header,</span></span><br><span class="line">                    <span class="comment">// else create the header</span></span><br><span class="line">                    <span class="type">MessageBytes</span> <span class="variable">connectionHeaderValue</span> <span class="operator">=</span> headers.getValue(Constants.CONNECTION);</span><br><span class="line">                    <span class="keyword">if</span> (connectionHeaderValue == <span class="literal">null</span>) &#123;</span><br><span class="line">                        headers.addValue(Constants.CONNECTION).setString(Constants.KEEP_ALIVE_HEADER_VALUE_TOKEN);</span><br><span class="line">                    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                        connectionHeaderValue.setString(</span><br><span class="line">                                connectionHeaderValue.getString() + <span class="string">&quot;, &quot;</span> + Constants.KEEP_ALIVE_HEADER_VALUE_TOKEN);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-boot-中的-keepAliveTimeout-取值"><a href="#Spring-boot-中的-keepAliveTimeout-取值" class="headerlink" title="Spring boot 中的 keepAliveTimeout 取值"></a>Spring boot 中的 keepAliveTimeout 取值</h2><p>2.3.12的spring boot，使用tomcat做为web服务器，keepAliveTimeout默认值等于connectionTimeout，connectionTimeout默认值为60s。</p>
+<p>AbstractHttp11Protocol</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="title function_">AbstractHttp11Protocol</span><span class="params">(AbstractEndpoint&lt;S,?&gt; endpoint)</span> &#123;</span><br><span class="line">    <span class="built_in">super</span>(endpoint);</span><br><span class="line">    <span class="comment">// 这里</span></span><br><span class="line">    setConnectionTimeout(Constants.DEFAULT_CONNECTION_TIMEOUT);</span><br><span class="line">    ConnectionHandler&lt;S&gt; cHandler = <span class="keyword">new</span> <span class="title class_">ConnectionHandler</span>&lt;&gt;(<span class="built_in">this</span>);</span><br><span class="line">    setHandler(cHandler);</span><br><span class="line">    getEndpoint().setHandler(cHandler);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-boot-中的-keepAliveTimeout-配置"><a href="#Spring-boot-中的-keepAliveTimeout-配置" class="headerlink" title="Spring boot 中的 keepAliveTimeout 配置"></a>Spring boot 中的 keepAliveTimeout 配置</h2><p>目前2.3.x不支持，2.5.x会支持，具体见此pr <a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-boot/pull/25815">https://github.com/spring-projects/spring-boot/pull/25815</a></p>
+<p>在2.3.x中，如果实现WebServerFactoryCustomizer - TomcatServletWebServerFactory中的customize，能不能配置呢，答案是可以的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TomcatCustomizer</span> <span class="keyword">implements</span> <span class="title class_">WebServerFactoryCustomizer</span>&lt;TomcatServletWebServerFactory&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Log</span> <span class="variable">LOGGER</span> <span class="operator">=</span> LogFactory.get(TomcatCustomizer.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;rawtypes&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">customize</span><span class="params">(TomcatServletWebServerFactory factory)</span> &#123;</span><br><span class="line">        factory.addConnectorCustomizers(connector -&gt; &#123;</span><br><span class="line">            <span class="type">AbstractHttp11Protocol</span> <span class="variable">protocol</span> <span class="operator">=</span> (AbstractHttp11Protocol) connector.getProtocolHandler();</span><br><span class="line">            protocol.setKeepAliveTimeout(<span class="number">65</span> * <span class="number">1000</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Spring-boot-中的-maxKeepAliveRequests-配置"><a href="#Spring-boot-中的-maxKeepAliveRequests-配置" class="headerlink" title="Spring boot 中的 maxKeepAliveRequests 配置"></a>Spring boot 中的 maxKeepAliveRequests 配置</h2><p>和keepAliveTimeout一样，配置文件暂不支持配置，那代码可以配置么？答案是不行的（。。。。）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TomcatCustomizer</span> <span class="keyword">implements</span> <span class="title class_">WebServerFactoryCustomizer</span>&lt;TomcatServletWebServerFactory&gt; &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Log</span> <span class="variable">LOGGER</span> <span class="operator">=</span> LogFactory.get(TomcatCustomizer.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="meta">@SuppressWarnings(&quot;rawtypes&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">customize</span><span class="params">(TomcatServletWebServerFactory factory)</span> &#123;</span><br><span class="line">        factory.addConnectorCustomizers(connector -&gt; &#123;</span><br><span class="line">            <span class="type">AbstractHttp11Protocol</span> <span class="variable">protocol</span> <span class="operator">=</span> (AbstractHttp11Protocol) connector.getProtocolHandler();</span><br><span class="line">            <span class="comment">// 这里无法配置，详见下面解析</span></span><br><span class="line">            protocol.setMaxKeepAliveRequests(<span class="number">10</span>);</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="为什么不能配置"><a href="#为什么不能配置" class="headerlink" title="为什么不能配置"></a>为什么不能配置</h2><p>其实set后endpoint中的值确实是10，但是在取值的时候会根据 是否有界 这个状态判断，如果是无界，就是1，默认状态就是无界的，所以看上去是无法配置。</p>
+<p>AbstractEndpoint</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">volatile</span> <span class="type">BindState</span> <span class="variable">bindState</span> <span class="operator">=</span> BindState.UNBOUND;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setMaxKeepAliveRequests</span><span class="params">(<span class="type">int</span> maxKeepAliveRequests)</span> &#123;</span><br><span class="line">    <span class="built_in">this</span>.maxKeepAliveRequests = maxKeepAliveRequests;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getMaxKeepAliveRequests</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="comment">// Disable keep-alive if the server socket is not bound</span></span><br><span class="line">    <span class="keyword">if</span> (bindState.isBound()) &#123;</span><br><span class="line">        <span class="keyword">return</span> maxKeepAliveRequests;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>到这里，tomcat(9.0.x)的keepalive指令中的timeout和max的大体逻辑我们清楚了，如果不改服务的配置，这个值就是60s(spring boot 2.3.x)。</p>
+<p>之前某版本的tomcat并不会返回keep-alive头，即禁用keep-alive，这个时候请求的时候会频繁出现 zuul org.apache.http.nohttpresponseexception:<br>192.168.1.116:8403 failed to respond， 因为bug，客户端自己给自己加上了Keep-Alive: timeout&#x3D;4这样的头，客户端以为还可以重用这个连接，<br>事实上是使用了已关闭的连接。</p>
+<h2 id="提醒"><a href="#提醒" class="headerlink" title="提醒"></a>提醒</h2><p>将所有web服务器和7层代理服务器的keep-alive都设置成一样的时间，有助于减少wait的连接，提高宿主的性能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://caszhou.github.io/2021/07/30/20210730/" data-id="cl8txu2ti000w3jb68681b5kq" data-title="Connection和Keep-Alive" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/10/04/20221004/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Centos 7.9 优化脚本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/24/20210324/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Discovery Client OUT_OF_SERVICE 临时修复</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80/">语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c4/" rel="tag">c4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flink/" rel="tag">flink</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab-cicd/" rel="tag">gitlab cicd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/" rel="tag">sso</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c4/" style="font-size: 10px;">c4</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/flink/" style="font-size: 15px;">flink</a> <a href="/tags/gitlab-cicd/" style="font-size: 10px;">gitlab cicd</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/oss/" style="font-size: 10px;">oss</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/spring-cloud-netflix/" style="font-size: 20px;">spring cloud netflix</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">微服务</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/04/20221004/">Centos 7.9 优化脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/20210730/">Connection和Keep-Alive</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/24/20210324/">Discovery Client OUT_OF_SERVICE 临时修复</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/20210320/">spring cloud从Greenwich升级到Hoxton</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/18/20210318/">flink 1.12.2 standalone application cluster on k8s 集成 gitlab cicd 自动 savepoint 保存和恢复</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 xiajiezhou<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

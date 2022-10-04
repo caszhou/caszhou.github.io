@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>python3系统自学，查漏补缺笔记（一） | 周夏洁的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="整型二进制：0b100 &#x3D; 4 八进制：0o100 &#x3D; 64 十进制：100 十六进制：0x100 &#x3D; 256">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python3系统自学，查漏补缺笔记（一）">
+<meta property="og:url" content="https://caszhou.github.io/2020/02/18/20200218/index.html">
+<meta property="og:site_name" content="周夏洁的博客">
+<meta property="og:description" content="整型二进制：0b100 &#x3D; 4 八进制：0o100 &#x3D; 64 十进制：100 十六进制：0x100 &#x3D; 256">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-02-18T12:02:00.000Z">
+<meta property="article:modified_time" content="2021-03-18T14:30:28.918Z">
+<meta property="article:author" content="xiajiezhou">
+<meta property="article:tag" content="python">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="周夏洁的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">周夏洁的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">hello world</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://caszhou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-20200218" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2020/02/18/20200218/" class="article-date">
+  <time class="dt-published" datetime="2020-02-18T12:02:00.000Z" itemprop="datePublished">2020-02-18</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AF%AD%E8%A8%80/">语言</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      python3系统自学，查漏补缺笔记（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h3><p>二进制：0b100 &#x3D; 4</p>
+<p>八进制：0o100 &#x3D; 64</p>
+<p>十进制：100</p>
+<p>十六进制：0x100 &#x3D; 256</p>
+<span id="more"></span>
+
+<h3 id="浮点数"><a href="#浮点数" class="headerlink" title="浮点数"></a>浮点数</h3><p>123.456 &#x3D; 1.23456e2</p>
+<h3 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h3><p>‘’’<br>aaaa<br>aaaa<br>‘’’</p>
+<p>&#x3D;</p>
+<p>\naaaa\naaaa\n</p>
+<h3 id="复数型"><a href="#复数型" class="headerlink" title="复数型"></a>复数型</h3><p>3+5j &#x3D; 数学中(3+5i)</p>
+<h3 id="变量使用"><a href="#变量使用" class="headerlink" title="变量使用"></a>变量使用</h3><p>&#x2F;&#x2F; 取整</p>
+<h3 id="变量转换"><a href="#变量转换" class="headerlink" title="变量转换"></a>变量转换</h3><p>chr(65) &#x3D; ‘A’</p>
+<p>ord(‘A’) &#x3D; 65</p>
+<h3 id="键盘输入（没系统学，真不知道这个）"><a href="#键盘输入（没系统学，真不知道这个）" class="headerlink" title="键盘输入（没系统学，真不知道这个）"></a>键盘输入（没系统学，真不知道这个）</h3><p>In [16]: input(‘a &#x3D; ‘)<br>a &#x3D; 1<br>Out[16]: ‘1’  </p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><p>range(1, 100, 2)可以产生一个1到99的奇数序列，其中2是步长，即数值序列的增量。</p>
+<h3 id="字符串-1"><a href="#字符串-1" class="headerlink" title="字符串"></a>字符串</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">str1 = <span class="string">&#x27;hello, world!&#x27;</span></span><br><span class="line"><span class="comment"># 获得字符串首字母大写的拷贝</span></span><br><span class="line"><span class="built_in">print</span>(str1.capitalize()) <span class="comment"># Hello, world!</span></span><br><span class="line"><span class="comment"># 获得字符串每个单词首字母大写的拷贝</span></span><br><span class="line"><span class="built_in">print</span>(str1.title()) <span class="comment"># Hello, World!</span></span><br><span class="line"><span class="comment"># 从字符串中查找子串所在位置</span></span><br><span class="line"><span class="built_in">print</span>(str1.find(<span class="string">&#x27;or&#x27;</span>)) <span class="comment"># 8</span></span><br><span class="line"><span class="built_in">print</span>(str1.find(<span class="string">&#x27;shit&#x27;</span>)) <span class="comment"># -1</span></span><br><span class="line"><span class="comment"># 与find类似但找不到子串时会引发异常</span></span><br><span class="line"><span class="built_in">print</span>(str1.index(<span class="string">&#x27;or&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(str1.index(<span class="string">&#x27;shit&#x27;</span>))</span><br><span class="line"><span class="comment"># 将字符串以指定的宽度居中并在两侧填充指定的字符</span></span><br><span class="line"><span class="built_in">print</span>(str1.center(<span class="number">50</span>, <span class="string">&#x27;*&#x27;</span>))</span><br><span class="line"><span class="comment"># 将字符串以指定的宽度靠右放置左侧填充指定的字符</span></span><br><span class="line"><span class="built_in">print</span>(str1.rjust(<span class="number">50</span>, <span class="string">&#x27; &#x27;</span>))</span><br><span class="line">str2 = <span class="string">&#x27;abc123456&#x27;</span></span><br><span class="line"><span class="comment"># 检查字符串是否由数字构成</span></span><br><span class="line"><span class="built_in">print</span>(str2.isdigit())  <span class="comment"># False</span></span><br><span class="line"><span class="comment"># 检查字符串是否以字母构成</span></span><br><span class="line"><span class="built_in">print</span>(str2.isalpha())  <span class="comment"># False</span></span><br><span class="line"><span class="comment"># 检查字符串是否以数字和字母构成</span></span><br><span class="line"><span class="built_in">print</span>(str2.isalnum())  <span class="comment"># True</span></span><br><span class="line">str3 = <span class="string">&#x27;  jackfrued@126.com &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="格式化"><a href="#格式化" class="headerlink" title="格式化"></a>格式化</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a, b = <span class="number">5</span>, <span class="number">10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;a&#125;</span> * <span class="subst">&#123;b&#125;</span> = <span class="subst">&#123;a * b&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 乘号表示列表元素的重复</span></span><br><span class="line">list2 = [<span class="string">&#x27;hello&#x27;</span>] * <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(list2) <span class="comment"># [&#x27;hello&#x27;, &#x27;hello&#x27;, &#x27;hello&#x27;]</span></span><br><span class="line"><span class="comment"># 通过enumerate函数处理列表之后再遍历可以同时获得元素索引和值</span></span><br><span class="line"><span class="keyword">for</span> index, elem <span class="keyword">in</span> <span class="built_in">enumerate</span>(list1):</span><br><span class="line">    <span class="built_in">print</span>(index, elem)</span><br><span class="line"><span class="comment"># 合并两个列表</span></span><br><span class="line"><span class="comment"># list1.extend([1000, 2000])</span></span><br><span class="line">list1 += [<span class="number">1000</span>, <span class="number">2000</span>]</span><br><span class="line"><span class="comment"># 可以通过完整切片操作来复制列表</span></span><br><span class="line">fruits3 = fruits[:]</span><br><span class="line"><span class="built_in">print</span>(fruits3) <span class="comment"># [&#x27;grape&#x27;, &#x27;apple&#x27;, &#x27;strawberry&#x27;, &#x27;waxberry&#x27;, &#x27;pitaya&#x27;, &#x27;pear&#x27;, &#x27;mango&#x27;]</span></span><br><span class="line"><span class="comment"># 可以通过反向切片操作来获得倒转后的列表的拷贝</span></span><br><span class="line">fruits5 = fruits[::-<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(fruits5) <span class="comment"># [&#x27;mango&#x27;, &#x27;pear&#x27;, &#x27;pitaya&#x27;, &#x27;waxberry&#x27;, &#x27;strawberry&#x27;, &#x27;apple&#x27;, &#x27;grape&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="set"><a href="#set" class="headerlink" title="set"></a>set</h3><p>discard：不会报错，如果元素不存在<br>remove：会报错，如果元素不存在</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 集合的交集、并集、差集、对称差运算</span></span><br><span class="line"><span class="built_in">print</span>(set1 &amp; set2)</span><br><span class="line"><span class="comment"># print(set1.intersection(set2))</span></span><br><span class="line"><span class="built_in">print</span>(set1 | set2)</span><br><span class="line"><span class="comment"># print(set1.union(set2))</span></span><br><span class="line"><span class="built_in">print</span>(set1 - set2)</span><br><span class="line"><span class="comment"># print(set1.difference(set2))</span></span><br><span class="line"><span class="built_in">print</span>(set1 ^ set2)</span><br><span class="line"><span class="comment"># print(set1.symmetric_difference(set2))</span></span><br><span class="line"><span class="comment"># 判断子集和超集</span></span><br><span class="line"><span class="built_in">print</span>(set2 &lt;= set1)</span><br><span class="line"><span class="comment"># print(set2.issubset(set1))</span></span><br><span class="line"><span class="built_in">print</span>(set3 &lt;= set1)</span><br><span class="line"><span class="comment"># print(set3.issubset(set1))</span></span><br><span class="line"><span class="built_in">print</span>(set1 &gt;= set2)</span><br><span class="line"><span class="comment"># print(set1.issuperset(set2))</span></span><br><span class="line"><span class="built_in">print</span>(set1 &gt;= set3)</span><br><span class="line"><span class="comment"># print(set1.issuperset(set3))</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="zip-amp-amp-unzip"><a href="#zip-amp-amp-unzip" class="headerlink" title="zip &amp;&amp; unzip"></a>zip &amp;&amp; unzip</h3><p>dict(zip([‘a’, ‘b’, ‘c’], ‘123’))<br>{‘a’: ‘1’, ‘b’: ‘2’, ‘c’: ‘3’}</p>
+<p>list(zip([‘a’, ‘b’, ‘c’], ‘123’))<br>[(‘a’, ‘1’), (‘b’, ‘2’), (‘c’, ‘3’)]</p>
+<p>list(zip(*zip([‘a’, ‘b’, ‘c’], ‘123’)))<br>[(‘a’, ‘b’, ‘c’), (‘1’, ‘2’, ‘3’)]</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://caszhou.github.io/2020/02/18/20200218/" data-id="cl8txu2t9000f3jb603ve2pzt" data-title="python3系统自学，查漏补缺笔记（一）" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/02/24/20200424/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          架构图
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/02/15/20200215/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">ReactRouter4中的exact和strict</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80/">语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c4/" rel="tag">c4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flink/" rel="tag">flink</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab-cicd/" rel="tag">gitlab cicd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/" rel="tag">sso</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c4/" style="font-size: 10px;">c4</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/flink/" style="font-size: 15px;">flink</a> <a href="/tags/gitlab-cicd/" style="font-size: 10px;">gitlab cicd</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/oss/" style="font-size: 10px;">oss</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/spring-cloud-netflix/" style="font-size: 20px;">spring cloud netflix</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">微服务</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/04/20221004/">Centos 7.9 优化脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/20210730/">Connection和Keep-Alive</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/24/20210324/">Discovery Client OUT_OF_SERVICE 临时修复</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/20210320/">spring cloud从Greenwich升级到Hoxton</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/18/20210318/">flink 1.12.2 standalone application cluster on k8s 集成 gitlab cicd 自动 savepoint 保存和恢复</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 xiajiezhou<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

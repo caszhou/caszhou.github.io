@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>spring cloud从Greenwich升级到Hoxton | 周夏洁的博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="版本   project version from version to    spring framework 5.1.x 5.2x   spring boot 2.1.x 2.3.x   spring cloud Greenwich Hoxton">
+<meta property="og:type" content="article">
+<meta property="og:title" content="spring cloud从Greenwich升级到Hoxton">
+<meta property="og:url" content="https://caszhou.github.io/2021/03/20/20210320/index.html">
+<meta property="og:site_name" content="周夏洁的博客">
+<meta property="og:description" content="版本   project version from version to    spring framework 5.1.x 5.2x   spring boot 2.1.x 2.3.x   spring cloud Greenwich Hoxton">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-03-20T04:06:48.000Z">
+<meta property="article:modified_time" content="2021-07-30T06:15:16.562Z">
+<meta property="article:author" content="xiajiezhou">
+<meta property="article:tag" content="spring cloud netflix">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="周夏洁的博客" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">周夏洁的博客</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">hello world</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://caszhou.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-20210320" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2021/03/20/20210320/" class="article-date">
+  <time class="dt-published" datetime="2021-03-20T04:06:48.000Z" itemprop="datePublished">2021-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      spring cloud从Greenwich升级到Hoxton
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h3 id="版本"><a href="#版本" class="headerlink" title="版本"></a>版本</h3><table>
+<thead>
+<tr>
+<th align="center">project</th>
+<th align="center">version from</th>
+<th align="center">version to</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">spring framework</td>
+<td align="center">5.1.x</td>
+<td align="center">5.2x</td>
+</tr>
+<tr>
+<td align="center">spring boot</td>
+<td align="center">2.1.x</td>
+<td align="center">2.3.x</td>
+</tr>
+<tr>
+<td align="center">spring cloud</td>
+<td align="center">Greenwich</td>
+<td align="center">Hoxton</td>
+</tr>
+</tbody></table>
+<span id="more"></span>
+
+<h3 id="迁移碰到的问题"><a href="#迁移碰到的问题" class="headerlink" title="迁移碰到的问题"></a>迁移碰到的问题</h3><h4 id="spring-data-mongodb-sort"><a href="#spring-data-mongodb-sort" class="headerlink" title="spring data mongodb sort"></a>spring data mongodb sort</h4><ul>
+<li>Sort构造方法稀有话，改用Sort.by。</li>
+</ul>
+<h5 id="before"><a href="#before" class="headerlink" title="before"></a>before</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Sort</span> <span class="variable">sort</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Sort</span>(Sort.Direction.DESC, <span class="string">&quot;createTs&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h5 id="after"><a href="#after" class="headerlink" title="after"></a>after</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Sort.by(Sort.Direction.DESC, <span class="string">&quot;createTs&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="spring-data-mongodb-configuration"><a href="#spring-data-mongodb-configuration" class="headerlink" title="spring data mongodb configuration"></a>spring data mongodb configuration</h4><ul>
+<li>mongodb configuration 大改，并且有一些参数没找到哪里可以配。</li>
+</ul>
+<h5 id="before-1"><a href="#before-1" class="headerlink" title="before"></a>before</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(MongodbProperties.class)</span></span><br><span class="line"><span class="meta">@ComponentScan(value = &#123;&quot;com.ivc.data.mongodb.**&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MongodbAutoConfiguration</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">Log</span> <span class="variable">LOGGER</span> <span class="operator">=</span> LogFactory.get(MongodbAutoConfiguration.class);</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MongoDbFactory <span class="title function_">mongoDbFactory</span><span class="params">(MongodbProperties properties)</span> &#123;</span><br><span class="line">        <span class="comment">// 客户端配置（连接数，副本集群验证）</span></span><br><span class="line">        MongoClientOptions.<span class="type">Builder</span> <span class="variable">builder</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">MongoClientOptions</span>.Builder();</span><br><span class="line">        builder.connectionsPerHost(properties.getMaxConnectionsPerHost());</span><br><span class="line">        builder.minConnectionsPerHost(properties.getMinConnectionsPerHost());</span><br><span class="line">        <span class="keyword">if</span> (properties.getReplicaSet() != <span class="literal">null</span>) &#123;</span><br><span class="line">            builder.requiredReplicaSetName(properties.getReplicaSet());</span><br><span class="line">        &#125;</span><br><span class="line">        builder</span><br><span class="line">            .threadsAllowedToBlockForConnectionMultiplier(properties.getThreadsAllowedToBlockForConnectionMultiplier());</span><br><span class="line">        builder.serverSelectionTimeout(properties.getServerSelectionTimeout());</span><br><span class="line">        builder.maxWaitTime(properties.getMaxWaitTime());</span><br><span class="line">        builder.maxConnectionIdleTime(properties.getMaxConnectionIdleTime());</span><br><span class="line">        builder.maxConnectionLifeTime(properties.getMaxConnectionLifeTime());</span><br><span class="line">        builder.connectTimeout(properties.getConnectTimeout());</span><br><span class="line">        builder.socketTimeout(properties.getSocketTimeout());</span><br><span class="line">        builder.sslEnabled(properties.getSslEnabled());</span><br><span class="line">        builder.sslInvalidHostNameAllowed(properties.getSslInvalidHostNameAllowed());</span><br><span class="line">        builder.alwaysUseMBeans(properties.getAlwaysUseMBeans());</span><br><span class="line">        builder.heartbeatFrequency(properties.getHeartbeatFrequency());</span><br><span class="line">        builder.minHeartbeatFrequency(properties.getMinHeartbeatFrequency());</span><br><span class="line">        builder.heartbeatConnectTimeout(properties.getHeartbeatConnectTimeout());</span><br><span class="line">        builder.heartbeatSocketTimeout(properties.getHeartbeatSocketTimeout());</span><br><span class="line">        builder.localThreshold(properties.getLocalThreshold());</span><br><span class="line">        <span class="type">MongoClientOptions</span> <span class="variable">mongoClientOptions</span> <span class="operator">=</span> builder.build();</span><br><span class="line"></span><br><span class="line">        <span class="comment">// MongoDB地址列表</span></span><br><span class="line">        List&lt;ServerAddress&gt; serverAddresses = Lists.newArrayList();</span><br><span class="line">        <span class="keyword">for</span> (String address : properties.getAddress()) &#123;</span><br><span class="line">            String[] hostAndPort = address.split(<span class="string">&quot;:&quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">host</span> <span class="operator">=</span> hostAndPort[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">if</span> (hostAndPort.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">Integer</span> <span class="variable">port</span> <span class="operator">=</span> Integer.parseInt(hostAndPort[<span class="number">1</span>]);</span><br><span class="line">                <span class="type">ServerAddress</span> <span class="variable">serverAddress</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerAddress</span>(host, port);</span><br><span class="line">                serverAddresses.add(serverAddress);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="type">ServerAddress</span> <span class="variable">serverAddress</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerAddress</span>(host);</span><br><span class="line">                serverAddresses.add(serverAddress);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        LOGGER.info(<span class="string">&quot;serverAddresses:&quot;</span> + serverAddresses.toString());</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 连接认证</span></span><br><span class="line">        MongoCredential mongoCredential;</span><br><span class="line">        MongoClient mongoClient;</span><br><span class="line">        <span class="keyword">if</span> (StringUtils.isNotBlank(properties.getUsername())) &#123;</span><br><span class="line">            mongoCredential = MongoCredential.createScramSha1Credential(</span><br><span class="line">                properties.getUsername(), properties.getAuthenticationDatabase() != <span class="literal">null</span></span><br><span class="line">                    ? properties.getAuthenticationDatabase() : properties.getDatabase(),</span><br><span class="line">                properties.getPassword().toCharArray());</span><br><span class="line">            mongoClient = <span class="keyword">new</span> <span class="title class_">MongoClient</span>(serverAddresses, mongoCredential, mongoClientOptions);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            mongoClient = <span class="keyword">new</span> <span class="title class_">MongoClient</span>(serverAddresses, mongoClientOptions);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 创建MongoDbFactory</span></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SimpleMongoDbFactory</span>(mongoClient, properties.getDatabase());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MongoCustomConversions <span class="title function_">customConversions</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;Converter&lt;?, ?&gt;&gt; converters = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        converters.add(<span class="keyword">new</span> <span class="title class_">EnumWriterConverter</span>());</span><br><span class="line">        converters.add(<span class="keyword">new</span> <span class="title class_">EnumReadFactory</span>.EnumReadConverter&lt;&gt;(<span class="literal">null</span>));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MongoCustomConversions</span>(converters);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MongoTemplate <span class="title function_">mongoTemplate</span><span class="params">(MongoDbFactory mongoDbFactory, MappingMongoConverter mappingMongoConverter)</span> &#123;</span><br><span class="line">        mappingMongoConverter.setMapKeyDotReplacement(<span class="string">&quot;__DOT__&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">ConversionService</span> <span class="variable">conversionService</span> <span class="operator">=</span> mappingMongoConverter.getConversionService();</span><br><span class="line">        ((GenericConversionService)conversionService).addConverterFactory(<span class="keyword">new</span> <span class="title class_">EnumReadFactory</span>());</span><br><span class="line">        mappingMongoConverter.afterPropertiesSet();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MongoTemplate</span>(mongoDbFactory, mappingMongoConverter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MongoPageHelper <span class="title function_">mongoPageHelper</span><span class="params">(MongoTemplate mongoTemplate)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MongoPageHelper</span>(mongoTemplate);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="after-1"><a href="#after-1" class="headerlink" title="after"></a>after</h5><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(MongodbProperties.class)</span></span><br><span class="line"><span class="meta">@ComponentScan(value = &#123;&quot;com.ivc.data.mongodb.**&quot;&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MongodbAutoConfiguration</span> <span class="keyword">extends</span> <span class="title class_">AbstractMongoClientConfiguration</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> MongodbProperties properties;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">MongodbAutoConfiguration</span><span class="params">(MongodbProperties properties)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.properties = properties;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Nonnull</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String <span class="title function_">getDatabaseName</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> properties.getDatabase();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">configureClientSettings</span><span class="params">(<span class="meta">@Nonnull</span> MongoClientSettings.Builder builder)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>.configureClientSettings(builder);</span><br><span class="line"></span><br><span class="line">        builder.applyToServerSettings(b -&gt; b.applySettings(</span><br><span class="line">            ServerSettings.builder().minHeartbeatFrequency(properties.getMinHeartbeatFrequency(), TimeUnit.MILLISECONDS)</span><br><span class="line">                .heartbeatFrequency(properties.getHeartbeatFrequency(), TimeUnit.MILLISECONDS).build()));</span><br><span class="line"></span><br><span class="line">        builder.applyToClusterSettings(b -&gt; &#123;</span><br><span class="line">            ClusterSettings.<span class="type">Builder</span> <span class="variable">clusterSettingsBuilder</span> <span class="operator">=</span> ClusterSettings.builder();</span><br><span class="line"></span><br><span class="line">            <span class="keyword">if</span> (isReplicaSet()) &#123;</span><br><span class="line">                clusterSettingsBuilder.requiredClusterType(ClusterType.REPLICA_SET);</span><br><span class="line">                clusterSettingsBuilder.requiredReplicaSetName(properties.getReplicaSet());</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                clusterSettingsBuilder.requiredClusterType(ClusterType.STANDALONE);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            clusterSettingsBuilder.hosts(getServerAddressList());</span><br><span class="line"></span><br><span class="line">            clusterSettingsBuilder.localThreshold(properties.getLocalThreshold(), TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line">            b.applySettings(clusterSettingsBuilder</span><br><span class="line">                .serverSelectionTimeout(properties.getServerSelectionTimeout(), TimeUnit.MILLISECONDS).build());</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        builder.applyToConnectionPoolSettings(b -&gt; b.applySettings(</span><br><span class="line">            ConnectionPoolSettings.builder().maxWaitTime(properties.getMaxWaitTime(), TimeUnit.MILLISECONDS)</span><br><span class="line">                .maxConnectionIdleTime(properties.getMaxConnectionIdleTime(), TimeUnit.MILLISECONDS)</span><br><span class="line">                .maxConnectionLifeTime(properties.getMaxConnectionLifeTime(), TimeUnit.MILLISECONDS).build()));</span><br><span class="line"></span><br><span class="line">        builder.applyToSslSettings(b -&gt; b.applySettings(SslSettings.builder().enabled(properties.getSslEnabled())</span><br><span class="line">            .invalidHostNameAllowed(properties.getInvalidHostNameAllowed()).build()));</span><br><span class="line"></span><br><span class="line">        builder.applyToSocketSettings(b -&gt; b.applySettings(</span><br><span class="line">            SocketSettings.builder().connectTimeout(properties.getConnectTimeout(), TimeUnit.MILLISECONDS)</span><br><span class="line">                .readTimeout(properties.getReadTimeout(), TimeUnit.MILLISECONDS).build()));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (needCredential()) &#123;</span><br><span class="line">            builder.credential(getCredential());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> MongoCredential <span class="title function_">getCredential</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> MongoCredential.createScramSha1Credential(properties.getUsername(), getSource(),</span><br><span class="line">            properties.getPassword().toCharArray());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String <span class="title function_">getSource</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> properties.getAuthenticationDatabase() != <span class="literal">null</span> ? properties.getAuthenticationDatabase()</span><br><span class="line">            : properties.getDatabase();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">needCredential</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> StringUtils.isNotBlank(properties.getUsername());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="type">boolean</span> <span class="title function_">isReplicaSet</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> StringUtils.isNotBlank(properties.getReplicaSet());</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> List&lt;ServerAddress&gt; <span class="title function_">getServerAddressList</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;ServerAddress&gt; serverAddresses = Lists.newArrayList();</span><br><span class="line">        <span class="keyword">for</span> (String address : properties.getAddress()) &#123;</span><br><span class="line">            String[] hostAndPort = address.split(<span class="string">&quot;:&quot;</span>);</span><br><span class="line">            <span class="type">String</span> <span class="variable">host</span> <span class="operator">=</span> hostAndPort[<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">if</span> (hostAndPort.length &gt; <span class="number">1</span>) &#123;</span><br><span class="line">                <span class="type">int</span> <span class="variable">port</span> <span class="operator">=</span> Integer.parseInt(hostAndPort[<span class="number">1</span>]);</span><br><span class="line">                <span class="type">ServerAddress</span> <span class="variable">serverAddress</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerAddress</span>(host, port);</span><br><span class="line">                serverAddresses.add(serverAddress);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="type">ServerAddress</span> <span class="variable">serverAddress</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ServerAddress</span>(host);</span><br><span class="line">                serverAddresses.add(serverAddress);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> serverAddresses;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@Nonnull</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> MongoCustomConversions <span class="title function_">customConversions</span><span class="params">()</span> &#123;</span><br><span class="line">        List&lt;Converter&lt;?, ?&gt;&gt; converters = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        converters.add(<span class="keyword">new</span> <span class="title class_">EnumWriterConverter</span>());</span><br><span class="line">        converters.add(<span class="keyword">new</span> <span class="title class_">EnumReadFactory</span>.EnumReadConverter&lt;&gt;(<span class="literal">null</span>));</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MongoCustomConversions</span>(converters);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="meta">@Nonnull</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> MongoTemplate <span class="title function_">mongoTemplate</span><span class="params">(<span class="meta">@Nonnull</span> MongoDatabaseFactory mongoDatabaseFactory,</span></span><br><span class="line"><span class="params">        MappingMongoConverter mappingMongoConverter)</span> &#123;</span><br><span class="line">        mappingMongoConverter.setMapKeyDotReplacement(<span class="string">&quot;__DOT__&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="type">ConversionService</span> <span class="variable">conversionService</span> <span class="operator">=</span> mappingMongoConverter.getConversionService();</span><br><span class="line">        ((GenericConversionService)conversionService).addConverterFactory(<span class="keyword">new</span> <span class="title class_">EnumReadFactory</span>());</span><br><span class="line">        mappingMongoConverter.afterPropertiesSet();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MongoTemplate</span>(mongoDatabaseFactory, mappingMongoConverter);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> MongoPageHelper <span class="title function_">mongoPageHelper</span><span class="params">(MongoTemplate mongoTemplate)</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">MongoPageHelper</span>(mongoTemplate);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="openfeign"><a href="#openfeign" class="headerlink" title="openfeign"></a>openfeign</h4><ul>
+<li>feign增强包导致请求复制头的时候，多复制了content-type导致请求失败。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@ConditionalOnClass(&#123;Logger.class, RequestInterceptor.class, UniversalReversedEnumConverter.class,</span></span><br><span class="line"><span class="meta">    FeignBasicAuthRequestInterceptor.class&#125;)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">FeignAutoConfiguration</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> List&lt;AnnotatedParameterProcessor&gt; parameterProcessors;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">FeignAutoConfiguration</span><span class="params">(List&lt;AnnotatedParameterProcessor&gt; parameterProcessors)</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.parameterProcessors = parameterProcessors;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Contract <span class="title function_">feignContract</span><span class="params">(FormattingConversionService feignConversionService)</span> &#123;</span><br><span class="line">        feignConversionService.addConverter(<span class="keyword">new</span> <span class="title class_">UniversalReversedEnumConverter</span>());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">SpringMvcContract</span>(<span class="built_in">this</span>.parameterProcessors, feignConversionService);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> Logger.Level <span class="title function_">feignLoggerLevel</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Logger.Level.FULL;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> RequestInterceptor <span class="title function_">feignRequestInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> requestTemplate -&gt; &#123;</span><br><span class="line">            <span class="type">ServletRequestAttributes</span> <span class="variable">attributes</span> <span class="operator">=</span> (ServletRequestAttributes)RequestContextHolder.getRequestAttributes();</span><br><span class="line">            <span class="keyword">if</span> (attributes != <span class="literal">null</span>) &#123;</span><br><span class="line">                <span class="type">HttpServletRequest</span> <span class="variable">request</span> <span class="operator">=</span> attributes.getRequest();</span><br><span class="line">                Enumeration&lt;String&gt; headerNames = request.getHeaderNames();</span><br><span class="line">                <span class="keyword">if</span> (headerNames != <span class="literal">null</span>) &#123;</span><br><span class="line">                    <span class="keyword">while</span> (headerNames.hasMoreElements()) &#123;</span><br><span class="line">                        <span class="type">String</span> <span class="variable">name</span> <span class="operator">=</span> headerNames.nextElement();</span><br><span class="line">                        <span class="type">String</span> <span class="variable">values</span> <span class="operator">=</span> request.getHeader(name);</span><br><span class="line"></span><br><span class="line">                        <span class="comment">// 因为body不同，所以不复制</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">&quot;content-length&quot;</span>.equalsIgnoreCase(name)) &#123;</span><br><span class="line">                            <span class="keyword">continue</span>;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        requestTemplate.header(name, values);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Bean</span></span><br><span class="line">    <span class="keyword">public</span> FeignBasicAuthRequestInterceptor <span class="title function_">feignBasicAuthRequestInterceptor</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">FeignBasicAuthRequestInterceptor</span>();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="spring-boot-actuator"><a href="#spring-boot-actuator" class="headerlink" title="spring boot actuator"></a>spring boot actuator</h4><ul>
+<li>2.3 spring boot actuator 会检测连接是否有效，我目前的做法是关闭他，因为sharingsphere会用select 1去检测，</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">management:</span></span><br><span class="line">  <span class="attr">health:</span></span><br><span class="line">    <span class="attr">db:</span></span><br><span class="line">      <span class="attr">enabled:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="application-yml"><a href="#application-yml" class="headerlink" title="application.yml"></a>application.yml</h4><ul>
+<li>我们用到的两个配置过期了，迁移至新配置</li>
+</ul>
+<h5 id="before-2"><a href="#before-2" class="headerlink" title="before"></a>before</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment"># SERVER CONFIGURATION</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8407</span></span><br><span class="line">  <span class="attr">tomcat:</span></span><br><span class="line">    <span class="attr">max-connections:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">max-threads:</span> <span class="number">0</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment"># SPRING CONFIGURATION</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">log:</span></span><br><span class="line">    <span class="attr">prefix:</span> <span class="string">logs</span></span><br><span class="line">  <span class="attr">http:</span></span><br><span class="line">    <span class="attr">encoding:</span></span><br><span class="line">      <span class="attr">force:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">servlet:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">      <span class="attr">max-file-size:</span> <span class="string">200MB</span></span><br><span class="line">      <span class="attr">max-request-size:</span> <span class="string">200MB</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">dynamic:</span></span><br><span class="line">      <span class="attr">strict:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">primary:</span> <span class="string">saas</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="after-2"><a href="#after-2" class="headerlink" title="after"></a>after</h5><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment"># SERVER CONFIGURATION</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">server:</span></span><br><span class="line">  <span class="attr">port:</span> <span class="number">8407</span></span><br><span class="line">  <span class="attr">tomcat:</span></span><br><span class="line">    <span class="attr">max-connections:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">threads:</span></span><br><span class="line">      <span class="attr">max:</span> <span class="number">0</span></span><br><span class="line">  <span class="attr">servlet:</span></span><br><span class="line">    <span class="attr">encoding:</span></span><br><span class="line">      <span class="attr">force:</span> <span class="literal">true</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment"># SPRING CONFIGURATION</span></span><br><span class="line"><span class="comment"># -------------------------------------------</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">log:</span></span><br><span class="line">    <span class="attr">prefix:</span> <span class="string">logs</span></span><br><span class="line">  <span class="attr">servlet:</span></span><br><span class="line">    <span class="attr">multipart:</span></span><br><span class="line">      <span class="attr">max-file-size:</span> <span class="string">200MB</span></span><br><span class="line">      <span class="attr">max-request-size:</span> <span class="string">200MB</span></span><br><span class="line">  <span class="attr">datasource:</span></span><br><span class="line">    <span class="attr">dynamic:</span></span><br><span class="line">      <span class="attr">strict:</span> <span class="literal">true</span></span><br><span class="line">      <span class="attr">primary:</span> <span class="string">saas</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="todo-list"><a href="#todo-list" class="headerlink" title="todo list"></a>todo list</h3><ol>
+<li>在k8s中，可用探针替换当前health endpoint api，优化优雅上线（<a target="_blank" rel="noopener" href="https://spring.io/blog/2020/03/25/liveness-and-readiness-probes-with-spring-boot">官方blog</a>）。</li>
+<li>在k8s中，优雅下线（<a target="_blank" rel="noopener" href="https://www.baeldung.com/spring-boot-web-server-shutdown">baeldun指南</a>）。</li>
+<li>oauth2 迁移至 security（<a target="_blank" rel="noopener" href="https://github.com/spring-projects/spring-security/wiki/OAuth-2.0-Migration-Guide">官方迁移方案</a>）。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://caszhou.github.io/2021/03/20/20210320/" data-id="cl8txu2tc000m3jb6gdn17veu" data-title="spring cloud从Greenwich升级到Hoxton" class="article-share-link">Share</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2021/03/24/20210324/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Discovery Client OUT_OF_SERVICE 临时修复
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/03/18/20210318/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">flink 1.12.2 standalone application cluster on k8s 集成 gitlab cicd 自动 savepoint 保存和恢复</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80/">语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c4/" rel="tag">c4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flink/" rel="tag">flink</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab-cicd/" rel="tag">gitlab cicd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/" rel="tag">sso</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/c4/" style="font-size: 10px;">c4</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/flink/" style="font-size: 15px;">flink</a> <a href="/tags/gitlab-cicd/" style="font-size: 10px;">gitlab cicd</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/oss/" style="font-size: 10px;">oss</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/spring-cloud-netflix/" style="font-size: 20px;">spring cloud netflix</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">微服务</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/10/04/20221004/">Centos 7.9 优化脚本</a>
+          </li>
+        
+          <li>
+            <a href="/2021/07/30/20210730/">Connection和Keep-Alive</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/24/20210324/">Discovery Client OUT_OF_SERVICE 临时修复</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/20/20210320/">spring cloud从Greenwich升级到Hoxton</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/18/20210318/">flink 1.12.2 standalone application cluster on k8s 集成 gitlab cicd 自动 savepoint 保存和恢复</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 xiajiezhou<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
