@@ -4,22 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>ReactRouter4中的exact和strict | 周夏洁的博客</title>
+  <title>阿里云机器被挖矿 | 周夏洁的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="react-router中的exact和strict">
+  <meta name="description" content="收到报警今天阿里云安全中心发来告警，警告爆破成功，提示登录账号为mysql，紧接着就告警开始挖矿，接下来我们来手工处理该问题。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ReactRouter4中的exact和strict">
-<meta property="og:url" content="https://caszhou.github.io/2020/02/15/20200215/index.html">
+<meta property="og:title" content="阿里云机器被挖矿">
+<meta property="og:url" content="https://caszhou.github.io/2022/10/16/20221016/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
-<meta property="og:description" content="react-router中的exact和strict">
+<meta property="og:description" content="收到报警今天阿里云安全中心发来告警，警告爆破成功，提示登录账号为mysql，紧接着就告警开始挖矿，接下来我们来手工处理该问题。">
 <meta property="og:locale">
-<meta property="og:image" content="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbxghwcy0qj20lw0e8jsk.jpg">
-<meta property="article:published_time" content="2020-02-15T14:29:00.000Z">
-<meta property="article:modified_time" content="2021-02-04T17:28:09.850Z">
+<meta property="article:published_time" content="2022-10-16T07:30:50.000Z">
+<meta property="article:modified_time" content="2022-10-16T08:07:29.188Z">
 <meta property="article:author" content="xiajiezhou">
-<meta property="article:tag" content="react-router">
+<meta property="article:tag" content="安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbxghwcy0qj20lw0e8jsk.jpg">
   
     <link rel="alternate" href="/atom.xml" title="周夏洁的博客" type="application/atom+xml">
   
@@ -80,14 +78,14 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-20200215" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-20221016" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2020/02/15/20200215/" class="article-date">
-  <time class="dt-published" datetime="2020-02-15T14:29:00.000Z" itemprop="datePublished">2020-02-15</time>
+    <a href="/2022/10/16/20221016/" class="article-date">
+  <time class="dt-published" datetime="2022-10-16T07:30:50.000Z" itemprop="datePublished">2022-10-16</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
   </div>
 
   </div>
@@ -98,7 +96,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      ReactRouter4中的exact和strict
+      阿里云机器被挖矿
     </h1>
   
 
@@ -108,19 +106,33 @@
       
         <meta name="referrer" content="no-referrer">
 
-<h3 id="react-router中的exact和strict"><a href="#react-router中的exact和strict" class="headerlink" title="react-router中的exact和strict"></a>react-router中的exact和strict</h3><p><img src="http://ww1.sinaimg.cn/large/9c6b4d98gy1gbxghwcy0qj20lw0e8jsk.jpg" alt="9902136-f074f8bbfa8e394b.png"></p>
+<h2 id="收到报警"><a href="#收到报警" class="headerlink" title="收到报警"></a>收到报警</h2><p>今天阿里云安全中心发来告警，警告爆破成功，提示登录账号为mysql，紧接着就告警开始挖矿，接下来我们来手工处理该问题。</p>
 <span id="more"></span>
 
-<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>当有嵌套路由时候，不能在父路由设置exact和strict，需要在子路由中设置exact和strict。其它情况尽可能exact和strict都为true。</p>
+<h2 id="第一步、禁止mysql用户自动登录"><a href="#第一步、禁止mysql用户自动登录" class="headerlink" title="第一步、禁止mysql用户自动登录"></a>第一步、禁止mysql用户自动登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod mysql -s sbin/nologin</span><br></pre></td></tr></table></figure>
+
+<h2 id="第二步、踢掉所有mysql用户"><a href="#第二步、踢掉所有mysql用户" class="headerlink" title="第二步、踢掉所有mysql用户"></a>第二步、踢掉所有mysql用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">w</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">15:44:23 up 48 min,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mysql    pts/0    60.205.182.xx    14:55   46:15   0.00s  0.00s -bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mysql    pts/1    60.205.182.xx    15:18   24:47   0.00s  0.00s -bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root     pts/2    223.64.48.212    15:41    7.00s  0.00s  0.00s w</span></span><br><span class="line"></span><br><span class="line">pkill -kill -t pts/0</span><br><span class="line">pkill -kill -t pts/1</span><br><span class="line"></span><br><span class="line">w</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">15:44:23 up 48 min,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root     pts/2    223.64.48.212    15:41    7.00s  0.00s  0.00s w</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="第三步、根据进程id删除挖矿软件，停止进程"><a href="#第三步、根据进程id删除挖矿软件，停止进程" class="headerlink" title="第三步、根据进程id删除挖矿软件，停止进程"></a>第三步、根据进程id删除挖矿软件，停止进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -al /proc/18896/exe</span><br><span class="line">rm -rf /dev/shm/kxmd</span><br><span class="line">kill -9 18896</span><br></pre></td></tr></table></figure>
+
+<h2 id="第四步、检查机器"><a href="#第四步、检查机器" class="headerlink" title="第四步、检查机器"></a>第四步、检查机器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看是否存在业务范围之外的可疑通信地址和开放端口</span></span><br><span class="line">iptables -L -n</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">清除恶意矿池地址</span></span><br><span class="line">vim /etc/sysconfig/iptables</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看定时任务是否有问题</span></span><br><span class="line">crontab -l</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查ssh公钥是否正常</span></span><br><span class="line">cat ~/.ssh/authorized_keys</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">无法修改或者删除，后按以下步骤操作</span></span><br><span class="line">lsattr ~/.ssh/authorized_keys</span><br><span class="line">cp /bin/chattr /bin/chattr2</span><br><span class="line">chmod 777 /bin/chattr2</span><br><span class="line">chattr2 -i ~/.ssh/authorized_keys</span><br><span class="line">chattr2 -a ~/.ssh/authorized_keys</span><br><span class="line">rm -rf ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
+<li>ssh修改端口、禁用密码登录；</li>
+<li>使用fail2ban，自动封禁，加固ssh；</li>
+<li>使用堡垒机，释放机器的外网ip；</li>
+<li>安全组采用最小权限原则，如果开放公网权限，应用服务必须开启安全认证；</li>
+<li>使用云服务安全产品。</li>
+</ol>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://caszhou.github.io/2020/02/15/20200215/" data-id="cl9b2hn1n000a1lb61ges7cy1" data-title="ReactRouter4中的exact和strict" class="article-share-link">Share</a>
+      <a data-url="https://caszhou.github.io/2022/10/16/20221016/" data-id="cl9b2hn2200111lb6hxdafqpf" data-title="阿里云机器被挖矿" class="article-share-link">Share</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li></ul>
 
     </footer>
   </div>
@@ -128,19 +140,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/02/18/20200218/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          python3系统自学，查漏补缺笔记（一）
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/02/13/20200213/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/10/04/20221004/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SpringCloud + JWT + 基于cookie的SSO实现</div>
+      <div class="article-nav-title">Centos 7.9 优化脚本</div>
     </a>
   
 </nav>
