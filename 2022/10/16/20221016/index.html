@@ -6,15 +6,15 @@
   
   <title>手工处理云服务器被挖矿 | 周夏洁的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="收到报警今天阿里云安全中心发来告警，警告爆破成功，提示登录账号为mysql，紧接着就告警开始挖矿，接下来我们来手工处理该问题。">
+  <meta name="description" content="收到报警今天阿里云安全中心发来告警，警告ssh爆破成功，提示登录账号为mysql，紧接着就告警服务器开始挖矿，接下来我们来手工处理该问题。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手工处理云服务器被挖矿">
 <meta property="og:url" content="https://caszhou.github.io/2022/10/16/20221016/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
-<meta property="og:description" content="收到报警今天阿里云安全中心发来告警，警告爆破成功，提示登录账号为mysql，紧接着就告警开始挖矿，接下来我们来手工处理该问题。">
+<meta property="og:description" content="收到报警今天阿里云安全中心发来告警，警告ssh爆破成功，提示登录账号为mysql，紧接着就告警服务器开始挖矿，接下来我们来手工处理该问题。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2022-10-16T07:30:50.000Z">
-<meta property="article:modified_time" content="2022-10-16T08:12:12.190Z">
+<meta property="article:modified_time" content="2022-12-07T06:28:45.484Z">
 <meta property="article:author" content="xiajiezhou">
 <meta property="article:tag" content="安全">
 <meta name="twitter:card" content="summary">
@@ -66,12 +66,12 @@
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Buscar"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://caszhou.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Buscar"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://caszhou.github.io"></form>
       </div>
     </div>
   </div>
@@ -106,10 +106,10 @@
       
         <meta name="referrer" content="no-referrer">
 
-<h2 id="收到报警"><a href="#收到报警" class="headerlink" title="收到报警"></a>收到报警</h2><p>今天阿里云安全中心发来告警，警告爆破成功，提示登录账号为mysql，紧接着就告警开始挖矿，接下来我们来手工处理该问题。</p>
+<h2 id="收到报警"><a href="#收到报警" class="headerlink" title="收到报警"></a>收到报警</h2><p>今天阿里云安全中心发来告警，警告ssh爆破成功，提示登录账号为mysql，紧接着就告警服务器开始挖矿，接下来我们来手工处理该问题。</p>
 <span id="more"></span>
 
-<h2 id="第一步、禁止mysql用户自动登录"><a href="#第一步、禁止mysql用户自动登录" class="headerlink" title="第一步、禁止mysql用户自动登录"></a>第一步、禁止mysql用户自动登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usermod mysql -s sbin/nologin</span><br></pre></td></tr></table></figure>
+<h2 id="第一步、禁止mysql用户自动登录"><a href="#第一步、禁止mysql用户自动登录" class="headerlink" title="第一步、禁止mysql用户自动登录"></a>第一步、禁止mysql用户自动登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">usermod mysql -s sbin/nologin</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证</span></span><br><span class="line">su mysql</span><br></pre></td></tr></table></figure>
 
 <h2 id="第二步、踢掉所有mysql用户"><a href="#第二步、踢掉所有mysql用户" class="headerlink" title="第二步、踢掉所有mysql用户"></a>第二步、踢掉所有mysql用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">w</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">15:44:23 up 48 min,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mysql    pts/0    60.205.182.xx    14:55   46:15   0.00s  0.00s -bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mysql    pts/1    60.205.182.xx    15:18   24:47   0.00s  0.00s -bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root     pts/2    223.64.48.212    15:41    7.00s  0.00s  0.00s w</span></span><br><span class="line"></span><br><span class="line">pkill -kill -t pts/0</span><br><span class="line">pkill -kill -t pts/1</span><br><span class="line"></span><br><span class="line">w</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">15:44:23 up 48 min,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root     pts/2    223.64.48.212    15:41    7.00s  0.00s  0.00s w</span></span><br></pre></td></tr></table></figure>
 
@@ -128,7 +128,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://caszhou.github.io/2022/10/16/20221016/" data-id="cl9b2kppd00144tb686z0019i" data-title="手工处理云服务器被挖矿" class="article-share-link">Share</a>
+      <a data-url="https://caszhou.github.io/2022/10/16/20221016/" data-id="clbdabt0c00158jb08sqt7d90" data-title="手工处理云服务器被挖矿" class="article-share-link">Compartir</a>
       
       
       
@@ -140,9 +140,18 @@
     
 <nav id="article-nav">
   
+    <a href="/2022/12/07/20221207/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Nuevo</strong>
+      <div class="article-nav-title">
+        
+          Spring自动装配优先级
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/10/04/20221004/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
+      <strong class="article-nav-caption">Viejo</strong>
       <div class="article-nav-title">Centos 7.9 优化脚本</div>
     </a>
   
@@ -158,7 +167,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorías</h3>
     <div class="widget">
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AD%E9%97%B4%E4%BB%B6/">中间件</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AF%AD%E8%A8%80/">语言</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a></li></ul>
     </div>
@@ -170,7 +179,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c4/" rel="tag">c4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flink/" rel="tag">flink</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab-cicd/" rel="tag">gitlab cicd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/" rel="tag">sso</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/c4/" rel="tag">c4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/centos7/" rel="tag">centos7</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/flink/" rel="tag">flink</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gitlab-cicd/" rel="tag">gitlab cicd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/k8s/" rel="tag">k8s</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/oss/" rel="tag">oss</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/react-router/" rel="tag">react-router</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-boot/" rel="tag">spring boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/spring-cloud-netflix/" rel="tag">spring cloud netflix</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sso/" rel="tag">sso</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" rel="tag">微服务</a></li></ul>
     </div>
   </div>
 
@@ -178,18 +187,18 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tag Cloud</h3>
+    <h3 class="widget-title">Nube de Tags</h3>
     <div class="widget tagcloud">
-      <a href="/tags/c4/" style="font-size: 10px;">c4</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/flink/" style="font-size: 15px;">flink</a> <a href="/tags/gitlab-cicd/" style="font-size: 10px;">gitlab cicd</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/oss/" style="font-size: 10px;">oss</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/spring-cloud-netflix/" style="font-size: 20px;">spring cloud netflix</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">微服务</a>
+      <a href="/tags/c4/" style="font-size: 10px;">c4</a> <a href="/tags/centos7/" style="font-size: 10px;">centos7</a> <a href="/tags/flink/" style="font-size: 15px;">flink</a> <a href="/tags/gitlab-cicd/" style="font-size: 10px;">gitlab cicd</a> <a href="/tags/java/" style="font-size: 10px;">java</a> <a href="/tags/k8s/" style="font-size: 10px;">k8s</a> <a href="/tags/mysql/" style="font-size: 10px;">mysql</a> <a href="/tags/oss/" style="font-size: 10px;">oss</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/react-router/" style="font-size: 10px;">react-router</a> <a href="/tags/spring-boot/" style="font-size: 10px;">spring boot</a> <a href="/tags/spring-cloud-netflix/" style="font-size: 20px;">spring cloud netflix</a> <a href="/tags/sso/" style="font-size: 10px;">sso</a> <a href="/tags/%E5%AE%89%E5%85%A8/" style="font-size: 10px;">安全</a> <a href="/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" style="font-size: 10px;">微服务</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archivos</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">March 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/02/">February 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">February 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a></li></ul>
     </div>
   </div>
 
@@ -197,9 +206,13 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Posts recientes</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/12/07/20221207/">Spring自动装配优先级</a>
+          </li>
         
           <li>
             <a href="/2022/10/16/20221016/">手工处理云服务器被挖矿</a>
@@ -217,10 +230,6 @@
             <a href="/2021/03/24/20210324/">Discovery Client OUT_OF_SERVICE 临时修复</a>
           </li>
         
-          <li>
-            <a href="/2021/03/20/20210320/">spring cloud从Greenwich升级到Hoxton</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -235,7 +244,7 @@
     <div id="footer-info" class="inner">
       
       &copy; 2022 xiajiezhou<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+      Construido por <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>
