@@ -14,7 +14,7 @@
 <meta property="og:description" content="在系统上线运行一段时间后，seata client会出现拿不到全局锁的情况，">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-11-17T14:29:00.000Z">
-<meta property="article:modified_time" content="2024-11-17T14:45:10.463Z">
+<meta property="article:modified_time" content="2024-11-17T15:00:48.065Z">
 <meta property="article:author" content="xiajiezhou">
 <meta property="article:tag" content="seata">
 <meta name="twitter:card" content="summary">
@@ -109,7 +109,7 @@
 <p>在系统上线运行一段时间后，seata client会出现拿不到全局锁的情况，</p>
 <span id="more"></span>
 
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>由于全局事务的timeout设置过短，分支事务注册时，全局事务就回滚了。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>由于全局事务的timeout设置过短，分支事务注册时，全局事务就回滚了，导致了锁泄露。</p>
 <h2 id="缓解"><a href="#缓解" class="headerlink" title="缓解"></a>缓解</h2><ol>
 <li>避免过大的事务；</li>
 <li>client设置重试。</li>
@@ -125,7 +125,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://caszhou.github.io/2024/11/17/20241117/" data-id="cm3lpsf13001pxt7fa1mwcph5" data-title="seata 1.6.1 Global lock wait timeout解决" class="article-share-link">Teilen</a>
+      <a data-url="https://caszhou.github.io/2024/11/17/20241117/" data-id="cm3lqm6w8001psu7fccu7g3fb" data-title="seata 1.6.1 Global lock wait timeout解决" class="article-share-link">Teilen</a>
       
       
       
