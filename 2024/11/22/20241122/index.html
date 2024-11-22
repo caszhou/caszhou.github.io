@@ -4,19 +4,20 @@
   <meta charset="utf-8">
   
   
-  <title>手工处理云服务器被挖矿 | 周夏洁的博客</title>
+  <title>一次线上时间差1秒的调查 | 周夏洁的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="收到报警今天阿里云安全中心发来告警，警告ssh爆破成功，提示登录账号为mysql，紧接着就告警服务器开始挖矿，接下来我们来手工处理该问题。">
+  <meta name="description" content="今天在线上查看数据的时候，发现两个datetime时间字段取duration的时候差了一秒。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手工处理云服务器被挖矿">
-<meta property="og:url" content="https://caszhou.github.io/2022/10/16/20221016/index.html">
+<meta property="og:title" content="一次线上时间差1秒的调查">
+<meta property="og:url" content="https://caszhou.github.io/2024/11/22/20241122/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
-<meta property="og:description" content="收到报警今天阿里云安全中心发来告警，警告ssh爆破成功，提示登录账号为mysql，紧接着就告警服务器开始挖矿，接下来我们来手工处理该问题。">
+<meta property="og:description" content="今天在线上查看数据的时候，发现两个datetime时间字段取duration的时候差了一秒。">
 <meta property="og:locale">
-<meta property="article:published_time" content="2022-10-16T07:30:50.000Z">
-<meta property="article:modified_time" content="2024-06-30T09:27:57.550Z">
+<meta property="article:published_time" content="2024-11-22T08:33:00.000Z">
+<meta property="article:modified_time" content="2024-11-22T09:30:04.503Z">
 <meta property="article:author" content="xiajiezhou">
-<meta property="article:tag" content="安全">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="mybatis">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="周夏洁的博客" type="application/atom+xml">
@@ -78,14 +79,14 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-20221016" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-20241122" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/10/16/20221016/" class="article-date">
-  <time class="dt-published" datetime="2022-10-16T07:30:50.000Z" itemprop="datePublished">2022-10-16</time>
+    <a href="/2024/11/22/20241122/" class="article-date">
+  <time class="dt-published" datetime="2024-11-22T08:33:00.000Z" itemprop="datePublished">2024-11-22</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%BF%90%E7%BB%B4/">运维</a>
+    <a class="article-category-link" href="/categories/%E5%90%8E%E7%AB%AF/">后端</a>
   </div>
 
   </div>
@@ -96,7 +97,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      手工处理云服务器被挖矿
+      一次线上时间差1秒的调查
     </h1>
   
 
@@ -104,35 +105,40 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <meta name="referrer" content="no-referrer">
-
-<h2 id="收到报警"><a href="#收到报警" class="headerlink" title="收到报警"></a>收到报警</h2><p>今天阿里云安全中心发来告警，警告ssh爆破成功，提示登录账号为mysql，紧接着就告警服务器开始挖矿，接下来我们来手工处理该问题。</p>
+        <p>今天在线上查看数据的时候，发现两个datetime时间字段取duration的时候差了一秒。</p>
 <span id="more"></span>
 
-<h2 id="第一步、禁止mysql用户自动登录"><a href="#第一步、禁止mysql用户自动登录" class="headerlink" title="第一步、禁止mysql用户自动登录"></a>第一步、禁止mysql用户自动登录</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">usermod mysql -s sbin/nologin</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">验证</span></span><br><span class="line">su mysql</span><br></pre></td></tr></table></figure>
+<h2 id="mysql字段"><a href="#mysql字段" class="headerlink" title="mysql字段"></a>mysql字段</h2><p>mysql时间字段都是datetime类型，小数点都是0。两个字段分别是2024-04-19 23:58:16和2024-04-19 23:58:24，时间差是7，正确的时间差应该是8.</p>
+<h2 id="查看时间差代码"><a href="#查看时间差代码" class="headerlink" title="查看时间差代码"></a>查看时间差代码</h2><p>使用Duration的between静态方法，输入的两个时间都去除了小数点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Duration</span> <span class="variable">between</span> <span class="operator">=</span> Duration.between(time1.withNano(<span class="number">0</span>), time2.withNano(<span class="number">0</span>));</span><br><span class="line"><span class="type">long</span> <span class="variable">betweenSeconds</span> <span class="operator">=</span> between.getSeconds();</span><br></pre></td></tr></table></figure>
 
-<h2 id="第二步、踢掉所有mysql用户"><a href="#第二步、踢掉所有mysql用户" class="headerlink" title="第二步、踢掉所有mysql用户"></a>第二步、踢掉所有mysql用户</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">w</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">15:44:23 up 48 min,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mysql    pts/0    60.205.182.xx    14:55   46:15   0.00s  0.00s -bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">mysql    pts/1    60.205.182.xx    15:18   24:47   0.00s  0.00s -bash</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root     pts/2    223.64.48.212    15:41    7.00s  0.00s  0.00s w</span></span><br><span class="line"></span><br><span class="line">pkill -kill -t pts/0</span><br><span class="line">pkill -kill -t pts/1</span><br><span class="line"></span><br><span class="line">w</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">15:44:23 up 48 min,  3 <span class="built_in">users</span>,  load average: 0.00, 0.01, 0.04</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT</span></span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">root     pts/2    223.64.48.212    15:41    7.00s  0.00s  0.00s w</span></span><br></pre></td></tr></table></figure>
+<h2 id="查看时间保存代码"><a href="#查看时间保存代码" class="headerlink" title="查看时间保存代码"></a>查看时间保存代码</h2><p>由于上述时间差的代码没有问题，那么只有可能时间字段保存有错误。想了一下，可能是由于小数点的问题，时间加了1秒，写了一个demo验证下猜想是否正确。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">test</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">WorkOrderDetailFixData</span> <span class="variable">workOrderDetailFixData</span> <span class="operator">=</span> workOrderDetailFixDataMapper.selectById(<span class="number">225222968040494214L</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// debug now是2024-11-22 11:24:31.666365112</span></span><br><span class="line">    workOrderDetailFixData.setUpdateTime(LocalDateTime.now());</span><br><span class="line">    <span class="comment">// 数据库中是2024-11-22 11:24:32</span></span><br><span class="line">    <span class="built_in">this</span>.workOrderDetailFixDataMapper.updateById(workOrderDetailFixData);</span><br><span class="line"></span><br><span class="line">    log.info(<span class="string">&quot;time_diff = &quot;</span> + associateService.timeDiff(workOrderDetailFixData.getPreStationOutTime(),</span><br><span class="line">        workOrderDetailFixData.getOutTime()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="第三步、根据进程id删除挖矿软件，停止进程"><a href="#第三步、根据进程id删除挖矿软件，停止进程" class="headerlink" title="第三步、根据进程id删除挖矿软件，停止进程"></a>第三步、根据进程id删除挖矿软件，停止进程</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ls -al /proc/18896/exe</span><br><span class="line">rm -rf /dev/shm/kxmd</span><br><span class="line">kill -9 18896</span><br></pre></td></tr></table></figure>
+<p>PS: java中时间小数点最多是9位，mysql是6位。</p>
+<h2 id="全局修改"><a href="#全局修改" class="headerlink" title="全局修改"></a>全局修改</h2><p>知道问题后，首先check下该服务的数据库中所有的时间字段是什么类型，小数点几位，</p>
+<p>查看了所有表，全部是datetime，并且小数点都是0。</p>
+<p>这样的话，我们只需要修改LocalDateTime的typeHandler即可，找了一圈，没有发现可以一次性修改的的扩展方式。</p>
+<p>于是只能把源代码复制到src中，修改setNonNullParameter方法，去掉小数点。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> org.apache.ibatis.type;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.sql.CallableStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.PreparedStatement;</span><br><span class="line"><span class="keyword">import</span> java.sql.ResultSet;</span><br><span class="line"><span class="keyword">import</span> java.sql.SQLException;</span><br><span class="line"><span class="keyword">import</span> java.time.LocalDateTime;</span><br><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> caszhou</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@date</span> 2024/11/22</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">LocalDateTimeTypeHandler</span> <span class="keyword">extends</span> <span class="title class_">BaseTypeHandler</span>&lt;LocalDateTime&gt; &#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setNonNullParameter</span><span class="params">(PreparedStatement ps, <span class="type">int</span> i, LocalDateTime parameter, JdbcType jdbcType)</span></span><br><span class="line">        <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">if</span> (Objects.nonNull(parameter)) &#123;</span><br><span class="line">            <span class="comment">// 把小数点去掉</span></span><br><span class="line">            ps.setObject(i, parameter.withNano(<span class="number">0</span>));</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            ps.setObject(i, <span class="literal">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> LocalDateTime <span class="title function_">getNullableResult</span><span class="params">(ResultSet rs, String columnName)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">return</span> rs.getObject(columnName, LocalDateTime.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> LocalDateTime <span class="title function_">getNullableResult</span><span class="params">(ResultSet rs, <span class="type">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">return</span> rs.getObject(columnIndex, LocalDateTime.class);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">public</span> LocalDateTime <span class="title function_">getNullableResult</span><span class="params">(CallableStatement cs, <span class="type">int</span> columnIndex)</span> <span class="keyword">throws</span> SQLException &#123;</span><br><span class="line">        <span class="keyword">return</span> cs.getObject(columnIndex, LocalDateTime.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="第四步、检查机器"><a href="#第四步、检查机器" class="headerlink" title="第四步、检查机器"></a>第四步、检查机器</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看是否存在业务范围之外的可疑通信地址和开放端口</span></span><br><span class="line">iptables -L -n</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">清除恶意矿池地址</span></span><br><span class="line">vim /etc/sysconfig/iptables</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">查看定时任务是否有问题</span></span><br><span class="line">crontab -l</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">检查ssh公钥是否正常</span></span><br><span class="line">cat ~/.ssh/authorized_keys</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">无法修改或者删除，后按以下步骤操作</span></span><br><span class="line">lsattr ~/.ssh/authorized_keys</span><br><span class="line">cp /bin/chattr /bin/chattr2</span><br><span class="line">chmod 777 /bin/chattr2</span><br><span class="line">chattr2 -i ~/.ssh/authorized_keys</span><br><span class="line">chattr2 -a ~/.ssh/authorized_keys</span><br><span class="line">rm -rf ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
+<h2 id="复制的源代码如何生效"><a href="#复制的源代码如何生效" class="headerlink" title="复制的源代码如何生效"></a>复制的源代码如何生效</h2><p>java的Classloader是不会加载重复的class文件，只会加载先找到的先加载，由于在src下，会优先于jar的加载</p>
+<h2 id="classpath确认"><a href="#classpath确认" class="headerlink" title="classpath确认"></a>classpath确认</h2><p>发布前，我们查看启动脚本中的classpath，由于我们使用的是jib的插件，启动的classpath在jib-classpath-file中。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/app/resources:/app/classes:/app/libs/ams-service-adapter-0.1.181-SNAPSHOT.jar:......</span><br></pre></td></tr></table></figure>
 
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ol>
-<li>ssh修改端口、禁用密码登录；</li>
-<li>使用fail2ban，自动封禁，加固ssh；</li>
-<li>使用堡垒机，释放机器的外网ip；</li>
-<li>安全组采用最小权限原则，如果开放公网权限，应用服务必须开启安全认证；</li>
-<li>使用云服务安全产品。</li>
-</ol>
+<p>我们看到classes在jar之前，这样确保typeHandler能够正确load我们重写的类。</p>
+<h2 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h2><p>上线后，观察数据，bug修复。</p>
+<p>这样的修复方法比较适合数据库时间字段全部是小数点是0的情况，否则就自定义一个typeHandler，手动引入该handler， 以mybatis plus为例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@TableName(autoResultMap = true)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">Process</span> <span class="keyword">extends</span> <span class="title class_">BasePo</span> &#123;</span><br><span class="line">    <span class="meta">@TableField(typeHandler = ListStringToJsonTypeHandler.class)</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;String&gt; collectKey;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://caszhou.github.io/2022/10/16/20221016/" data-id="cm3sjj5bm000ym99p8hz8gi5k" data-title="手工处理云服务器被挖矿" class="article-share-link">Teilen</a>
+      <a data-url="https://caszhou.github.io/2024/11/22/20241122/" data-id="cm3sjj5bq001om99pcctx05zx" data-title="一次线上时间差1秒的调查" class="article-share-link">Teilen</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mybatis/" rel="tag">mybatis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/" rel="tag">mysql</a></li></ul>
 
     </footer>
   </div>
@@ -140,19 +146,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/12/07/20221207/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Neuer</strong>
-      <div class="article-nav-title">
-        
-          Spring自动装配优先级
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/10/04/20221004/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2024/11/17/20241117/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Älter</strong>
-      <div class="article-nav-title">Centos 7.9 优化脚本</div>
+      <div class="article-nav-title">seata 1.6.1 Global lock wait timeout解决</div>
     </a>
   
 </nav>
