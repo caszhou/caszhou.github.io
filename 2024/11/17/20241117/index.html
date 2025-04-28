@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>seata 1.6.1 Global lock wait timeout解决 | 周夏洁的博客</title>
+  <title>Seata 1.6.1 Global Lock Wait Timeout 问题分析与解决方案 | 周夏洁的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="在系统上线运行一段时间后，seata client会出现拿不到全局锁的情况，">
+  <meta name="description" content="在系统上线运行一段时间后，Seata Client 会出现拿不到全局锁的情况。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="seata 1.6.1 Global lock wait timeout解决">
+<meta property="og:title" content="Seata 1.6.1 Global Lock Wait Timeout 问题分析与解决方案">
 <meta property="og:url" content="https://caszhou.github.io/2024/11/17/20241117/index.html">
 <meta property="og:site_name" content="周夏洁的博客">
-<meta property="og:description" content="在系统上线运行一段时间后，seata client会出现拿不到全局锁的情况，">
+<meta property="og:description" content="在系统上线运行一段时间后，Seata Client 会出现拿不到全局锁的情况。">
 <meta property="og:locale">
 <meta property="article:published_time" content="2024-11-17T14:29:00.000Z">
-<meta property="article:modified_time" content="2024-11-17T15:00:48.065Z">
+<meta property="article:modified_time" content="2025-04-28T01:49:32.752Z">
 <meta property="article:author" content="xiajiezhou">
 <meta property="article:tag" content="seata">
 <meta name="twitter:card" content="summary">
@@ -96,7 +96,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      seata 1.6.1 Global lock wait timeout解决
+      Seata 1.6.1 Global Lock Wait Timeout 问题分析与解决方案
     </h1>
   
 
@@ -106,26 +106,28 @@
       
         <meta name="referrer" content="no-referrer">
 
-<p>在系统上线运行一段时间后，seata client会出现拿不到全局锁的情况，</p>
+<p>在系统上线运行一段时间后，Seata Client 会出现拿不到全局锁的情况。</p>
 <span id="more"></span>
 
-<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>由于全局事务的timeout设置过短，分支事务注册时，全局事务就回滚了，导致了锁泄露。</p>
+<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>常见的原因有并发更新，拿到全局锁的事务没有二次提交或者二次回滚，其它更新操作在重试时间范围内没拿到全局锁，会抛出此异常。</p>
+<p>但是经过排查，报错服务获取的全局锁只有一个业务接口在用，首先排除这个常见问题。</p>
+<p>经过 GitHub 查询，是由于全局事务的 timeout 设置过短，分支事务注册时，全局事务就回滚了，导致了锁泄露，属于 Bug。</p>
 <h2 id="缓解"><a href="#缓解" class="headerlink" title="缓解"></a>缓解</h2><ol>
 <li>避免过大的事务；</li>
-<li>client设置重试。</li>
+<li>Client 设置重试。</li>
 </ol>
-<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">seata.client.rm.lock.retry-interval</span>=<span class="string">100</span></span><br><span class="line"><span class="attr">seata.client.rm.lock.retry-times</span>=<span class="string">30</span></span><br><span class="line"><span class="attr">seata.client.rm.lock.retry-policy-branch-rollback-on-conflict</span>=<span class="string">false</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">client.rm.lock.retryInterval</span>=<span class="string">100</span></span><br><span class="line"><span class="attr">client.rm.lock.retryTimes</span>=<span class="string">30</span></span><br><span class="line"><span class="attr">client.rm.lock.retryPolicyBranchRollbackOnConflict</span>=<span class="string">false</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="根治"><a href="#根治" class="headerlink" title="根治"></a>根治</h2><ol>
-<li>设置合理的超时时间，并且保证client和server的时间是同步的；</li>
+<li>设置合理的超时时间，并且保证 Client 和 Server 的时间是同步的；</li>
 <li>升级到最新版本。</li>
 </ol>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@GlobalTransactional(rollbackFor = Exception.class, timeoutMills = 100 * 1000)</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 默认是60s</span></span><br><span class="line"><span class="meta">@GlobalTransactional(rollbackFor = Exception.class, timeoutMills = 100 * 1000)</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://caszhou.github.io/2024/11/17/20241117/" data-id="cm9yb0ag7001pm0sbe6codmtg" data-title="seata 1.6.1 Global lock wait timeout解决" class="article-share-link">Teilen</a>
+      <a data-url="https://caszhou.github.io/2024/11/17/20241117/" data-id="cma0f812n001p6d9p4c5a8k04" data-title="Seata 1.6.1 Global Lock Wait Timeout 问题分析与解决方案" class="article-share-link">Teilen</a>
       
       
       
@@ -224,7 +226,7 @@
           </li>
         
           <li>
-            <a href="/2024/11/17/20241117/">seata 1.6.1 Global lock wait timeout解决</a>
+            <a href="/2024/11/17/20241117/">Seata 1.6.1 Global Lock Wait Timeout 问题分析与解决方案</a>
           </li>
         
       </ul>
